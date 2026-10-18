@@ -204,3 +204,13 @@ flatpak-builder run, appstreamcli validation.
   human-readable errors (last non-empty line → status bar).
 - When the GUI itself runs as root, everything stays in-process
   (unmount + plan + write), no subprocess.
+
+## 2026-10-18 — live phase status (Rufus-style "READY" bar)
+
+- core::Progress gains a Phase field (Writing/Verifying/Syncing); write_image
+  emits a final Syncing event before sync_all, so the 100% bar no longer
+  sits silent while the kernel flushes.
+- UI status line now shows the phase live: "Írás: X%" / "Ellenőrzés: X%" /
+  "Szinkronizálás az eszközre…" → "WRITE DONE — KÉSZ" (hu.tsv keys added).
+- CLI --progress also emits {"status":"unmounting"} so the elevated GUI path
+  shows the unmount phase; human mode prints a sync note once.

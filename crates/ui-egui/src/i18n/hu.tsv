@@ -49,3 +49,6 @@ image inspection is not available in the browser	a böngészőben nem érhető e
 device access is not available in the browser	a böngészőből nem érhetőek el az eszközök
 Unmounting mounted partitions	Csatolt partíciók leválasztása
 Requesting administrator rights	Rendszergazdai jogosultság kérése
+Writing {0}%	Írás: {0}%
+Verifying {0}%	Ellenőrzés: {0}%
+Syncing to device…	Szinkronizálás az eszközre…

@@ -21,11 +21,17 @@ use flashcraft_native::linux;
 /// Human progress on stderr; with `--progress` one JSON line per update on
 /// stdout so the GUI (which may run us through pkexec) can render the bar.
 fn progress_cb(machine: bool) -> impl FnMut(core::Progress) {
+    let mut announced_sync = false;
     move |p: core::Progress| {
         if machine {
             if let Ok(line) = serde_json::to_string(&p) {
                 println!("{line}");
                 let _ = std::io::stdout().flush();
+            }
+        } else if p.phase == core::Phase::Syncing {
+            if !announced_sync {
+                announced_sync = true;
+                eprintln!("\n  waiting for the device to flush (sync)…");
             }
         } else {
             let mib = p.written as f64 / 1_048_576.0;
@@ -144,20 +150,25 @@ fn run(args: &[String]) -> Result<(), Error> {
                     dev.path
                 )));
             }
+            let machine = args.iter().any(|a| a == "--progress");
             // Rufus parity: mounted partitions are unmounted after the
             // confirmation gate, then the plan is re-validated.
             if dev.writable() == Err("device has mounted partitions") {
-                eprintln!(
-                    "unmounting {} partition(s) on {} …",
-                    dev.mounted.len(),
-                    dev.path
-                );
+                if machine {
+                    println!("{{\"status\":\"unmounting\"}}");
+                    let _ = std::io::stdout().flush();
+                } else {
+                    eprintln!(
+                        "unmounting {} partition(s) on {} …",
+                        dev.mounted.len(),
+                        dev.path
+                    );
+                }
                 linux::unmount_partitions(&mut dev)?;
             }
             let info = flashcraft_native::inspect_image(image)?;
             let plan = WritePlan::new(info, dev)?;
             eprintln!("writing {} -> {}", plan.image.path, plan.drive.path);
-            let machine = args.iter().any(|a| a == "--progress");
             flashcraft_native::write_image(&plan, &mut progress_cb(machine))?;
             eprintln!("\ndone; run `flashcraft-cli verify {image} {drive}` to check");
             Ok(())

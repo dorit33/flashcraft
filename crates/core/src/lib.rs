@@ -24,4 +24,4 @@ pub use drive::DriveInfo;
 pub use error::{Error, Result};
 pub use image::{ImageInfo, ImageKind};
 pub use plan::{validate_write_params, WriteParams, WritePlan};
-pub use progress::Progress;
+pub use progress::{Phase, Progress};

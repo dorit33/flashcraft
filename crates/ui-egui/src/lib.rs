@@ -99,10 +99,15 @@ fn run_elevated(
     };
     for line in std::io::BufReader::new(stdout).lines() {
         let Ok(line) = line else { break };
-        if let Ok(p) = serde_json::from_str::<core::Progress>(line.trim()) {
+        let Ok(v) = serde_json::from_str::<serde_json::Value>(line.trim()) else {
+            continue;
+        };
+        if v.get("status").and_then(|s| s.as_str()) == Some("unmounting") {
+            let _ = tx.send(JobMsg::Status("Unmounting mounted partitions"));
+        } else if let Ok(p) = serde_json::from_value::<core::Progress>(v) {
             let _ = tx.send(JobMsg::Progress(p));
-            ctx.request_repaint();
         }
+        ctx.request_repaint();
     }
     let output = child
         .wait_with_output()
@@ -441,7 +446,18 @@ impl FlashcraftUi {
         let mut done = None;
         for msg in msgs {
             match msg {
-                JobMsg::Progress(p) => self.progress = Some(p),
+                JobMsg::Progress(p) => {
+                    self.progress = Some(p);
+                    // Live phase line, like Rufus's status bar — the status
+                    // field is set directly so the log stays terse.
+                    self.status = match p.phase {
+                        core::Phase::Syncing => t("Syncing to device…", lang).to_string(),
+                        core::Phase::Verifying => {
+                            tf("Verifying {0}%", lang, &p.percent().to_string())
+                        }
+                        core::Phase::Writing => tf("Writing {0}%", lang, &p.percent().to_string()),
+                    };
+                }
                 JobMsg::Status(key) => self.say(t(key, lang).to_string()),
                 JobMsg::Done(result) => done = Some(result),
             }

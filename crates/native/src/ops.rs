@@ -5,7 +5,7 @@ use std::fs::{self, File};
 use std::io::{Read, Seek, SeekFrom, Write};
 use std::time::Instant;
 
-use flashcraft_core::{Error, ImageInfo, Progress, Result, WritePlan};
+use flashcraft_core::{Error, ImageInfo, Phase, Progress, Result, WritePlan};
 
 const HEADER_LEN: usize = 64 * 1024;
 const CHUNK: usize = 4 * 1024 * 1024;
@@ -68,8 +68,17 @@ pub fn write_image(plan: &WritePlan, on_progress: &mut dyn FnMut(Progress)) -> R
             } else {
                 0
             },
+            phase: Phase::Writing,
         });
     }
+    // The bar is full but the kernel still holds buffered pages — signal the
+    // sync phase so the UI shows "flushing" instead of sitting on a full bar.
+    on_progress(Progress {
+        written: total,
+        total,
+        bytes_per_sec: 0,
+        phase: Phase::Syncing,
+    });
     dst.sync_all()
         .map_err(|e| Error::Io(format!("sync: {e}")))?;
     Ok(())
@@ -122,6 +131,7 @@ pub fn verify_image(plan: &WritePlan, on_progress: &mut dyn FnMut(Progress)) -> 
             } else {
                 0
             },
+            phase: Phase::Verifying,
         });
     }
     Ok(())
