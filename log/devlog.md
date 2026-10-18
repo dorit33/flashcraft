@@ -225,3 +225,13 @@ flatpak-builder run, appstreamcli validation.
   so a labeled write verifies clean. CLI gains --label for write+verify;
   the GUI forwards the label through pkexec too. Tests: labeled ISO
   write+verify roundtrip, d-char sanitization.
+
+## 2026-10-18 — unmount robustness under pkexec
+
+- unmount_partitions now skips udisksctl when already root (pkexec has no
+  user session → udisks2 polkit lookup fails spuriously), goes straight to
+  umount, and falls back to `umount -l` (lazy, the Rufus "force dismount"
+  equivalent) for busy mounts.
+- Failures now carry the tools' own stderr in the error message.
+- Test updated: a stale (not actually mounted) entry is a no-op, matching
+  the idempotent semantics.

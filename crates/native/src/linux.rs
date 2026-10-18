@@ -79,26 +79,63 @@ pub fn list_drives_live() -> Result<Vec<DriveInfo>> {
     list_drives(Path::new("/sys/block"), &mounts)
 }
 
+fn is_mounted(dev: &str) -> bool {
+    fs::read_to_string("/proc/mounts")
+        .map(|m| mounted_devices(&m).contains(dev))
+        .unwrap_or(true)
+}
+
+fn try_unmount(prog: &str, args: &[&str]) -> std::result::Result<(), String> {
+    match std::process::Command::new(prog).args(args).output() {
+        Ok(o) if o.status.success() => Ok(()),
+        Ok(o) => Err(String::from_utf8_lossy(&o.stderr).trim().to_string()),
+        Err(e) => Err(e.to_string()),
+    }
+}
+
 /// Unmount every mounted partition listed on `drive` — the Rufus behaviour:
-/// START unmounts the volumes itself instead of refusing. `udisksctl` works
-/// unprivileged via polkit for user-mounted volumes; `umount` is the fallback
-/// (works when the process already runs as root, which writes need anyway).
-/// On success `drive.mounted` is emptied; anything still mounted is an error.
+/// START unmounts the volumes itself instead of refusing. Unprivileged runs
+/// go through `udisksctl` (polkit handles user-mounted volumes); elevated
+/// runs skip it — under pkexec there is no user session for udisks to consult,
+/// so root goes straight to `umount` with a lazy `umount -l` last resort for
+/// busy mounts (the Rufus "force dismount" equivalent). On success
+/// `drive.mounted` is emptied; anything still mounted is an error naming the
+/// tools' own diagnostics.
 pub fn unmount_partitions(drive: &mut DriveInfo) -> Result<()> {
+    let elevated = effective_uid() == Some(0);
     for dev in drive.mounted.clone() {
-        let ok = std::process::Command::new("udisksctl")
-            .args(["unmount", "-b", &dev])
-            .status()
-            .map(|s| s.success())
-            .unwrap_or(false)
-            || std::process::Command::new("umount")
-                .arg(&dev)
-                .status()
-                .map(|s| s.success())
-                .unwrap_or(false);
-        if !ok {
+        let attempts: Vec<(&str, Vec<String>)> = if elevated {
+            vec![
+                ("umount", vec![dev.clone()]),
+                ("umount", vec!["-l".into(), dev.clone()]),
+            ]
+        } else {
+            vec![
+                (
+                    "udisksctl",
+                    vec!["unmount".into(), "-b".into(), dev.clone()],
+                ),
+                ("umount", vec![dev.clone()]),
+                ("umount", vec!["-l".into(), dev.clone()]),
+            ]
+        };
+        let mut errs = Vec::new();
+        let mut gone = false;
+        for (prog, args) in &attempts {
+            let argrefs: Vec<&str> = args.iter().map(String::as_str).collect();
+            match try_unmount(prog, &argrefs) {
+                Ok(()) => gone = true,
+                Err(e) => errs.push(format!("{prog}: {e}")),
+            }
+            if gone || !is_mounted(&dev) {
+                gone = true;
+                break;
+            }
+        }
+        if !gone {
             return Err(Error::Backend(format!(
-                "cannot unmount {dev} (udisksctl/umount failed)"
+                "cannot unmount {dev} ({})",
+                errs.join("; ")
             )));
         }
     }
@@ -177,7 +214,9 @@ mod tests {
     }
 
     #[test]
-    fn unmount_fake_node_fails() {
+    fn unmount_stale_entry_is_noop() {
+        // A node listed but not actually mounted in /proc/mounts is treated
+        // as already gone — unmount must not fail on stale state.
         let mut d = DriveInfo {
             name: "sdb".into(),
             path: "/dev/sdb".into(),
@@ -187,7 +226,8 @@ mod tests {
             model: None,
             mounted: vec!["/dev/fc-nonexistent-node".into()],
         };
-        assert!(matches!(unmount_partitions(&mut d), Err(Error::Backend(_))));
+        unmount_partitions(&mut d).unwrap();
+        assert!(d.mounted.is_empty());
     }
 
     #[test]
