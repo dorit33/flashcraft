@@ -12,7 +12,7 @@ PARENT="$(cd "$ROOT/.." && pwd)"
 
 find "$DIST" -maxdepth 1 -type f \
     \( -name "*.tar.gz" -o -name "*.deb" -o -name "*.rpm" -o -name "*.AppImage" \
-       -o -name "*.flatpak" -o -name "*.zip" \) \
+       -o -name "*.flatpak" -o -name "*.zip" -o -name "*.msi" \) \
     -exec cp -f {} "$PARENT/" \;
 
 cd "$PARENT"

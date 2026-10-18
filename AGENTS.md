@@ -128,6 +128,9 @@ Every installer carries `LICENSE` + `ATTRIBUTION.md` under `share/doc/flashcraft
 cargo xtask version set 0.2.0
 ./packaging/linux/tarball.sh   # then deb.sh | rpm.sh | appimage.sh
 ./packaging/web/web.sh         # wasm build → dist/flashcraft-web-<ver>.zip (needs wasm-bindgen-cli)
+./packaging/windows/windows.sh # x64 portable zip + x64/x86 msi
+                               # (needs llvm-mingw + wixl; user-space installs
+                               #  live in ~/.local/toolchains/{llvm-mingw,wixl})
 ./packaging/source.sh          # source zip → dist/flashcraft-<ver>.zip
 ./packaging/release.sh         # copy dist/* next to the source dir + SHA256SUMS.txt
 # flatpak: flatpak run org.flatpak.Builder packaging/flatpak/build \
@@ -136,10 +139,11 @@ cargo xtask version set 0.2.0
 # flatpak build-bundle packaging/flatpak/repo dist/flashcraft-<ver>-x86_64.flatpak dev.flashcraft.app
 ```
 
-The release matrix is Linux + source + web **by design**: `flashcraft-native` enumerates
-and writes drives through sysfs and polkit, so a Windows or macOS build would show an
-empty device list. If a real Windows backend ever lands, add the `packaging/windows/`
-row back (`craftrules/standards/packaging.md`).
+The Windows binaries cross-compile and run (`*-pc-windows-gnullvm` via llvm-mingw), but
+`flashcraft-native` enumerates and writes drives through Linux sysfs/polkit only — on
+Windows the app opens with an empty device list. A real Windows backend (WMI/SetupAPI +
+raw disk I/O) is roadmap work; the installers exist so the matrix and the UI can be
+exercised on Windows meanwhile.
 
 ## 6. Parallel agents
 

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- WiX source for the FlashCraft MSI (built by wixl, see msi.sh).
+     @VER@ and @PF_DIR@ are substituted per-arch by msi.sh. -->
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Product Id="*" Name="FlashCraft" Language="1033" Codepage="1252"
+           Version="@VER@" Manufacturer="FlashCraft contributors"
+           UpgradeCode="A6726E63-E33E-4858-9CB7-625FF0302821">
+    <Package Id="*" Keywords="Installer" Description="FlashCraft @VER@ installer"
+             Comments="FlashCraft: write bootable images to removable drives"
+             Manufacturer="FlashCraft contributors" InstallerVersion="200"
+             Languages="1033" Compressed="yes" SummaryCodepage="1252"/>
+    <Media Id="1" Cabinet="flashcraft.cab" EmbedCab="yes"/>
+
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="@PF_DIR@" Name="PFiles">
+        <Directory Id="INSTALLDIR" Name="FlashCraft">
+          <Component Id="MainExe" Guid="55EB4786-712E-46AB-85CB-5CFE9C77BC65">
+            <File Id="FlashcraftExe" Name="flashcraft.exe" Source="flashcraft.exe" KeyPath="yes"/>
+          </Component>
+          <Component Id="CliExe" Guid="9448CF95-05AC-49C8-9D3C-294876EFA6D0">
+            <File Id="FlashcraftCliExe" Name="flashcraft-cli.exe" Source="flashcraft-cli.exe" KeyPath="yes"/>
+          </Component>
+          <Component Id="Docs" Guid="5C5D68E0-09FB-40FC-AC3D-4BB2D10C09CE">
+            <File Id="License" Name="LICENSE.txt" Source="LICENSE" KeyPath="yes"/>
+            <File Id="Attribution" Name="ATTRIBUTION.txt" Source="ATTRIBUTION.md"/>
+          </Component>
+        </Directory>
+      </Directory>
+      <Directory Id="ProgramMenuFolder" Name="Programs">
+        <Directory Id="AppMenuDir" Name="FlashCraft">
+          <Component Id="StartMenuShortcut" Guid="229855E6-B64D-4875-B9BA-E1D7247B73CF">
+            <Shortcut Id="AppShortcut" Name="FlashCraft"
+                      Target="[INSTALLDIR]flashcraft.exe" WorkingDirectory="INSTALLDIR"/>
+            <RemoveFolder Id="RemoveAppMenuDir" On="uninstall"/>
+            <RegistryValue Root="HKCU" Key="Software\FlashCraft" Name="installed"
+                           Type="integer" Value="1" KeyPath="yes"/>
+          </Component>
+        </Directory>
+      </Directory>
+    </Directory>
+
+    <Feature Id="Complete" Level="1">
+      <ComponentRef Id="MainExe"/>
+      <ComponentRef Id="CliExe"/>
+      <ComponentRef Id="Docs"/>
+      <ComponentRef Id="StartMenuShortcut"/>
+    </Feature>
+  </Product>
+</Wix>

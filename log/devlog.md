@@ -167,3 +167,17 @@ flatpak-builder run, appstreamcli validation.
 - Release dir now: 5 linux installers + source zip + web zip + SHA256SUMS.
   Windows/macOS rows intentionally absent — flashcraft-native is sysfs/polkit
   only; reason documented in AGENTS.md and craftrules packaging.md.
+
+## 2026-10-18 — Windows artifacts (llvm-mingw + wixl, no sudo)
+
+- Toolchains installed user-space: llvm-mingw 20261006 to
+  ~/.local/toolchains/llvm-mingw, wixl 0.106.58 + libmsi + libgcab extracted
+  from Fedora rpms to ~/.local/toolchains/wixl.
+- rustup targets added: x86_64/i686-pc-windows-gnullvm; both compile
+  flashcraft + flashcraft-cli cleanly (no unix-only code in native crate).
+- packaging/windows/: flashcraft.wxs (wixl schema, per-arch ProgramFiles
+  substitution) + windows.sh → x64 portable zip, x64 msi, x86 msi.
+- release.sh now copies *.msi too; parent dir matches the Craft matrix:
+  8 installers + source zip + web zip + SHA256SUMS.
+- AGENTS.md documents that Windows binaries run but see no drives
+  (sysfs/polkit backend is Linux-only; Windows backend is roadmap work).
