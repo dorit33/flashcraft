@@ -9,6 +9,39 @@ use flashcraft_core::{Error, ImageInfo, Phase, Progress, Result, WritePlan};
 
 const HEADER_LEN: usize = 64 * 1024;
 const CHUNK: usize = 4 * 1024 * 1024;
+/// ISO 9660 Primary Volume Descriptor lives at sector 16; the volume
+/// identifier is 32 space-padded d-characters at offset 40 inside it.
+const ISO_PVD_LABEL: u64 = 0x8028;
+const ISO_PVD_LABEL_LEN: usize = 32;
+
+/// The label bytes an ISO 9660 PVD accepts: ASCII upper case, digits, `_`,
+/// right-padded with spaces to 32 bytes. Everything else becomes `_`.
+fn label_bytes(label: &str) -> [u8; ISO_PVD_LABEL_LEN] {
+    let mut out = [b' '; ISO_PVD_LABEL_LEN];
+    for (i, b) in label.bytes().take(ISO_PVD_LABEL_LEN).enumerate() {
+        out[i] = match b {
+            b'a'..=b'z' => b - 32,
+            b'A'..=b'Z' | b'0'..=b'9' | b'_' => b,
+            _ => b'_',
+        };
+    }
+    out
+}
+
+/// Patch the ISO 9660 volume label inside `buf` (which holds file bytes
+/// starting at `buf_off`). Only bytes overlapping the label field change.
+fn apply_volume_label(buf: &mut [u8], buf_off: u64, label: &str) {
+    // Where the 32-byte field starts inside `buf`, and how far into the
+    // field `buf` begins when it starts mid-field.
+    let field_off = ISO_PVD_LABEL.saturating_sub(buf_off) as usize;
+    let skip = buf_off.saturating_sub(ISO_PVD_LABEL) as usize;
+    if field_off >= buf.len() || skip >= ISO_PVD_LABEL_LEN {
+        return;
+    }
+    let padded = label_bytes(label);
+    let n = (ISO_PVD_LABEL_LEN - skip).min(buf.len() - field_off);
+    buf[field_off..field_off + n].copy_from_slice(&padded[skip..skip + n]);
+}
 
 /// Read the header and report what the file looks like.
 pub fn inspect_image(path: &str) -> Result<ImageInfo> {
@@ -42,6 +75,10 @@ pub fn write_image(plan: &WritePlan, on_progress: &mut dyn FnMut(Progress)) -> R
         })?;
 
     let total = plan.image.size_bytes;
+    let label = match plan.image.kind {
+        flashcraft_core::ImageKind::Iso9660 => plan.volume_label.clone(),
+        _ => None,
+    };
     let mut buf = vec![0u8; CHUNK];
     let mut written: u64 = 0;
     let start = Instant::now();
@@ -55,6 +92,9 @@ pub fn write_image(plan: &WritePlan, on_progress: &mut dyn FnMut(Progress)) -> R
             .map_err(|e| Error::Io(format!("reading image: {e}")))?;
         if n == 0 {
             break;
+        }
+        if let Some(l) = &label {
+            apply_volume_label(&mut buf[..n], written, l);
         }
         dst.write_all(&buf[..n])
             .map_err(|e| Error::Io(format!("writing {drive_path}: {e}")))?;
@@ -96,6 +136,12 @@ pub fn verify_image(plan: &WritePlan, on_progress: &mut dyn FnMut(Progress)) -> 
         .map_err(|e| Error::Io(format!("{e}")))?;
 
     let total = plan.image.size_bytes;
+    // Verify applies the same on-the-fly label patch to the image side —
+    // otherwise a label written at write time would look like corruption.
+    let label = match plan.image.kind {
+        flashcraft_core::ImageKind::Iso9660 => plan.volume_label.clone(),
+        _ => None,
+    };
     let mut a = vec![0u8; CHUNK];
     let mut b = vec![0u8; CHUNK];
     let mut read_done: u64 = 0;
@@ -105,6 +151,9 @@ pub fn verify_image(plan: &WritePlan, on_progress: &mut dyn FnMut(Progress)) -> 
         let na = src
             .read(&mut a[..want])
             .map_err(|e| Error::Io(format!("{e}")))?;
+        if let Some(l) = &label {
+            apply_volume_label(&mut a[..na], read_done, l);
+        }
         let nb = dst
             .read(&mut b[..want])
             .map_err(|e| Error::Io(format!("{e}")))?;
@@ -166,7 +215,39 @@ mod tests {
         };
         // WritePlan::new refuses non-device sizes only via fields we control;
         // for tests we drive the ops directly on regular files.
-        WritePlan { image, drive }
+        WritePlan {
+            image,
+            drive,
+            volume_label: None,
+        }
+    }
+
+    #[test]
+    fn labeled_iso_write_and_verify() {
+        let mut data = vec![0u8; 0x8050];
+        data[0x8001..0x8006].copy_from_slice(b"CD001");
+        let img = tmpfile("iso.bin", &data);
+        let dev = tmpfile("deviso.bin", &vec![0xFF; data.len()]);
+
+        let mut p = plan(&img, &dev, data.len() as u64, data.len() as u64);
+        p.image.kind = flashcraft_core::ImageKind::Iso9660;
+        p = p.with_label(Some("my disk".to_string()));
+        write_image(&p, &mut |_| {}).unwrap();
+        verify_image(&p, &mut |_| {}).unwrap();
+
+        // The label lands in the PVD volume identifier, padded to 32.
+        let written = fs::read(&dev).unwrap();
+        assert_eq!(&written[0x8028..0x8028 + 7], b"MY_DISK");
+        assert_eq!(written[0x8028 + 32 - 1], b' ');
+
+        let _ = fs::remove_file(&img);
+        let _ = fs::remove_file(&dev);
+    }
+
+    #[test]
+    fn label_sanitizes_to_iso_dchars() {
+        let bytes = label_bytes("a.b-c(d)");
+        assert_eq!(&bytes[..8], b"A_B_C_D_");
     }
 
     #[test]

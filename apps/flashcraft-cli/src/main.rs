@@ -82,6 +82,14 @@ fn build_plan(image: &str, drive: &str) -> Result<WritePlan, Error> {
     WritePlan::new(info, dev)
 }
 
+/// Optional `--label TEXT` — the volume label patched onto the media
+/// (ISO 9660 PVD today), like Rufus's label field.
+fn label_arg(args: &[String]) -> Option<String> {
+    args.iter()
+        .position(|a| a == "--label")
+        .and_then(|i| args.get(i + 1).cloned())
+}
+
 fn usage() {
     println!(
         "flashcraft-cli — FlashCraft headless control
@@ -96,6 +104,7 @@ SUBCOMMANDS:
   verify <image> <drive>          Compare drive against image      (media.verify)
 
   --progress                      JSON progress lines on stdout (for the GUI)
+  --label TEXT                    Volume label patched onto the media (ISO)
   commands                        List every registered command
 
 Drive may be a device node (/dev/sdb) or kernel name (sdb). Writing needs
@@ -167,7 +176,7 @@ fn run(args: &[String]) -> Result<(), Error> {
                 linux::unmount_partitions(&mut dev)?;
             }
             let info = flashcraft_native::inspect_image(image)?;
-            let plan = WritePlan::new(info, dev)?;
+            let plan = WritePlan::new(info, dev)?.with_label(label_arg(args));
             eprintln!("writing {} -> {}", plan.image.path, plan.drive.path);
             flashcraft_native::write_image(&plan, &mut progress_cb(machine))?;
             eprintln!("\ndone; run `flashcraft-cli verify {image} {drive}` to check");
@@ -180,7 +189,7 @@ fn run(args: &[String]) -> Result<(), Error> {
             let drive = args
                 .get(2)
                 .ok_or_else(|| Error::InvalidParams("usage: verify <image> <drive>".into()))?;
-            let plan = build_plan(image, drive)?;
+            let plan = build_plan(image, drive)?.with_label(label_arg(args));
             eprintln!("verifying {} against {}", plan.image.path, plan.drive.path);
             let machine = args.iter().any(|a| a == "--progress");
             flashcraft_native::verify_image(&plan, &mut progress_cb(machine))?;

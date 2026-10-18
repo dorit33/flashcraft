@@ -68,6 +68,7 @@ fn run_elevated(
     verify_only: bool,
     image_path: &str,
     drive_path: &str,
+    volume_label: &str,
     tx: &Sender<JobMsg>,
     ctx: &egui::Context,
 ) -> core::Result<()> {
@@ -82,6 +83,9 @@ fn run_elevated(
         .arg("--progress");
     if !verify_only {
         cmd.arg("--yes");
+    }
+    if !volume_label.trim().is_empty() {
+        cmd.arg("--label").arg(volume_label);
     }
     let mut child = cmd
         .stdout(Stdio::piped())
@@ -376,6 +380,7 @@ impl FlashcraftUi {
             return;
         };
         let image_path = self.image_path.clone();
+        let volume_label = self.volume_label.clone();
         let (tx, rx) = channel::<JobMsg>();
         let ctx = ctx.clone();
         self.say(tf(
@@ -397,7 +402,14 @@ impl FlashcraftUi {
             let result = if flashcraft_native::linux::effective_uid() != Some(0) {
                 let _ = txp.send(JobMsg::Status("Requesting administrator rights"));
                 ctx.request_repaint();
-                run_elevated(verify_only, &image_path, &drive_path, &txp, &ctx)
+                run_elevated(
+                    verify_only,
+                    &image_path,
+                    &drive_path,
+                    &volume_label,
+                    &txp,
+                    &ctx,
+                )
             } else {
                 (|| {
                     let mut dev = dev;
@@ -407,7 +419,7 @@ impl FlashcraftUi {
                         flashcraft_native::linux::unmount_partitions(&mut dev)?;
                     }
                     let info = flashcraft_native::inspect_image(&image_path)?;
-                    let plan = core::WritePlan::new(info, dev)?;
+                    let plan = core::WritePlan::new(info, dev)?.with_label(Some(volume_label));
                     if verify_only {
                         flashcraft_native::verify_image(&plan, &mut |p| {
                             let _ = txp.send(JobMsg::Progress(p));

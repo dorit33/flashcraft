@@ -214,3 +214,14 @@ flatpak-builder run, appstreamcli validation.
   "Szinkronizálás az eszközre…" → "WRITE DONE — KÉSZ" (hu.tsv keys added).
 - CLI --progress also emits {"status":"unmounting"} so the elevated GUI path
   shows the unmount phase; human mode prints a sync note once.
+
+## 2026-10-18 — volume label applied (ISO 9660 PVD)
+
+- WritePlan carries volume_label (with_label() builder). write_image patches
+  the ISO 9660 Primary Volume Descriptor volume identifier on the fly —
+  the typed label lands on the written media, like Rufus.
+- Sanitize: ISO d-characters only (A-Z 0-9 _), space-padded to 32 bytes.
+- verify_image applies the same patch to the image side before comparing,
+  so a labeled write verifies clean. CLI gains --label for write+verify;
+  the GUI forwards the label through pkexec too. Tests: labeled ISO
+  write+verify roundtrip, d-char sanitization.

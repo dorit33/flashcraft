@@ -41,6 +41,9 @@ pub fn validate_write_params(value: &serde_json::Value) -> Result<WriteParams> {
 pub struct WritePlan {
     pub image: ImageInfo,
     pub drive: DriveInfo,
+    /// The user-typed volume label; applied to the written media where the
+    /// format allows (ISO 9660 PVD today), `None` leaves the media untouched.
+    pub volume_label: Option<String>,
 }
 
 impl WritePlan {
@@ -64,7 +67,18 @@ impl WritePlan {
                 image.size_bytes, drive.size_bytes
             )));
         }
-        Ok(Self { image, drive })
+        Ok(Self {
+            image,
+            drive,
+            volume_label: None,
+        })
+    }
+
+    /// Attach the volume label (blank → `None`). Rufus applies the typed
+    /// label to the target media; we do the same where the format allows.
+    pub fn with_label(mut self, label: Option<String>) -> Self {
+        self.volume_label = label.filter(|s| !s.trim().is_empty());
+        self
     }
 }
 
