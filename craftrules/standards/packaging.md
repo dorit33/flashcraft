@@ -29,6 +29,11 @@ it never fakes an artifact.
 
 - `packaging/linux/tarball.sh` builds the release binaries and lays out
   `bin/` + `share/{applications,metainfo,icons,doc}` — every other Linux format repackages it.
+- **glibc baseline:** host-built binaries only run on glibc >= the host's — a binary built on
+  a new distro silently fails to start on older ones (`GLIBC_2.xx not found`, no error shown).
+  Build the portable payload in a container against the oldest supported distro
+  (e.g. `podman` + Ubuntu 22.04 → glibc 2.35); the rpm/deb/AppImage/tarball all consume it.
+  Note: bind-mounting the repo needs `:Z` on SELinux hosts, else the container can't write.
 - `.deb` needs a `DEBIAN/control` plus `usr/share/doc/<app>/copyright`; `.rpm` a real spec
   with `%license`; AppImage an `AppDir` with `AppRun`; Flatpak a manifest building **from
   source** in the freedesktop sandbox (`rust-stable` SDK extension, network build-arg).
