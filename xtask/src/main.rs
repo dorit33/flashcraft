@@ -32,7 +32,14 @@ fn run(cmd: &str, args: &[&str]) -> Result<(), String> {
     } else {
         cmd.to_string()
     };
-    let status = Command::new(&cmd)
+    let mut command = Command::new(&cmd);
+    // Subcommands (cargo-fmt, cargo-clippy) resolve through PATH; make sure the
+    // cargo binary's own directory is on it for the child.
+    if let Some(dir) = std::path::Path::new(&cmd).parent() {
+        let path = std::env::var("PATH").unwrap_or_default();
+        command.env("PATH", format!("{}:{path}", dir.display()));
+    }
+    let status = command
         .args(args)
         .current_dir(root())
         .status()

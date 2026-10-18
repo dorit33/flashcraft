@@ -146,3 +146,11 @@ flatpak-builder run, appstreamcli validation.
   craftrules/<standard>. contributors/people.toml added; plan/ + corpus/ gitignored.
 - docs/target-app-parity.md + docs/gaps.md created (progress-docs standard);
   ROADMAP M4 marked done.
+
+## 2026-10-18 — repo moved under flashcraft-0.1.0/
+
+- Source tree moved into flashcraft-0.1.0/ so the folder matches the Craft
+  release layout (source dir + installers at the top level); dist artifacts
+  moved next to it.
+- xtask: child cargo runs via the CARGO env path AND gets the cargo dir on
+  PATH (cargo-fmt/clippy resolve); ci green from the new root.
