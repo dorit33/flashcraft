@@ -3,7 +3,7 @@
 //!   cargo xtask ci        fmt --check, clippy -D warnings, tests, wasm check
 //!   cargo xtask layers    enforce the crate dependency layers
 //!   cargo xtask wasm      cargo check L0–L2 for wasm32-unknown-unknown
-//!   cargo xtask version   print the workspace version
+//!   cargo xtask version [set X.Y.Z[-pre]]   print or set the workspace version
 
 #![deny(
     clippy::unwrap_used,
@@ -16,6 +16,8 @@
 
 use std::path::{Path, PathBuf};
 use std::process::{Command, ExitCode};
+
+mod version;
 
 fn root() -> PathBuf {
     Path::new(env!("CARGO_MANIFEST_DIR"))
@@ -99,17 +101,9 @@ fn ci() -> Result<(), String> {
     wasm()
 }
 
-fn version() -> Result<(), String> {
-    let manifest = root().join("Cargo.toml");
-    let text = std::fs::read_to_string(&manifest)
-        .map_err(|e| format!("cannot read workspace manifest: {e}"))?;
-    for line in text.lines() {
-        if let Some(v) = line.trim().strip_prefix("version = ") {
-            println!("{}", v.trim_matches('"'));
-            return Ok(());
-        }
-    }
-    Err("workspace version not found".to_string())
+fn version(args: &[String]) -> Result<(), String> {
+    let refs: Vec<&str> = args.iter().map(String::as_str).collect();
+    version::run(&root(), &refs)
 }
 
 fn usage() {
@@ -119,7 +113,7 @@ fn usage() {
   ci        fmt --check, clippy -D warnings, tests, layers, wasm check
   layers    enforce crate dependency layers
   wasm      check core + ui-egui for wasm32-unknown-unknown
-  version   print the workspace version"
+  version   print the workspace version, or `version set X.Y.Z[-pre]`"
     );
 }
 
@@ -129,7 +123,7 @@ fn main() -> ExitCode {
         "ci" => ci(),
         "layers" => layers(),
         "wasm" => wasm(),
-        "version" => version(),
+        "version" => version(&std::env::args().skip(2).collect::<Vec<_>>()),
         _ => {
             usage();
             if arg.is_empty() {

@@ -131,3 +131,11 @@ flatpak-builder run, appstreamcli validation.
   (flatpak refuses non-app-id export names); metainfo launchable updated.
 - Bundle exported to dist/flashcraft-0.1.0-x86_64.flatpak and verified:
   installs user-remote and the sandboxed CLI lists host devices.
+
+## 2026-10-18 — Versioning, Craft-style
+
+- `cargo xtask version set X.Y.Z[-pre]`: semver-validated, atomic
+  manifest write, Cargo.lock refresh; also stamps the RPM spec Version:
+  header and the AppStream <release> entry — one source of truth.
+- UI version label now compiles in via env!("CARGO_PKG_VERSION").
+- AGENTS.md gained a Releasing section with the packaging recipe.

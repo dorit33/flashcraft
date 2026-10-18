@@ -30,7 +30,7 @@ crates/
 apps/
   flashcraft                      L3 desktop shell (eframe): window only
   flashcraft-cli                  L3 headless CLI: list | inspect | write | verify | commands
-xtask/                            cargo xtask ci | layers | wasm | version
+xtask/                            cargo xtask ci | layers | wasm | version [set X.Y.Z]
 docs/                             architecture, development
 packaging/                        platform packaging scripts (planned)
 assets/app-icon/                  the app's own icon (placeholder until drawn)
@@ -109,7 +109,26 @@ Then append a terse entry to `log/devlog.md` (what landed, what's still open). S
 abruptly; the dev log plus a green tree is how the next agent picks up. Keep the tree building
 at every step.
 
-## 5. Parallel agents
+## 5. Releasing
+
+The version lives only in `[workspace.package] version` in the root `Cargo.toml`
+(`cargo xtask version`, `cargo xtask version set X.Y.Z[-pre]`). `set` validates semver, writes the
+manifest atomically, refreshes `Cargo.lock`, and stamps the two places that can't read Cargo
+metadata at build time: the RPM spec's `Version:` header and the AppStream `<release>` entry.
+The version label in the UI compiles in via `env!("CARGO_PKG_VERSION")` — never hard-code it.
+Every installer carries `LICENSE` + `ATTRIBUTION.md` under `share/doc/flashcraft/`
+(`%license`/`%doc` for RPM, a `copyright` file for DEB).
+
+```sh
+cargo xtask version set 0.2.0
+./packaging/linux/tarball.sh   # then deb.sh | rpm.sh | appimage.sh
+# flatpak: flatpak run org.flatpak.Builder packaging/flatpak/build \
+#   packaging/flatpak/dev.flashcraft.app.yml --force-clean --user \
+#   --install-deps-from=flathub --repo=packaging/flatpak/repo
+# flatpak build-bundle packaging/flatpak/repo dist/flashcraft-<ver>-x86_64.flatpak dev.flashcraft.app
+```
+
+## 6. Parallel agents
 
 - Use your own target dir (`CARGO_TARGET_DIR=target/agent-<name>`) and edit only the files you
   own.
@@ -117,7 +136,7 @@ at every step.
   Write manifests to a temp file and `mv` them into place.
 - If someone else's in-progress edit breaks the build, wait and retry; don't fix their files.
 
-## 6. Running it
+## 7. Running it
 
 ```sh
 cargo run -p flashcraft-cli -- list                       # enumerate removable drives

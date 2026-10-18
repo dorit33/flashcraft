@@ -771,7 +771,11 @@ impl FlashcraftUi {
             }
             ui.put(
                 ctl(62.0, 294.0, 60.0, 10.0),
-                egui::Label::new(RichText::new("FlashCraft 0.1.0").weak().small()),
+                egui::Label::new(
+                    RichText::new(format!("FlashCraft {}", env!("CARGO_PKG_VERSION")))
+                        .weak()
+                        .small(),
+                ),
             );
             #[cfg(not(target_arch = "wasm32"))]
             {
