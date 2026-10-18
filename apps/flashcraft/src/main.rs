@@ -66,6 +66,7 @@ fn win32_visuals() -> egui::Style {
     v.window_corner_radius = egui::CornerRadius::ZERO;
     v.menu_corner_radius = egui::CornerRadius::ZERO;
     style.visuals = v;
+    style.spacing.button_padding = egui::vec2(4.0, 1.0);
     style
 }
 

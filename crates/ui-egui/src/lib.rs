@@ -405,7 +405,9 @@ impl FlashcraftUi {
                 ui.allocate_new_ui(egui::UiBuilder::new().max_rect(ctl(x, y, w, 12.0)), |ui| {
                     ui.add_enabled(
                         enabled,
-                        egui::Button::new(s).min_size(egui::vec2(w * DU_X, 12.0 * DU_Y)),
+                        egui::Button::new(s)
+                            .min_size(egui::vec2(w * DU_X, 12.0 * DU_Y))
+                            .wrap_mode(egui::TextWrapMode::Truncate),
                     )
                 })
                 .inner
@@ -474,10 +476,30 @@ impl FlashcraftUi {
                         });
                 },
             );
-            if btn(ui, 210.0, 30.0, 14.0, "⟳", true)
-                .on_hover_text(t("Refresh", lang))
-                .clicked()
+            let refresh = btn(ui, 210.0, 30.0, 14.0, "", true);
+            // Circular-arrow icon drawn by hand — no font glyph needed.
             {
+                let c = refresh.rect.center();
+                let rad = refresh.rect.height() * 0.30;
+                let color = ui.visuals().widgets.inactive.fg_stroke.color;
+                let stroke = egui::Stroke::new(1.3_f32, color);
+                let pts: Vec<egui::Pos2> = (0..=12)
+                    .map(|i| {
+                        let a = -1.0 + (i as f32 / 12.0) * 4.9; // ~280° arc
+                        c + egui::vec2(a.cos() * rad, a.sin() * rad)
+                    })
+                    .collect();
+                let tip = *pts.last().unwrap_or(&c);
+                let dir = pts[pts.len().saturating_sub(2)] - tip;
+                let n = egui::vec2(-dir.y, dir.x).normalized() * 3.0;
+                ui.painter().add(egui::Shape::line(pts, stroke));
+                ui.painter().add(egui::Shape::convex_polygon(
+                    vec![tip + egui::vec2(dir.x * 1.2, dir.y * 1.2), tip + n, tip - n],
+                    color,
+                    egui::Stroke::NONE,
+                ));
+            }
+            if refresh.on_hover_text(t("Refresh", lang)).clicked() {
                 self.refresh_drives();
                 self.say(t("Device list refreshed", lang));
             }
@@ -736,12 +758,29 @@ impl FlashcraftUi {
                 .unwrap_or(0.0);
             #[cfg(target_arch = "wasm32")]
             let frac = 0.0_f32;
-            ui.put(
-                ctl(8.0, 273.0, 216.0, 9.0),
-                egui::ProgressBar::new(frac)
-                    .fill(Color32::from_rgb(0x06, 0xb0, 0x25))
-                    .desired_height(9.0 * DU_Y),
-            );
+            // Progress bar — painted like the Win32 control: white field,
+            // 1px border, solid green fill (nothing when idle).
+            {
+                let bar = ctl(8.0, 273.0, 216.0, 9.0);
+                ui.painter().rect_filled(bar, 0.0, Color32::WHITE);
+                ui.painter().rect_stroke(
+                    bar,
+                    0.0,
+                    egui::Stroke::new(1.0_f32, Color32::from_rgb(0xbc, 0xbc, 0xbc)),
+                    egui::StrokeKind::Inside,
+                );
+                if frac > 0.0 {
+                    let w = (bar.width() - 2.0) * frac.clamp(0.0, 1.0);
+                    ui.painter().rect_filled(
+                        egui::Rect::from_min_size(
+                            bar.min + egui::vec2(1.0, 1.0),
+                            egui::vec2(w, bar.height() - 2.0),
+                        ),
+                        0.0,
+                        Color32::from_rgb(0x06, 0xb0, 0x25),
+                    );
+                }
+            }
 
             // Bottom row — Log left; START + CLOSE right, per the .rc
             if btn(ui, 8.0, 294.0, 50.0, t("Log", lang).as_ref(), true).clicked() {
