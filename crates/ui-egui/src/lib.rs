@@ -376,17 +376,24 @@ impl FlashcraftUi {
                     egui::vec2(w * DU_X, (h * DU_Y).max(15.0)),
                 )
             };
-            let text = |ui: &mut egui::Ui, x: f32, y: f32, s: &str| {
-                ui.put(
-                    ctl(x, y, 216.0, 10.0),
-                    egui::Label::new(RichText::new(s)).truncate(),
+            let label = |ui: &mut egui::Ui, x: f32, y: f32, s: &str, strong: bool| {
+                // Labels left-align within their (edge-clamped) rect, like LTEXT
+                let rt = RichText::new(s);
+                let rt = if strong { rt.strong() } else { rt };
+                ui.allocate_new_ui(
+                    egui::UiBuilder::new()
+                        .max_rect(ctl(x, y, DU_W - x, 10.0))
+                        .layout(egui::Layout::left_to_right(egui::Align::Center)),
+                    |ui| {
+                        ui.add(egui::Label::new(rt).truncate());
+                    },
                 );
             };
+            let text = |ui: &mut egui::Ui, x: f32, y: f32, s: &str| {
+                label(ui, x, y, s, false);
+            };
             let bold = |ui: &mut egui::Ui, x: f32, y: f32, s: &str| {
-                ui.put(
-                    ctl(x, y, 216.0, 10.0),
-                    egui::Label::new(RichText::new(s).strong()).truncate(),
-                );
+                label(ui, x, y, s, true);
             };
             let btn = |ui: &mut egui::Ui,
                        x: f32,
@@ -499,12 +506,6 @@ impl FlashcraftUi {
             #[cfg(not(target_arch = "wasm32"))]
             if btn(ui, 180.0, 52.0, 45.0, t("SELECT", lang).as_ref(), true).clicked() {
                 self.browse_image(lang);
-            }
-            if !self.image_path.is_empty() {
-                ui.put(
-                    ctl(8.0, 63.0, 216.0, 8.0),
-                    egui::Label::new(RichText::new(&self.image_path).weak().small()).truncate(),
-                );
             }
             text(ui, 8.0, 65.0, t("Image option", lang).as_ref());
             combo(
@@ -689,25 +690,40 @@ impl FlashcraftUi {
             }
 
             // Status
-            bold(ui, 8.0, 254.0, t("Status:", lang).as_ref());
+            text(ui, 8.0, 254.0, t("Status:", lang).as_ref());
             let shown_status = if self.status == "READY" {
                 t("READY", lang).to_string()
             } else {
                 self.status.clone()
             };
             let status_text = if self.status_err {
-                RichText::new(shown_status).color(Color32::LIGHT_RED)
+                RichText::new(shown_status).color(Color32::from_rgb(0xc0, 0x00, 0x00))
             } else {
                 RichText::new(shown_status)
             };
-            ui.put(
-                ctl(32.0, 254.0, 192.0, 10.0),
-                egui::Label::new(status_text).truncate(),
+            ui.allocate_new_ui(
+                egui::UiBuilder::new()
+                    .max_rect(ctl(34.0, 254.0, DU_W - 34.0, 10.0))
+                    .layout(egui::Layout::left_to_right(egui::Align::Center)),
+                |ui| {
+                    ui.add(egui::Label::new(status_text).truncate());
+                },
             );
             if let Some(err) = &self.drives_error {
-                ui.put(
-                    ctl(32.0, 262.0, 192.0, 8.0),
-                    egui::Label::new(RichText::new(err).color(Color32::YELLOW).small()).truncate(),
+                ui.allocate_new_ui(
+                    egui::UiBuilder::new()
+                        .max_rect(ctl(34.0, 262.0, DU_W - 34.0, 8.0))
+                        .layout(egui::Layout::left_to_right(egui::Align::Center)),
+                    |ui| {
+                        ui.add(
+                            egui::Label::new(
+                                RichText::new(err)
+                                    .color(Color32::from_rgb(0xb0, 0x60, 0x00))
+                                    .small(),
+                            )
+                            .truncate(),
+                        );
+                    },
                 );
             }
 
@@ -723,7 +739,7 @@ impl FlashcraftUi {
             ui.put(
                 ctl(8.0, 273.0, 216.0, 9.0),
                 egui::ProgressBar::new(frac)
-                    .fill(Color32::from_rgb(0x4c, 0xaf, 0x50))
+                    .fill(Color32::from_rgb(0x06, 0xb0, 0x25))
                     .desired_height(9.0 * DU_Y),
             );
 

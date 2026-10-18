@@ -99,3 +99,16 @@ flatpak-builder run, appstreamcli validation.
 - loc-import merge order changed: existing catalog rows win over rufus.loc so
   hand-edited translations are never overwritten on re-import.
 - x-mirroring kept for ar/fa/he (ctl flips x' = 232 − x − w).
+
+## 2026-10-18 — Win32-dialog visuals + system fonts
+
+- apps/flashcraft: `win32_visuals()` replaces the dark theme — #F0F0F0 dialog
+  face, black text, white fields (inactive.bg_fill), #E1E1E1 buttons
+  (weak_bg_fill), #0078D7 hover/selection, zero corner radii, 1px #ADADAD
+  borders — the classic Rufus-on-Windows look.
+- `load_fonts()` adds Liberation Sans (Arial metrics ≈ Segoe UI) as the
+  primary font and NotoSansCJK as fallback so CJK catalogs render; missing
+  fonts are skipped and egui built-ins remain.
+- Labels render in left_to_right child UIs (LTEXT semantics); second-column
+  label rects are edge-clamped; status/error text is dark red/amber on the
+  light face; progress fill is Rufus green #06B025.
