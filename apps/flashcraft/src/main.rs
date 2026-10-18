@@ -25,7 +25,9 @@ impl eframe::App for App {
 
 fn main() -> eframe::Result<()> {
     let options = eframe::NativeOptions {
-        viewport: egui::ViewportBuilder::default().with_inner_size([560.0, 280.0]),
+        viewport: egui::ViewportBuilder::default()
+            .with_inner_size([480.0, 560.0])
+            .with_resizable(false),
         ..Default::default()
     };
     let mut ui = FlashcraftUi::default();
@@ -33,6 +35,19 @@ fn main() -> eframe::Result<()> {
     eframe::run_native(
         "FlashCraft",
         options,
-        Box::new(move |_cc| Ok(Box::new(App { ui }))),
+        Box::new(move |cc| {
+            // Rufus-like chrome: hard square corners, dark panel.
+            let mut style = (*cc.egui_ctx.style()).clone();
+            style.visuals = egui::Visuals::dark();
+            style.visuals.widgets.noninteractive.corner_radius = egui::CornerRadius::ZERO;
+            style.visuals.widgets.inactive.corner_radius = egui::CornerRadius::ZERO;
+            style.visuals.widgets.hovered.corner_radius = egui::CornerRadius::ZERO;
+            style.visuals.widgets.active.corner_radius = egui::CornerRadius::ZERO;
+            style.visuals.widgets.open.corner_radius = egui::CornerRadius::ZERO;
+            style.visuals.window_corner_radius = egui::CornerRadius::ZERO;
+            style.visuals.menu_corner_radius = egui::CornerRadius::ZERO;
+            cc.egui_ctx.set_style(style);
+            Ok(Box::new(App { ui }))
+        }),
     )
 }

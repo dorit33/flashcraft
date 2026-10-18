@@ -30,3 +30,22 @@ control channel (`--control PORT`), web build via trunk.
 
 **Still open:** signed builds/SHA256SUMS.txt, release workflow (`.github/workflows/release.yml`),
 flatpak-builder run, appstreamcli validation.
+
+## 2026-10-18 — Rufus-parity UI
+
+- `ui-egui` reworked to the Rufus dialog, field for field: Drive Properties
+  (Device, Boot selection + SELECT, persistent partition size), Format Options
+  (Image option, Partition scheme MBR/GPT, derived Target system, Volume label
+  autofilled from the image name, File system, Cluster size), advanced
+  collapsibles ("Show advanced drive properties" → List USB Hard Drives;
+  "Show advanced format options" → Quick format, extended label, bad-block
+  passes), Status bar ("READY", red on error, green progress while running),
+  Log panel, START bottom-right.
+- START → plan → Rufus-style modal: "WARNING: ALL DATA ON DEVICE '…' WILL BE
+  DESTROYED", OK/Cancel. Write/verify run on a worker thread reporting
+  Progress over a channel; UI stays live and repaints.
+- Rufus chrome: square corners everywhere, dark visuals, fixed 480×560 window.
+- Format-only controls (File system, Cluster size, bad-block passes) are shown
+  but disabled until the format backend lands (M2) — they're tracked as dead
+  settings, not silently ignored.
+- wasm32 build stays warning-free; all job/device code is cfg'd out on wasm.
