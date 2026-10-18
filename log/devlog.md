@@ -193,3 +193,14 @@ flatpak-builder run, appstreamcli validation.
   JobMsg::Status streams localized status keys ("Unmounting mounted
   partitions", hu.tsv entry added, others fall back to English).
 - CLI: write unmounts after root + --yes checks; verify stays strict.
+
+## 2026-10-18 — polkit elevation (the Rufus UAC flow)
+
+- GUI runs unprivileged; write/verify on a non-root session spawns
+  `pkexec flashcraft-cli <op> … --progress` — sibling binary lookup next
+  to the exe, PATH fallback. polkit shows the password prompt at Start.
+- flashcraft-cli --progress emits one JSON Progress line per update on
+  stdout; the GUI parses them into the progress bar, stderr carries the
+  human-readable errors (last non-empty line → status bar).
+- When the GUI itself runs as root, everything stays in-process
+  (unmount + plan + write), no subprocess.

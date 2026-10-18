@@ -161,5 +161,9 @@ sudo ./target/debug/flashcraft-cli write fedora.iso /dev/sdb --yes
 cargo run -p flashcraft                                  # the desktop app
 ```
 
-Block-device writes need root. The supported way to grant it is a polkit prompt
-(`pkexec ./target/debug/flashcraft-cli …`) or plain `sudo` — never a setuid binary.
+Block-device writes need root. The GUI runs unprivileged and elevates only the
+write/verify step: it spawns `pkexec flashcraft-cli … --progress` (the CLI ships
+next to the app binary in every package), so polkit asks for the password — the
+Rufus UAC equivalent. The CLI alone still needs `sudo`/`pkexec`. Never a setuid
+binary. Mounted partitions are unmounted automatically after the confirmation
+gate (udisksctl → umount), like Rufus.

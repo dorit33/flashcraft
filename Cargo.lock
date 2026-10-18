@@ -1130,6 +1130,7 @@ dependencies = [
  "flashcraft-core",
  "flashcraft-native",
  "rfd",
+ "serde_json",
 ]
 
 [[package]]

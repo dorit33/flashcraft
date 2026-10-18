@@ -18,16 +18,27 @@ use std::process::ExitCode;
 use flashcraft_core::{self as core, command, registry, Error, WritePlan};
 use flashcraft_native::linux;
 
-fn print_progress(p: core::Progress) {
-    let mib = p.written as f64 / 1_048_576.0;
-    let speed = p.bytes_per_sec as f64 / 1_048_576.0;
-    eprint!(
-        "\r  {:>3}%  {:>9.1} MiB  {:>6.1} MiB/s   ",
-        p.percent(),
-        mib,
-        speed
-    );
-    let _ = std::io::stderr().flush();
+/// Human progress on stderr; with `--progress` one JSON line per update on
+/// stdout so the GUI (which may run us through pkexec) can render the bar.
+fn progress_cb(machine: bool) -> impl FnMut(core::Progress) {
+    move |p: core::Progress| {
+        if machine {
+            if let Ok(line) = serde_json::to_string(&p) {
+                println!("{line}");
+                let _ = std::io::stdout().flush();
+            }
+        } else {
+            let mib = p.written as f64 / 1_048_576.0;
+            let speed = p.bytes_per_sec as f64 / 1_048_576.0;
+            eprint!(
+                "\r  {:>3}%  {:>9.1} MiB  {:>6.1} MiB/s   ",
+                p.percent(),
+                mib,
+                speed
+            );
+            let _ = std::io::stderr().flush();
+        }
+    }
 }
 
 fn list_drives() -> Result<(), Error> {
@@ -77,6 +88,8 @@ SUBCOMMANDS:
   inspect <image>                 Detect image kind and size       (image.inspect)
   write <image> <drive> [--yes]   Write image to drive             (media.write)
   verify <image> <drive>          Compare drive against image      (media.verify)
+
+  --progress                      JSON progress lines on stdout (for the GUI)
   commands                        List every registered command
 
 Drive may be a device node (/dev/sdb) or kernel name (sdb). Writing needs
@@ -144,7 +157,8 @@ fn run(args: &[String]) -> Result<(), Error> {
             let info = flashcraft_native::inspect_image(image)?;
             let plan = WritePlan::new(info, dev)?;
             eprintln!("writing {} -> {}", plan.image.path, plan.drive.path);
-            flashcraft_native::write_image(&plan, &mut print_progress)?;
+            let machine = args.iter().any(|a| a == "--progress");
+            flashcraft_native::write_image(&plan, &mut progress_cb(machine))?;
             eprintln!("\ndone; run `flashcraft-cli verify {image} {drive}` to check");
             Ok(())
         }
@@ -157,7 +171,8 @@ fn run(args: &[String]) -> Result<(), Error> {
                 .ok_or_else(|| Error::InvalidParams("usage: verify <image> <drive>".into()))?;
             let plan = build_plan(image, drive)?;
             eprintln!("verifying {} against {}", plan.image.path, plan.drive.path);
-            flashcraft_native::verify_image(&plan, &mut print_progress)?;
+            let machine = args.iter().any(|a| a == "--progress");
+            flashcraft_native::verify_image(&plan, &mut progress_cb(machine))?;
             eprintln!("\nverify OK");
             Ok(())
         }

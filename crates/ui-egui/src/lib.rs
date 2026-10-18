@@ -15,7 +15,7 @@
 pub mod i18n;
 
 #[cfg(not(target_arch = "wasm32"))]
-use std::sync::mpsc::{channel, Receiver};
+use std::sync::mpsc::{channel, Receiver, Sender};
 #[cfg(not(target_arch = "wasm32"))]
 use std::thread;
 
@@ -42,6 +42,83 @@ enum JobMsg {
     /// A localized status line keyed by an i18n catalog key.
     Status(&'static str),
     Done(Result<&'static str, String>),
+}
+
+/// The sibling `flashcraft-cli` binary: same directory as the running exe
+/// (installed layout, portable zip, target dir), PATH as fallback.
+#[cfg(not(target_arch = "wasm32"))]
+fn cli_binary() -> std::path::PathBuf {
+    if let Ok(exe) = std::env::current_exe() {
+        if let Some(dir) = exe.parent() {
+            let sibling = dir.join("flashcraft-cli");
+            if sibling.is_file() {
+                return sibling;
+            }
+        }
+    }
+    std::path::PathBuf::from("flashcraft-cli")
+}
+
+/// Elevated job — the Rufus UAC flow: the GUI runs unprivileged and polkit
+/// asks for the password when the work actually starts. `pkexec` runs the
+/// CLI (which unmounts, validates and writes/verifies as root) and streams
+/// JSON progress lines on stdout; stderr carries human messages/errors.
+#[cfg(not(target_arch = "wasm32"))]
+fn run_elevated(
+    verify_only: bool,
+    image_path: &str,
+    drive_path: &str,
+    tx: &Sender<JobMsg>,
+    ctx: &egui::Context,
+) -> core::Result<()> {
+    use std::io::BufRead;
+    use std::process::{Command, Stdio};
+
+    let mut cmd = Command::new("pkexec");
+    cmd.arg(cli_binary())
+        .arg(if verify_only { "verify" } else { "write" })
+        .arg(image_path)
+        .arg(drive_path)
+        .arg("--progress");
+    if !verify_only {
+        cmd.arg("--yes");
+    }
+    let mut child = cmd
+        .stdout(Stdio::piped())
+        .stderr(Stdio::piped())
+        .spawn()
+        .map_err(|e| {
+            core::Error::Backend(format!(
+                "cannot elevate via pkexec: {e} (install polkit or run as root)"
+            ))
+        })?;
+    let Some(stdout) = child.stdout.take() else {
+        return Err(core::Error::Backend(
+            "pkexec: could not capture stdout".into(),
+        ));
+    };
+    for line in std::io::BufReader::new(stdout).lines() {
+        let Ok(line) = line else { break };
+        if let Ok(p) = serde_json::from_str::<core::Progress>(line.trim()) {
+            let _ = tx.send(JobMsg::Progress(p));
+            ctx.request_repaint();
+        }
+    }
+    let output = child
+        .wait_with_output()
+        .map_err(|e| core::Error::Io(format!("pkexec: {e}")))?;
+    if output.status.success() {
+        return Ok(());
+    }
+    let stderr = String::from_utf8_lossy(&output.stderr);
+    let msg = stderr
+        .lines()
+        .map(str::trim)
+        .rfind(|l| !l.is_empty())
+        .unwrap_or("elevated command failed")
+        .trim_start_matches("error: ")
+        .to_string();
+    Err(core::Error::Io(msg))
 }
 
 /// FlashCraft's view state — mirrors the Rufus dialog, field for field.
@@ -310,27 +387,35 @@ impl FlashcraftUi {
         self.job_rx = Some(rx);
         thread::spawn(move || {
             let txp = tx.clone();
-            let result = (|| {
-                let mut dev = dev;
-                if !verify_only && !dev.mounted.is_empty() {
-                    let _ = txp.send(JobMsg::Status("Unmounting mounted partitions"));
-                    ctx.request_repaint();
-                    flashcraft_native::linux::unmount_partitions(&mut dev)?;
-                }
-                let info = flashcraft_native::inspect_image(&image_path)?;
-                let plan = core::WritePlan::new(info, dev)?;
-                if verify_only {
-                    flashcraft_native::verify_image(&plan, &mut |p| {
-                        let _ = txp.send(JobMsg::Progress(p));
+            // Not root → Rufus's UAC step: pkexec flashcraft-cli. The
+            // elevated process does its own unmount/plan checks as root.
+            let result = if flashcraft_native::linux::effective_uid() != Some(0) {
+                let _ = txp.send(JobMsg::Status("Requesting administrator rights"));
+                ctx.request_repaint();
+                run_elevated(verify_only, &image_path, &drive_path, &txp, &ctx)
+            } else {
+                (|| {
+                    let mut dev = dev;
+                    if !verify_only && !dev.mounted.is_empty() {
+                        let _ = txp.send(JobMsg::Status("Unmounting mounted partitions"));
                         ctx.request_repaint();
-                    })
-                } else {
-                    flashcraft_native::write_image(&plan, &mut |p| {
-                        let _ = txp.send(JobMsg::Progress(p));
-                        ctx.request_repaint();
-                    })
-                }
-            })();
+                        flashcraft_native::linux::unmount_partitions(&mut dev)?;
+                    }
+                    let info = flashcraft_native::inspect_image(&image_path)?;
+                    let plan = core::WritePlan::new(info, dev)?;
+                    if verify_only {
+                        flashcraft_native::verify_image(&plan, &mut |p| {
+                            let _ = txp.send(JobMsg::Progress(p));
+                            ctx.request_repaint();
+                        })
+                    } else {
+                        flashcraft_native::write_image(&plan, &mut |p| {
+                            let _ = txp.send(JobMsg::Progress(p));
+                            ctx.request_repaint();
+                        })
+                    }
+                })()
+            };
             let done = match result {
                 Ok(()) => Ok(if verify_only {
                     "VERIFY OK"
