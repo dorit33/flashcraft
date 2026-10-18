@@ -10,6 +10,11 @@ names, app id `dev.flashcraft.app`. The goal is Rufus feature parity where it ma
 Linux (ISO/IMG writing, verification, bad-block checks, persistent partitions) — but the first
 platform is Linux, where Rufus does not run at all.
 
+Standards shared across the Craft apps live in `craftrules/` (bundled copy — self-contained
+repo). This file records what is FlashCraft-specific; the shared rules are referenced as
+`craftrules/<standard>`, and parity is tracked in `docs/target-app-parity.md` + `docs/gaps.md`
+(`craftrules/standards/progress-docs.md`).
+
 ## 1. Orientation (5 minutes)
 
 | Read | Why |

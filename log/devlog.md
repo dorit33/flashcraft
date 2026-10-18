@@ -139,3 +139,10 @@ flatpak-builder run, appstreamcli validation.
   header and the AppStream <release> entry — one source of truth.
 - UI version label now compiles in via env!("CARGO_PKG_VERSION").
 - AGENTS.md gained a Releasing section with the packaging recipe.
+
+## 2026-10-18 — craftrules bundled + progress docs
+
+- craftrules/ bundled into the repo (self-contained standards); AGENTS.md references
+  craftrules/<standard>. contributors/people.toml added; plan/ + corpus/ gitignored.
+- docs/target-app-parity.md + docs/gaps.md created (progress-docs standard);
+  ROADMAP M4 marked done.

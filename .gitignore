@@ -8,3 +8,7 @@ Cargo.lock.bak
 packaging/flatpak/repo
 packaging/flatpak/build
 packaging/flatpak/.flatpak-builder
+
+# local-only working dirs (reference-app observations, fetched test corpora)
+/plan
+/corpus

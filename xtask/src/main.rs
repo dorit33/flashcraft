@@ -27,7 +27,12 @@ fn root() -> PathBuf {
 }
 
 fn run(cmd: &str, args: &[&str]) -> Result<(), String> {
-    let status = Command::new(cmd)
+    let cmd = if cmd == "cargo" {
+        std::env::var("CARGO").unwrap_or_else(|_| cmd.to_string())
+    } else {
+        cmd.to_string()
+    };
+    let status = Command::new(&cmd)
         .args(args)
         .current_dir(root())
         .status()

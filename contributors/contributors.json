@@ -1,0 +1,43 @@
+{
+  "schema": 1,
+  "repo": "FlashCraft v0.1.0 (Rufus)",
+  "branch": "main",
+  "head": "3f7d33c99e48ba32580164f9542c452f6014a4ad",
+  "head_date": "2026-10-18T12:04:51+02:00",
+  "commits": 15,
+  "unattributed_commits": 0,
+  "contributors": [
+    {
+      "login": "cdori",
+      "people_entry": false,
+      "github_name": null,
+      "prs": 0,
+      "commits": 4,
+      "lines_added": 7467,
+      "lines_deleted": 214,
+      "binary_added": 0,
+      "binary_deleted": 0,
+      "first_commit": "2026-10-18T10:36:41+02:00",
+      "last_commit": "2026-10-18T10:47:03+02:00"
+    },
+    {
+      "login": "dorit33",
+      "people_entry": false,
+      "github_name": null,
+      "prs": 0,
+      "commits": 11,
+      "lines_added": 4511,
+      "lines_deleted": 846,
+      "binary_added": 0,
+      "binary_deleted": 0,
+      "first_commit": "2026-10-18T10:54:59+02:00",
+      "last_commit": "2026-10-18T12:04:51+02:00"
+    }
+  ],
+  "models": [
+    {
+      "name": "Devin",
+      "commits": 11
+    }
+  ]
+}
