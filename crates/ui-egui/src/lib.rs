@@ -719,7 +719,7 @@ impl FlashcraftUi {
                 self.status.clone()
             };
             let status_text = if self.status_err {
-                RichText::new(shown_status).color(Color32::from_rgb(0xc0, 0x00, 0x00))
+                RichText::new(shown_status).color(Color32::from_rgb(0xff, 0x70, 0x70))
             } else {
                 RichText::new(shown_status)
             };
@@ -740,7 +740,7 @@ impl FlashcraftUi {
                         ui.add(
                             egui::Label::new(
                                 RichText::new(err)
-                                    .color(Color32::from_rgb(0xb0, 0x60, 0x00))
+                                    .color(Color32::from_rgb(0xe0, 0xb0, 0x30))
                                     .small(),
                             )
                             .truncate(),
@@ -762,11 +762,12 @@ impl FlashcraftUi {
             // 1px border, solid green fill (nothing when idle).
             {
                 let bar = ctl(8.0, 273.0, 216.0, 9.0);
-                ui.painter().rect_filled(bar, 0.0, Color32::WHITE);
+                ui.painter()
+                    .rect_filled(bar, 0.0, ui.visuals().extreme_bg_color);
                 ui.painter().rect_stroke(
                     bar,
                     0.0,
-                    egui::Stroke::new(1.0_f32, Color32::from_rgb(0xbc, 0xbc, 0xbc)),
+                    egui::Stroke::new(1.0_f32, Color32::from_rgb(0x55, 0x55, 0x55)),
                     egui::StrokeKind::Inside,
                 );
                 if frac > 0.0 {
