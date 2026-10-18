@@ -1,0 +1,14 @@
+[package]
+name = "flashcraft"
+description = "FlashCraft desktop app (eframe shell over flashcraft-ui-egui)"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+
+[lints]
+workspace = true
+
+[dependencies]
+flashcraft-ui-egui = { path = "../../crates/ui-egui" }
+eframe = "0.31"

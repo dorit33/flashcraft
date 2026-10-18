@@ -1,0 +1,15 @@
+[package]
+name = "flashcraft-native"
+description = "FlashCraft native backend: device enumeration and image writing (Linux sysfs first)"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+
+[lints]
+workspace = true
+
+[dependencies]
+flashcraft-core = { path = "../core" }
+serde_json = "1"
+thiserror = "2"

@@ -1,0 +1,19 @@
+[package]
+name = "flashcraft-cli"
+description = "FlashCraft headless CLI: list, inspect, write, verify, commands"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+
+[lints]
+workspace = true
+
+[[bin]]
+name = "flashcraft-cli"
+path = "src/main.rs"
+
+[dependencies]
+flashcraft-core = { path = "../../crates/core" }
+flashcraft-native = { path = "../../crates/native" }
+serde_json = "1"
