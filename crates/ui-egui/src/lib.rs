@@ -1,6 +1,7 @@
 //! FlashCraft shared egui UI — laid out to match Rufus: Drive Properties,
 //! Format Options, status bar, START. Thin by rule: view state and command
 //! dispatch only; device I/O goes through `flashcraft-native` (desktop only).
+//! Every user-facing string goes through `i18n`.
 
 #![deny(
     clippy::unwrap_used,
@@ -11,17 +12,19 @@
     clippy::unreachable
 )]
 
+pub mod i18n;
+
 #[cfg(not(target_arch = "wasm32"))]
 use std::sync::mpsc::{channel, Receiver};
 #[cfg(not(target_arch = "wasm32"))]
 use std::thread;
 
 use egui::{Color32, RichText};
+use i18n::{t, tf, Lang, Resolved};
 
 use flashcraft_core as core;
 
 const SECTION: Color32 = Color32::from_rgb(0xe0, 0x9a, 0x3c);
-const READY: &str = "READY";
 
 const FILE_SYSTEMS: &[&str] = &["FAT32 (default)", "NTFS", "exFAT", "UDF", "ext2", "ext3"];
 const CLUSTER_SIZES: &[&str] = &[
@@ -43,6 +46,9 @@ enum JobMsg {
 
 /// FlashCraft's view state — mirrors the Rufus dialog, field for field.
 pub struct FlashcraftUi {
+    // Settings
+    settings_open: bool,
+    lang: Lang,
     // Drive Properties
     drives: Vec<core::DriveInfo>,
     selected_drive: Option<String>,
@@ -79,6 +85,8 @@ pub struct FlashcraftUi {
 impl Default for FlashcraftUi {
     fn default() -> Self {
         Self {
+            settings_open: false,
+            lang: Lang::Auto,
             drives: Vec::new(),
             selected_drive: None,
             image_path: String::new(),
@@ -96,7 +104,7 @@ impl Default for FlashcraftUi {
             quick_format: true,
             extended_label: false,
             bad_block_passes: 0,
-            status: READY.to_string(),
+            status: "READY".to_string(),
             status_err: false,
             #[cfg(not(target_arch = "wasm32"))]
             progress: None,
@@ -139,7 +147,13 @@ impl FlashcraftUi {
     #[cfg(target_arch = "wasm32")]
     pub fn refresh_drives(&mut self) {
         self.drives.clear();
-        self.drives_error = Some("device access is not available in the browser".to_string());
+        self.drives_error = Some(
+            t(
+                "device access is not available in the browser",
+                Resolved::En,
+            )
+            .to_string(),
+        );
     }
 
     fn gib(bytes: u64) -> String {
@@ -157,7 +171,7 @@ impl FlashcraftUi {
 
     /// Rufus autofills the volume label from the image name on SELECT.
     #[cfg(not(target_arch = "wasm32"))]
-    fn on_image_picked(&mut self, path: String) {
+    fn on_image_picked(&mut self, path: String, lang: Resolved) {
         if let Some(stem) = std::path::Path::new(&path)
             .file_stem()
             .and_then(|s| s.to_str())
@@ -167,11 +181,15 @@ impl FlashcraftUi {
         self.image_path = path;
         match flashcraft_native::inspect_image(&self.image_path) {
             Ok(info) => {
-                self.say(format!(
-                    "Selected '{}' ({}, {})",
-                    info.path,
-                    Self::gib(info.size_bytes),
-                    info.kind.name()
+                self.say(tf(
+                    "Selected '{0}'",
+                    lang,
+                    &format!(
+                        "{} ({}, {})",
+                        info.path,
+                        Self::gib(info.size_bytes),
+                        info.kind.name()
+                    ),
                 ));
                 self.image_info = Some(info);
             }
@@ -184,7 +202,7 @@ impl FlashcraftUi {
     }
 
     #[cfg(not(target_arch = "wasm32"))]
-    fn browse_image(&mut self) {
+    fn browse_image(&mut self, lang: Resolved) {
         if let Some(path) = rfd::FileDialog::new()
             .add_filter(
                 "All images",
@@ -192,7 +210,7 @@ impl FlashcraftUi {
             )
             .pick_file()
         {
-            self.on_image_picked(path.to_string_lossy().to_string());
+            self.on_image_picked(path.to_string_lossy().to_string(), lang);
         }
     }
 
@@ -223,16 +241,16 @@ impl FlashcraftUi {
 
     /// START pressed: build the plan, then pop the destruction warning.
     #[cfg(not(target_arch = "wasm32"))]
-    fn start_pressed(&mut self) {
+    fn start_pressed(&mut self, lang: Resolved) {
         if self.job_rx.is_some() {
             return;
         }
         if self.image_path.is_empty() {
-            self.say("Please select an image (SELECT)");
+            self.say(t("Please select an image (SELECT)", lang));
             return;
         }
         if self.selected_drive.is_none() {
-            self.say("Please select a device");
+            self.say(t("Please select a device", lang));
             return;
         }
         if self.build_plan().is_some() {
@@ -242,16 +260,20 @@ impl FlashcraftUi {
 
     /// Warning accepted: run the job on a thread, report over a channel.
     #[cfg(not(target_arch = "wasm32"))]
-    fn start_job(&mut self, verify_only: bool, ctx: &egui::Context) {
+    fn start_job(&mut self, verify_only: bool, ctx: &egui::Context, lang: Resolved) {
         let Some(plan) = self.build_plan() else {
             return;
         };
         let (tx, rx) = channel::<JobMsg>();
         let ctx = ctx.clone();
-        let verb = if verify_only { "verify" } else { "write" };
-        self.say(format!(
-            "{verb} started: {} -> {}",
-            plan.image.path, plan.drive.path
+        self.say(tf(
+            if verify_only {
+                "verify started"
+            } else {
+                "write started"
+            },
+            lang,
+            &format!("{} -> {}", plan.image.path, plan.drive.path),
         ));
         self.status_err = false;
         self.progress = Some(core::Progress::default());
@@ -283,8 +305,10 @@ impl FlashcraftUi {
     }
 
     #[cfg(not(target_arch = "wasm32"))]
-    fn poll_job(&mut self) {
-        let Some(rx) = &self.job_rx else { return };
+    fn poll_job(&mut self, lang: Resolved) {
+        let Some(rx) = &self.job_rx else {
+            return;
+        };
         let mut done = None;
         while let Ok(msg) = rx.try_recv() {
             match msg {
@@ -297,7 +321,7 @@ impl FlashcraftUi {
             match result {
                 Ok(msg) => {
                     self.status_err = false;
-                    self.say(format!("{msg} — {READY}"));
+                    self.say(format!("{msg} — {}", t("READY", lang)));
                 }
                 Err(e) => {
                     self.status_err = true;
@@ -308,7 +332,7 @@ impl FlashcraftUi {
     }
 
     #[cfg(target_arch = "wasm32")]
-    fn poll_job(&mut self) {}
+    fn poll_job(&mut self, _lang: Resolved) {}
 
     fn section(ui: &mut egui::Ui, title: &str) {
         ui.add_space(4.0);
@@ -317,7 +341,7 @@ impl FlashcraftUi {
 
     fn row(ui: &mut egui::Ui, label: &str, add: impl FnOnce(&mut egui::Ui)) {
         ui.horizontal(|ui| {
-            ui.add_sized([150.0, 18.0], egui::Label::new(label));
+            ui.add_sized([170.0, 18.0], egui::Label::new(label));
             add(ui);
         });
     }
@@ -336,22 +360,37 @@ impl FlashcraftUi {
     }
 
     pub fn show(&mut self, ctx: &egui::Context) {
-        self.poll_job();
+        let lang = self.lang.resolve();
+        self.poll_job(lang);
 
         egui::CentralPanel::default().show(ctx, |ui| {
+            // ── Settings strip (language) ────────────────────────
+            ui.horizontal(|ui| {
+                if ui.small_button(t("Settings", lang).as_ref()).clicked() {
+                    self.settings_open = !self.settings_open;
+                }
+                if self.settings_open {
+                    ui.label(t("Language", lang).as_ref());
+                    let current = self.lang;
+                    egui::ComboBox::from_id_salt("lang")
+                        .selected_text(current.label())
+                        .show_ui(ui, |ui| {
+                            for l in Lang::ALL {
+                                ui.selectable_value(&mut self.lang, *l, l.label());
+                            }
+                        });
+                }
+            });
+
             // ── Drive Properties ────────────────────────────────
-            Self::section(ui, "Drive Properties");
-            Self::row(ui, "Device", |ui| {
+            Self::section(ui, &t("Drive Properties", lang));
+            Self::row(ui, &t("Device", lang), |ui| {
                 let chosen = self
                     .drives
                     .iter()
                     .find(|d| Some(&d.path) == self.selected_drive.as_ref());
                 egui::ComboBox::from_id_salt("device")
-                    .selected_text(
-                        chosen
-                            .map(Self::drive_label)
-                            .unwrap_or_else(|| "".to_string()),
-                    )
+                    .selected_text(chosen.map(Self::drive_label).unwrap_or_default())
                     .width(240.0)
                     .show_ui(ui, |ui| {
                         for d in &self.drives {
@@ -367,13 +406,17 @@ impl FlashcraftUi {
                             );
                         }
                     });
-                if ui.small_button("⟳").on_hover_text("Refresh").clicked() {
+                if ui
+                    .small_button("⟳")
+                    .on_hover_text(t("Refresh", lang))
+                    .clicked()
+                {
                     self.refresh_drives();
-                    self.say("Device list refreshed");
+                    self.say(t("Device list refreshed", lang));
                 }
             });
-            Self::row(ui, "Boot selection", |ui| {
-                let mut sel = "Disk or ISO image (Please select)".to_string();
+            Self::row(ui, &t("Boot selection", lang), |ui| {
+                let mut sel = t("Disk or ISO image (Please select)", lang).to_string();
                 Self::combo(
                     ui,
                     "boot",
@@ -382,8 +425,8 @@ impl FlashcraftUi {
                     true,
                 );
                 #[cfg(not(target_arch = "wasm32"))]
-                if ui.button("SELECT").clicked() {
-                    self.browse_image();
+                if ui.button(t("SELECT", lang).as_ref()).clicked() {
+                    self.browse_image(lang);
                 }
             });
             if !self.image_path.is_empty() {
@@ -391,7 +434,7 @@ impl FlashcraftUi {
                     ui.label(RichText::new(&self.image_path).weak());
                 });
             }
-            Self::row(ui, "Persistent partition size", |ui| {
+            Self::row(ui, &t("Persistent partition size", lang), |ui| {
                 ui.add_enabled(
                     false,
                     egui::Slider::new(&mut self.persistent_partition, 0.0..=64.0).suffix(" GB"),
@@ -399,8 +442,8 @@ impl FlashcraftUi {
             });
 
             // ── Format Options ──────────────────────────────────
-            Self::section(ui, "Format Options");
-            Self::row(ui, "Image option", |ui| {
+            Self::section(ui, &t("Format Options", lang));
+            Self::row(ui, &t("Image option", lang), |ui| {
                 Self::combo(
                     ui,
                     "imgopt",
@@ -409,7 +452,7 @@ impl FlashcraftUi {
                     true,
                 );
             });
-            Self::row(ui, "Partition scheme", |ui| {
+            Self::row(ui, &t("Partition scheme", lang), |ui| {
                 Self::combo(
                     ui,
                     "scheme",
@@ -418,61 +461,62 @@ impl FlashcraftUi {
                     true,
                 );
             });
-            Self::row(ui, "Target system", |ui| {
+            Self::row(ui, &t("Target system", lang), |ui| {
                 let target = if self.partition_scheme == "GPT" {
-                    "UEFI (non CSM)"
+                    t("UEFI (non CSM)", lang).to_string()
                 } else {
-                    "BIOS or UEFI"
+                    t("BIOS or UEFI", lang).to_string()
                 };
                 ui.add_enabled(
                     false,
-                    egui::TextEdit::singleline(&mut target.to_string()).desired_width(240.0),
+                    egui::TextEdit::singleline(&mut target.clone()).desired_width(240.0),
                 );
             });
-            Self::row(ui, "Volume label", |ui| {
+            Self::row(ui, &t("Volume label", lang), |ui| {
                 ui.add(egui::TextEdit::singleline(&mut self.volume_label).desired_width(240.0));
             });
-            Self::row(ui, "File system", |ui| {
+            Self::row(ui, &t("File system", lang), |ui| {
                 Self::combo(ui, "fs", &mut self.file_system, FILE_SYSTEMS, false);
             });
-            Self::row(ui, "Cluster size", |ui| {
+            Self::row(ui, &t("Cluster size", lang), |ui| {
                 Self::combo(ui, "cluster", &mut self.cluster_size, CLUSTER_SIZES, false);
             });
 
             // ── Advanced ────────────────────────────────────────
-            if ui
-                .small_button(if self.show_adv_drive {
-                    "▽ Hide advanced drive properties"
-                } else {
-                    "▷ Show advanced drive properties"
-                })
-                .clicked()
-            {
+            let adv_drive_key = if self.show_adv_drive {
+                "Hide advanced drive properties"
+            } else {
+                "Show advanced drive properties"
+            };
+            if ui.small_button(t(adv_drive_key, lang).as_ref()).clicked() {
                 self.show_adv_drive = !self.show_adv_drive;
             }
-            if self.show_adv_drive {
-                ui.checkbox(&mut self.list_usb_hard_drives, "List USB Hard Drives")
+            if self.show_adv_drive
+                && ui
+                    .checkbox(
+                        &mut self.list_usb_hard_drives,
+                        t("List USB Hard Drives", lang).as_ref(),
+                    )
                     .clicked()
-                    .then(|| self.refresh_drives());
-            }
-            if ui
-                .small_button(if self.show_adv_format {
-                    "▽ Hide advanced format options"
-                } else {
-                    "▷ Show advanced format options"
-                })
-                .clicked()
             {
+                self.refresh_drives();
+            }
+            let adv_fmt_key = if self.show_adv_format {
+                "Hide advanced format options"
+            } else {
+                "Show advanced format options"
+            };
+            if ui.small_button(t(adv_fmt_key, lang).as_ref()).clicked() {
                 self.show_adv_format = !self.show_adv_format;
             }
             if self.show_adv_format {
-                ui.checkbox(&mut self.quick_format, "Quick format");
+                ui.checkbox(&mut self.quick_format, t("Quick format", lang).as_ref());
                 ui.checkbox(
                     &mut self.extended_label,
-                    "Create extended label and icon files",
+                    t("Create extended label and icon files", lang).as_ref(),
                 );
                 ui.horizontal(|ui| {
-                    ui.label("Check device for bad blocks:");
+                    ui.label(t("Check device for bad blocks", lang).as_ref());
                     let mut passes = BAD_BLOCK_PASSES[self.bad_block_passes].to_string();
                     Self::combo(ui, "badblocks", &mut passes, BAD_BLOCK_PASSES, false);
                     if let Some(i) = BAD_BLOCK_PASSES.iter().position(|p| *p == passes) {
@@ -494,13 +538,18 @@ impl FlashcraftUi {
                     );
                 }
             }
-            let status_text = if self.status_err {
-                RichText::new(&self.status).color(Color32::LIGHT_RED)
+            let shown_status = if self.status == "READY" {
+                t("READY", lang).to_string()
             } else {
-                RichText::new(&self.status)
+                self.status.clone()
+            };
+            let status_text = if self.status_err {
+                RichText::new(shown_status).color(Color32::LIGHT_RED)
+            } else {
+                RichText::new(shown_status)
             };
             ui.horizontal(|ui| {
-                ui.label(RichText::new("Status:").weak());
+                ui.label(RichText::new(t("Status:", lang).as_ref()).weak());
                 ui.label(status_text);
             });
             if let Some(err) = &self.drives_error {
@@ -510,7 +559,7 @@ impl FlashcraftUi {
             // ── Bottom bar ──────────────────────────────────────
             ui.with_layout(egui::Layout::bottom_up(egui::Align::LEFT), |ui| {
                 ui.horizontal(|ui| {
-                    if ui.small_button("Log").clicked() {
+                    if ui.small_button(t("Log", lang).as_ref()).clicked() {
                         self.show_log = !self.show_log;
                     }
                     ui.label(RichText::new("FlashCraft 0.1.0").weak().small());
@@ -520,11 +569,12 @@ impl FlashcraftUi {
                             if ui
                                 .add_enabled(
                                     self.job_rx.is_none(),
-                                    egui::Button::new("START").min_size(egui::vec2(90.0, 26.0)),
+                                    egui::Button::new(t("START", lang).as_ref())
+                                        .min_size(egui::vec2(90.0, 26.0)),
                                 )
                                 .clicked()
                             {
-                                self.start_pressed();
+                                self.start_pressed(lang);
                             }
                         }
                         #[cfg(target_arch = "wasm32")]
@@ -553,21 +603,29 @@ impl FlashcraftUi {
                 .show(ctx, |ui| {
                     let dev = self.selected_drive.clone().unwrap_or_default();
                     ui.label(
-                        RichText::new(format!(
-                            "WARNING: ALL DATA ON DEVICE '{dev}' WILL BE DESTROYED"
+                        RichText::new(tf(
+                            "WARNING: ALL DATA ON DEVICE '{0}' WILL BE DESTROYED",
+                            lang,
+                            &dev,
                         ))
                         .strong(),
                     );
-                    ui.label("To continue, click OK. To abort the operation, click Cancel.");
+                    ui.label(
+                        t(
+                            "To continue, click OK. To abort the operation, click Cancel.",
+                            lang,
+                        )
+                        .as_ref(),
+                    );
                     ui.horizontal(|ui| {
-                        if ui.button("  OK  ").clicked() {
+                        if ui.button(t("OK", lang).as_ref()).clicked() {
                             self.confirm_destroy = false;
                             #[cfg(not(target_arch = "wasm32"))]
-                            self.start_job(false, ctx);
+                            self.start_job(false, ctx, lang);
                         }
-                        if ui.button("Cancel").clicked() {
+                        if ui.button(t("Cancel", lang).as_ref()).clicked() {
                             self.confirm_destroy = false;
-                            self.say("aborted by user");
+                            self.say(t("aborted by user", lang));
                             self.status_err = false;
                         }
                     });

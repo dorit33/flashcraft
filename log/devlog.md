@@ -49,3 +49,15 @@ flatpak-builder run, appstreamcli validation.
   but disabled until the format backend lands (M2) — they're tracked as dead
   settings, not silently ignored.
 - wasm32 build stays warning-free; all job/device code is cfg'd out on wasm.
+
+## 2026-10-18 — i18n + language picker
+
+- `crates/ui-egui/src/i18n.rs`: `Lang::{Auto,En,Hu}` + catalogs; English is the
+  lookup key, missing rows fall back to the key (never blank). `Auto` follows
+  `FLASHCRAFT_LANG`/`LC_ALL`/`LANG` (hu_* → Magyar). `tf()` does `{0}`
+  substitution.
+- Settings strip at the top: "Settings" toggle + "Language" combo
+  (Auto/English/Magyar), switches the whole dialog immediately — labels,
+  buttons, status, warning modal and log messages all localized.
+- Hungarian catalog covers the full Rufus-parity UI (Meghajtó-tulajdonságok,
+  Formázási beállítások, TALLÓZÁS, INDÍTÁS, KÉSZ, Mégse…).
