@@ -1,0 +1,46 @@
+Settings	Configuración
+Language	Idioma
+Drive Properties	Propiedades de la unidad
+Device	Dispositivo
+Refresh	Actualizar
+Boot selection	Elección de arranque
+Disk or ISO image (Please select)	Disco o imagen ISO (Elija por favor)
+SELECT	SELECCIONAR
+Persistent partition size	Tamaño de partición persistente
+Format Options	Opciones de formateo
+Image option	Opciones de imagen
+Standard installation	Instalación estándar
+Partition scheme	Esquema de partición
+Target system	Sistema de destino
+BIOS or UEFI	BIOS o UEFI
+UEFI (non CSM)	UEFI (no CSM)
+Volume label	Etiqueta de volumen
+File system	Sistema de archivos
+Cluster size	Tamaño del clúster
+Show advanced drive properties	Mostrar propiedades avanzadas de la unidad
+Hide advanced drive properties	Ocultar propiedades avanzadas de la unidad
+List USB Hard Drives	Listar los discos duros USB
+Show advanced format options	Mostrar opciones avanzadas de formato
+Hide advanced format options	Ocultar opciones avanzadas de formato
+Quick format	Formateo rápido
+Create extended label and icon files	Añadir etiquetas extendidas e iconos
+Check device for bad blocks:	Buscar bloques dañados en dispositivo:
+Status:	Estado:
+READY	PREPARADO
+Log	Historial de eventos
+START	EMPEZAR
+Cancel	Cancelar
+WARNING: ALL DATA ON DEVICE '{0}' WILL BE DESTROYED	ADVERTENCIA: TODOS LOS DATOS EN LA UNIDAD {0} SERÁN ELIMINADOS.
+To continue, click OK. To abort the operation, click Cancel.	Para continuar, haga clic en OK. Para detener la operación, haga clic en CANCELAR.
+aborted by user	cancelado por el usuario
+Please select an image (SELECT)	Seleccione una imagen (SELECCIONAR)
+Please select a device	Seleccione un dispositivo
+write started	Escritura iniciada: {0}
+verify started	Verificación iniciada: {0}
+WRITE DONE	ESCRITURA TERMINADA
+VERIFY OK	VERIFICACIÓN CORRECTA
+Selected '{0}'	Seleccionado: '{0}'
+Device list refreshed	Lista de dispositivos actualizada
+no drive selected	ningún dispositivo seleccionado
+image inspection is not available in the browser	la inspección de imágenes no está disponible en el navegador
+device access is not available in the browser	el acceso a dispositivos no está disponible en el navegador

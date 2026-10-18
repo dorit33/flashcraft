@@ -1,0 +1,47 @@
+Settings	Instellingen
+Language	Taal
+Drive Properties	Eigenschappen van drive
+Device	Apparaat
+Refresh	Vernieuwen
+Boot selection	Opstartselectie
+Disk or ISO image (Please select)	Schijf of ISO-image (selecteren)
+SELECT	SELECTEREN
+Persistent partition size	Grootte van persistente partitie
+Format Options	Opties voor formatteren
+Image option	Image-optie
+Standard installation	Standaardinstallatie
+Partition scheme	Partitie-indeling
+Target system	Doelsysteem
+BIOS or UEFI	BIOS of UEFI
+UEFI (non CSM)	UEFI (geen CSM)
+Volume label	Volumelabel
+File system	Bestandssysteem
+Cluster size	Clustergrootte
+Show advanced drive properties	geavanceerde eigenschappen van drive weergeven
+Hide advanced drive properties	geavanceerde eigenschappen van drive verbergen
+List USB Hard Drives	USB-harde schijven weergeven
+Show advanced format options	geavanceerde opties voor formatteren weergeven
+Hide advanced format options	geavanceerde opties voor formatteren verbergen
+Quick format	Snelformatteren
+Create extended label and icon files	Uitgebreid label en pictogrambestanden aanmaken
+Check device for bad blocks:	Apparaat controleren op slechte blokken:
+Status:	Status:
+READY	KLAAR
+Log	Logboek
+START	STARTEN
+OK	Ok
+Cancel	Annuleren
+WARNING: ALL DATA ON DEVICE '{0}' WILL BE DESTROYED	WAARSCHUWING: ALLE DATA OP APPARAAT '{0}' ZAL VERNIETIGD WORDEN.
+To continue, click OK. To abort the operation, click Cancel.	Klik op OK om verder te gaan met deze handeling. Klik op ANNULEREN om af te sluiten.
+aborted by user	afgebroken door gebruiker
+Please select an image (SELECT)	Selecteer een image (SELECTEREN)
+Please select a device	Selecteer een apparaat
+write started	Schrijven gestart: {0}
+verify started	Verificatie gestart: {0}
+WRITE DONE	SCHRIJVEN VOLTOOID
+VERIFY OK	VERIFICATIE OK
+Selected '{0}'	Geselecteerd: '{0}'
+Device list refreshed	Apparatenlijst vernieuwd
+no drive selected	geen apparaat geselecteerd
+image inspection is not available in the browser	image-inspectie is niet beschikbaar in de browser
+device access is not available in the browser	apparaattoegang is niet beschikbaar in de browser

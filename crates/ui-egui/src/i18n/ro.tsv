@@ -1,0 +1,46 @@
+Settings	Setări
+Language	Limbă
+Drive Properties	Proprietăți unitate
+Device	Dispozitiv
+Refresh	Reîmprospătare
+Boot selection	Selectare boot
+Disk or ISO image (Please select)	Disc sau imagine ISO (Vă rugăm să selectați)
+SELECT	SELECTARE
+Persistent partition size	Dimensiune partiție persistentă
+Format Options	Opțiuni formatare
+Image option	Opțiune imagine
+Standard installation	Instalare standard
+Partition scheme	Schemă de partiționare
+Target system	Sistemul vizat
+BIOS or UEFI	BIOS sau UEFI
+UEFI (non CSM)	UEFI (fără CSM)
+Volume label	Etichetă volum
+File system	Sistem de fișiere
+Cluster size	Mărime cluster
+Show advanced drive properties	Afișare proprietăți unitate avansate
+Hide advanced drive properties	Ascundere proprietăți unitate avansate
+List USB Hard Drives	Afișare unități conectate prin USB
+Show advanced format options	Afișare opțiuni formatare avansate
+Hide advanced format options	Ascundere opțiuni formatare avansate
+Quick format	Formatare rapidă
+Create extended label and icon files	Creare fișiere extinse pentru etichete și iconițe
+Check device for bad blocks:	Căutare blocuri defecte:
+Status:	Stare:
+READY	GATA
+Log	Jurnal
+START	START
+Cancel	Anulare
+WARNING: ALL DATA ON DEVICE '{0}' WILL BE DESTROYED	ATENȚIE: TOATE DATELE DE PE DISPOZITIVUL '{0}' VOR FI DISTRUSE.
+To continue, click OK. To abort the operation, click Cancel.	Pentru a continua, alegeți OK. Pentru a renunța, alegeți ANULARE.
+aborted by user	anulat de utilizator
+Please select an image (SELECT)	Selectați o imagine (SELECTARE)
+Please select a device	Selectați un dispozitiv
+write started	Scriere pornită: {0}
+verify started	Verificare pornită: {0}
+WRITE DONE	SCRIERE FINALIZATĂ
+VERIFY OK	VERIFICARE OK
+Selected '{0}'	Selectat: '{0}'
+Device list refreshed	Lista de dispozitive reîmprospătată
+no drive selected	niciun dispozitiv selectat
+image inspection is not available in the browser	inspectarea imaginii nu este disponibilă în browser
+device access is not available in the browser	accesul la dispozitive nu este disponibil în browser

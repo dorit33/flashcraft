@@ -1,0 +1,46 @@
+Settings	การตั้งค่า
+Language	ภาษา
+Drive Properties	คุณสมบัติของไดรฟ์
+Device	อุปกรณ์
+Refresh	รีเฟรช
+Boot selection	ตัวเลือกการบูต
+Disk or ISO image (Please select)	อิมเมจไฟล์ (กรุณาเลือก)
+SELECT	เลือก
+Persistent partition size	ขนาดของ Persistent partition
+Format Options	ตัวเลือกการฟอร์แมต
+Image option	ตัวเลือกอิมเมจ
+Standard installation	การติดตั้งแบบมาตรฐาน
+Partition scheme	รูปแบบของพาร์ติชัน
+Target system	รูปแบบเครื่องเป้าหมาย
+BIOS or UEFI	BIOS หรือ UEFI
+Volume label	ชื่อของไดรฟ์
+File system	ระบบไฟล์
+Cluster size	ขนาดของคลัสเตอร์
+Show advanced drive properties	แสดง คุณสมบัติไดรฟ์ขั้นสูง
+Hide advanced drive properties	ซ่อน คุณสมบัติไดรฟ์ขั้นสูง
+List USB Hard Drives	แสดงรายการ USB Drive
+Show advanced format options	แสดง คุณสมบัติการฟอร์แมตขั้นสูง
+Hide advanced format options	ซ่อน คุณสมบัติการฟอร์แมตขั้นสูง
+Quick format	ฟอร์แมตอย่างรวดเร็ว
+Create extended label and icon files	ตั้งชื่อไดรฟ์ด้วยอักขระสากล และเพิ่มไอคอนของไดรฟ์
+Check device for bad blocks:	ตรวจหาข้อบกพร่องของอุปกรณ์:
+Status:	สถานะ:
+READY	พร้อมทำงาน
+Log	รายการ Log
+START	เริ่ม
+OK	ตกลง
+Cancel	ยกเลิก
+WARNING: ALL DATA ON DEVICE '{0}' WILL BE DESTROYED	โปรดระวัง: ข้อมูลทั้งหมดบนอุปกรณ์ '{0}' จะถูกลบทิ้งทั้งหมด
+To continue, click OK. To abort the operation, click Cancel.	หากต้องการดำเนินการต่อ โปรดคลิก OK แต่หากต้องการยกเลิก โปรดคลิก Cancel
+aborted by user	ผู้ใช้ยกเลิก
+Please select an image (SELECT)	โปรดเลือกอิมเมจ (เลือก)
+Please select a device	โปรดเลือกอุปกรณ์
+write started	เริ่มเขียน: {0}
+verify started	เริ่มตรวจสอบ: {0}
+WRITE DONE	เขียนเสร็จสิ้น
+VERIFY OK	ตรวจสอบสำเร็จ
+Selected '{0}'	เลือกแล้ว: '{0}'
+Device list refreshed	รายการอุปกรณ์ได้รับการรีเฟรช
+no drive selected	ไม่ได้เลือกอุปกรณ์
+image inspection is not available in the browser	การตรวจสอบอิมเมจไม่พร้อมใช้งานในเบราว์เซอร์
+device access is not available in the browser	ไม่สามารถเข้าถึงอุปกรณ์ในเบราว์เซอร์

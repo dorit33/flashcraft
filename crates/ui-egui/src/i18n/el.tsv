@@ -1,0 +1,46 @@
+Settings	Ρυθμίσεις
+Language	Γλώσσα
+Drive Properties	Ιδιότητες Δίσκου
+Device	Συσκευή
+Refresh	Ανανέωση
+Boot selection	Τύπος εκκίνησης
+Disk or ISO image (Please select)	Επιλογή δίσκου ή ειδώλου ISO (Παρακαλώ Επιλέξτε)
+SELECT	ΕΠΙΛΈΞΤΕ
+Persistent partition size	Μέγεθος μόνιμου διαμερίσματος
+Format Options	Επιλογές μορφοποίησης
+Image option	Επιλογές αρχείου ISO
+Standard installation	Τυπική εγκατάσταση
+Partition scheme	Σχέδιο κατανομής
+Target system	Επιθυμητό λειτουργικό σύστημα
+BIOS or UEFI	BIOS ή UEFI
+UEFI (non CSM)	UEFI (εκτός από CSM)
+Volume label	Ετικέτα τόμου
+File system	Σύστημα αρχείων
+Cluster size	Μέγεθος συμπλέγματος
+Show advanced drive properties	Εμφάνιση επιλογές δίσκου για προχωρημένους
+Hide advanced drive properties	Απόκρυψη επιλογές δίσκου για προχωρημένους
+List USB Hard Drives	Εμφάνιση συσκευων USB
+Show advanced format options	Εμφάνιση προηγμένες επιλογές διαμόρφωσης
+Hide advanced format options	Απόκρυψη προηγμένες επιλογές διαμόρφωσης
+Quick format	Γρήγορη διαμόρφωση
+Create extended label and icon files	Δημιουργία εκτεταμένης ετικέτας και εικονιδίων
+Check device for bad blocks:	Ελέγξτε τη συσκευή για κατεστραμμένους τομείς:
+Status:	Κατάσταση:
+READY	Έτοιμο για χρήση
+Log	Αρχείο καταγραφής
+START	ΕΚΚΊΝΗΣΗ
+Cancel	Άκυρο
+WARNING: ALL DATA ON DEVICE '{0}' WILL BE DESTROYED	ΠΡΟΣΟΧΗ: ΟΛΑ ΤΑ ΔΕΔΟΜΈΝΑ ΣΤΗ ΣΥΣΚΕΥΗ '{0}' ΘΑ ΔΙΑΓΡΑΦΟΥΝ.
+To continue, click OK. To abort the operation, click Cancel.	Για να προχωρήσετε με την ενέργεια κάντε κλικ στο OK. Διαφορετικά,για ακύρωση κάντε κλικ στο Άκυρο.
+aborted by user	ακυρώθηκε από τον χρήστη
+Please select an image (SELECT)	Επιλέξτε μια εικόνα (ΕΠΙΛΟΓΗ)
+Please select a device	Επιλέξτε μια συσκευή
+write started	Η εγγραφή ξεκίνησε: {0}
+verify started	Η επαλήθευση ξεκίνησε: {0}
+WRITE DONE	Η ΕΓΓΡΑΦΗ ΟΛΟΚΛΗΡΩΘΗΚΕ
+VERIFY OK	ΕΠΑΛΗΘΕΥΣΗ ΟΚ
+Selected '{0}'	Επιλέχθηκε: '{0}'
+Device list refreshed	Η λίστα συσκευών ανανεώθηκε
+no drive selected	δεν επιλέχθηκε συσκευή
+image inspection is not available in the browser	η επιθεώρηση εικόνας δεν είναι διαθέσιμη στο πρόγραμμα περιήγησης
+device access is not available in the browser	η πρόσβαση σε συσκευές δεν είναι διαθέσιμη στο πρόγραμμα περιήγησης

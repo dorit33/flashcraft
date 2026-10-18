@@ -1,0 +1,46 @@
+Settings	Indstillinger
+Language	Sprog
+Drive Properties	Drev Indstillinger
+Device	Enhed
+Refresh	Opdater
+Boot selection	Opstartstype
+Disk or ISO image (Please select)	Disk eller ISO billede (Valg venligst)
+SELECT	VALG
+Persistent partition size	Vedvarende partition størrelse
+Format Options	Formateringsindstillinger
+Image option	Installationstype
+Standard installation	Standardinstallation
+Partition scheme	Partitionstype
+Target system	Målsystem
+BIOS or UEFI	BIOS eller UEFI
+UEFI (non CSM)	UEFI (ikke CSM)
+Volume label	Volume-etiket
+File system	Filsystem
+Cluster size	Klyngestørrelse
+Show advanced drive properties	Vis avancerede drev indstillinger
+Hide advanced drive properties	Skjul avancerede drev indstillinger
+List USB Hard Drives	Vis USB-harddiske
+Show advanced format options	Vis avancerede formateringsindstillinger
+Hide advanced format options	Skjul avancerede formateringsindstillinger
+Quick format	Ekspresformatering
+Create extended label and icon files	Brug udvidet etiket og ikon-filer
+Check device for bad blocks:	Søg efter fejlbehæftede blokke:
+Status:	Status:
+READY	Klar
+Log	Log
+START	START
+Cancel	Annuller
+WARNING: ALL DATA ON DEVICE '{0}' WILL BE DESTROYED	ADVARSEL: AL DATA PÅ '{0}' VIL FORSVINDE.
+To continue, click OK. To abort the operation, click Cancel.	Klik på OK for at fortsætte, eller Annullér for at afbryde.
+aborted by user	afbrudt af brugeren
+Please select an image (SELECT)	Vælg en afbildning (VÆLG)
+Please select a device	Vælg en enhed
+write started	Skrivning startet: {0}
+verify started	Verifikation startet: {0}
+WRITE DONE	SKRIVNING FÆRDIG
+VERIFY OK	VERIFIKATION OK
+Selected '{0}'	Valgt: '{0}'
+Device list refreshed	Enhedslisten opdateret
+no drive selected	ingen enhed valgt
+image inspection is not available in the browser	afbildningskontrol er ikke tilgængelig i browseren
+device access is not available in the browser	enhedsadgang er ikke tilgængelig i browseren

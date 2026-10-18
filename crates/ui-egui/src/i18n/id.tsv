@@ -1,0 +1,45 @@
+Settings	Pengaturan
+Language	Bahasa
+Drive Properties	Properti Drive
+Device	Perangkat
+Refresh	Segarkan
+Boot selection	Pilihan Boot
+Disk or ISO image (Please select)	Disk atau ISO image (Silakan Pilih)
+SELECT	PILIH
+Persistent partition size	Ukuran partisi persisten
+Format Options	Opsi Format
+Image option	Opsi Image
+Standard installation	Instalasi standar
+Partition scheme	Skema partisi
+Target system	Sistem target
+BIOS or UEFI	BIOS atau UEFI
+Volume label	Label volume
+File system	Sistem berkas
+Cluster size	Ukuran klaster
+Show advanced drive properties	Tampilkan properti drive lanjutan
+Hide advanced drive properties	Sembunyikan properti drive lanjutan
+List USB Hard Drives	Daftar USB Hard Drives
+Show advanced format options	Tampilkan opsi format lanjutan
+Hide advanced format options	Sembunyikan opsi format lanjutan
+Quick format	Format cepat
+Create extended label and icon files	Buat label dan berkas ikon tambahan
+Check device for bad blocks:	Periksa blok buruk pada perangkat:
+READY	SIAP
+Log	Catatan
+START	MULAI
+OK	Oke
+Cancel	Batal
+WARNING: ALL DATA ON DEVICE '{0}' WILL BE DESTROYED	PERINGATAN: SEMUA DATA PADA PERANGKAT '{0}' AKAN DIHAPUS.
+To continue, click OK. To abort the operation, click Cancel.	Untuk melanjutkan operasi ini, klik OKE. Untuk keluar klik BATAL.
+aborted by user	dibatalkan oleh pengguna
+Please select an image (SELECT)	Pilih image (PILIH)
+Please select a device	Pilih perangkat
+write started	penulisan dimulai: {0}
+verify started	verifikasi dimulai: {0}
+WRITE DONE	PENULISAN SELESAI
+VERIFY OK	VERIFIKASI OK
+Selected '{0}'	Terpilih: '{0}'
+Device list refreshed	Daftar perangkat disegarkan
+no drive selected	tidak ada perangkat terpilih
+image inspection is not available in the browser	inspeksi image tidak tersedia di browser
+device access is not available in the browser	akses perangkat tidak tersedia di browser

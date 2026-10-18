@@ -1,0 +1,47 @@
+Settings	Налаштування
+Language	Мова
+Drive Properties	Властивості диска
+Device	Пристрій
+Refresh	Оновити
+Boot selection	Тип завантаження
+Disk or ISO image (Please select)	Диск чи ISO-образ (Будь ласка, виберіть)
+SELECT	ВИБРАТИ
+Persistent partition size	Розмір розділу збереження
+Format Options	Параметри форматування
+Image option	Параметри образу
+Standard installation	Стандартне встановлення
+Partition scheme	Схема розділів
+Target system	Цільова система
+BIOS or UEFI	BIOS чи UEFI
+UEFI (non CSM)	UEFI (без CSM)
+Volume label	Мітка тому
+File system	Файлова система
+Cluster size	Розмір кластера
+Show advanced drive properties	Показати розширені властивості диска
+Hide advanced drive properties	Сховати розширені властивості диска
+List USB Hard Drives	Список USB накопичувачів
+Show advanced format options	Показати розширені властивості форматування
+Hide advanced format options	Сховати розширені властивості форматування
+Quick format	Швидке форматування
+Create extended label and icon files	Створити розширену мітку та значок пристрою
+Check device for bad blocks:	Перевірити пристрій на пошкоджені блоки:
+Status:	Стан:
+READY	Готово
+Log	Журнал
+START	ПОЧАТИ
+OK	ОК
+Cancel	Скасувати
+WARNING: ALL DATA ON DEVICE '{0}' WILL BE DESTROYED	УВАГА: ВСІ ДАНІ НА ДИСКУ '{0}' БУДУТЬ ЗНИЩЕНІ.
+To continue, click OK. To abort the operation, click Cancel.	Для того, щоб продовжити, натисніть ОК. Для виходу натисніть Скасувати.
+aborted by user	скасовано користувачем
+Please select an image (SELECT)	Виберіть образ (ВИБРАТИ)
+Please select a device	Виберіть пристрій
+write started	Запис розпочато: {0}
+verify started	Перевірку розпочато: {0}
+WRITE DONE	ЗАПИС ЗАВЕРШЕНО
+VERIFY OK	ПЕРЕВІРКА УСПІШНА
+Selected '{0}'	Вибрано: '{0}'
+Device list refreshed	Список пристроїв оновлено
+no drive selected	пристрій не вибрано
+image inspection is not available in the browser	перевірка образу недоступна в браузері
+device access is not available in the browser	доступ до пристроїв недоступний у браузері

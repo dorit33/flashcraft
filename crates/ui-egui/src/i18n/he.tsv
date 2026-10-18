@@ -1,0 +1,47 @@
+Settings	הגדרות
+Language	שפה
+Drive Properties	מאפייני הכונן
+Device	התקן
+Refresh	רענן
+Boot selection	בחירת האתחול
+Disk or ISO image (Please select)	דיסק או קובץ תמונה ISO (נא לבחור)
+SELECT	בחירה
+Persistent partition size	גודל מחיצה קבועה
+Format Options	אפשרויות אתחול
+Image option	אפשרות קובץ תמונה
+Standard installation	התקנה רגילה
+Partition scheme	סגנון המחיצות
+Target system	מערכת היעד
+BIOS or UEFI	BIOS או UEFI
+UEFI (non CSM)	UEFI (שאינו CSM)
+Volume label	תווית שם אמצעי האחסון
+File system	מערכת הקבצים
+Cluster size	גודל האשכול
+Show advanced drive properties	הצגת מאפייני כונן מתקדמים
+Hide advanced drive properties	הסתרת מאפייני כונן מתקדמים
+List USB Hard Drives	הצגת רשימה של כונני USB קשיחים
+Show advanced format options	הצגת אפשרויות אתחול מתקדמות
+Hide advanced format options	הסתרת אפשרויות אתחול מתקדמות
+Quick format	אתחול מהיר
+Create extended label and icon files	יצירת תווית מורחבת וקובצי סמל
+Check device for bad blocks:	בדיקת ההתקן אחר אזורים פגומים:
+Status:	מצב:
+READY	מוכן
+Log	יומן רישום
+START	התחלה
+OK	אישור
+Cancel	ביטול
+WARNING: ALL DATA ON DEVICE '{0}' WILL BE DESTROYED	אזהרה: כל הנתונים על ההתקן '{0}' יושמדו.
+To continue, click OK. To abort the operation, click Cancel.	כדי להמשיך בפעולה זו, יש ללחוץ על אישור. כדי לצאת יש ללחוץ על ביטול.
+aborted by user	בוטל על ידי המשתמש
+Please select an image (SELECT)	אנא בחר תמונה (בחר)
+Please select a device	אנא בחר התקן
+write started	הכתיבה החלה: {0}
+verify started	האימות החל: {0}
+WRITE DONE	הכתיבה הסתיימה
+VERIFY OK	האימות הצליח
+Selected '{0}'	נבחר: '{0}'
+Device list refreshed	רשימת ההתקנים עודכנה
+no drive selected	לא נבחר התקן
+image inspection is not available in the browser	בדיקת תמונה אינה זמינה בדפדפן
+device access is not available in the browser	גישה להתקנים אינה זמינה בדפדפן

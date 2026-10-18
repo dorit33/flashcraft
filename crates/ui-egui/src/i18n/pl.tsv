@@ -1,0 +1,46 @@
+Settings	Ustawienia
+Language	Język
+Drive Properties	Właściwości dysku
+Device	Urządzenie
+Refresh	Odśwież
+Boot selection	Wybór bootowania
+Disk or ISO image (Please select)	Obraz dysku lub ISO płyty (Proszę wybrać)
+SELECT	WYBIERZ
+Persistent partition size	Rozmiar trwałej partycji
+Format Options	Opcje formatowania
+Image option	Opcje obrazu
+Standard installation	Instalacja standardowa
+Partition scheme	Schemat partycjonowania
+Target system	Docelowy system
+BIOS or UEFI	BIOS lub UEFI
+UEFI (non CSM)	UEFI (bez CSM)
+Volume label	Nazwa woluminu
+File system	System plików
+Cluster size	Rozmiar jednostki alokacji
+Show advanced drive properties	Pokaż zaawansowane właściwości dysku
+Hide advanced drive properties	Ukryj zaawansowane właściwości dysku
+List USB Hard Drives	Pokaż dyski twarde USB
+Show advanced format options	Pokaż zaawansowane opcje formatowania
+Hide advanced format options	Ukryj zaawansowane opcje formatowania
+Quick format	Szybkie formatowanie
+Create extended label and icon files	Utwórz rozszerzoną nazwę i pliki ikon
+Check device for bad blocks:	Szukaj błędnych sektorów na urządzeniu:
+Status:	Stan:
+READY	Gotowy
+Log	Dziennik
+START	START
+Cancel	Anuluj
+WARNING: ALL DATA ON DEVICE '{0}' WILL BE DESTROYED	UWAGA: WSZYSTKIE DANE NA URZĄDZENIU '{0}' ZOSTANĄ ZNISZCZONE.
+To continue, click OK. To abort the operation, click Cancel.	Aby kontynuować tę operację naciśnij OK. Aby wyjść naciśnij ANULUJ.
+aborted by user	przerwane przez użytkownika
+Please select an image (SELECT)	Wybierz obraz (WYBIERZ)
+Please select a device	Wybierz urządzenie
+write started	Zapisywanie rozpoczęte: {0}
+verify started	Weryfikacja rozpoczęta: {0}
+WRITE DONE	ZAPISANIE ZAKOŃCZONE
+VERIFY OK	WERYFIKACJA OK
+Selected '{0}'	Wybrano: '{0}'
+Device list refreshed	Lista urządzeń odświeżona
+no drive selected	nie wybrano urządzenia
+image inspection is not available in the browser	inspekcja obrazu niedostępna w przeglądarce
+device access is not available in the browser	dostęp do urządzeń niedostępny w przeglądarce

@@ -8,7 +8,7 @@
 <p align="center">
   <img alt="100% Rust" src="https://img.shields.io/badge/100%25-Rust-b7410e?style=flat-square&logo=rust">
   <img alt="Linux · FreeBSD · Web-native" src="https://img.shields.io/badge/Linux%20%C2%B7%20FreeBSD%20%C2%B7%20Web-native-26282e?style=flat-square">
-  <img alt="License: MIT OR Apache-2.0" src="https://img.shields.io/badge/license-MIT%20%2F%20Apache--2.0-3a3a3a?style=flat-square">
+  <img alt="License: GPL-3.0-only" src="https://img.shields.io/badge/license-GPL--3.0-3a3a3a?style=flat-square">
   <img alt="Status: early alpha" src="https://img.shields.io/badge/status-early%20alpha-d69e2e?style=flat-square">
 </p>
 
@@ -74,4 +74,6 @@ bad-block check, persistent partitions, FAT32 formatting, packaging).
 
 ## License
 
-MIT OR Apache-2.0, at your option.
+GPL-3.0-only. The UI translations are reused from Rufus' `res/loc/rufus.loc`
+(GPLv3, © Pete Batard and the Rufus translators) — sharing the license is what
+makes that reuse legal.

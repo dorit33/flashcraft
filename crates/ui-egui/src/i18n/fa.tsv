@@ -1,0 +1,47 @@
+Settings	تنظیمات
+Language	زبان
+Drive Properties	مشخصات درایو
+Device	درایو USB (حافظه فلش یا سایر ابزارهای ذخیره‌سازی قابل‌حمل)
+Refresh	به‌روزرسانی
+Boot selection	نوع راه‌اندازی (Boot)
+Disk or ISO image (Please select)	دیسک یا ایمیج ISO (لطفاً انتخاب کنید)
+SELECT	انتخاب
+Persistent partition size	اندازه پارتیشن پایدار ذخیره‌سازی اطلاعات
+Format Options	گزینه‌ها و تنظیمات
+Image option	تنظیمات ایمیج
+Standard installation	نصب استاندارد
+Partition scheme	نوع پارتیشن
+Target system	سیستم موردنظر
+BIOS or UEFI	BIOS یا UEFI
+UEFI (non CSM)	UEFI (بجز CSM)
+Volume label	نام دلخواه برای درایو USB
+File system	سیستم فایل
+Cluster size	اندازه کلاستر
+Show advanced drive properties	نمایش دادن تنظیمات پیشرفته درایو
+Hide advanced drive properties	پنهان کردن تنظیمات پیشرفته درایو
+List USB Hard Drives	نمایش هارد دیسک‌های اکسترنال در فهرست درایوهای USB موجود
+Show advanced format options	نمایش دادن تنظیمات پیشرفته فرمت
+Hide advanced format options	پنهان کردن تنظیمات پیشرفته فرمت
+Quick format	فرمت کردن سریع (Quick format)
+Create extended label and icon files	ایجاد آیکون و نام‌گذاری درایو USB با استفاده از فایل autorun.inf
+Check device for bad blocks:	بررسی وجود بدسکتور در درایو به روشِ:
+Status:	وضعیت:
+READY	آماده
+Log	‫گزارش‌های ثبت‌شده (Log)‬
+START	شروع
+OK	بستن
+Cancel	لغو
+WARNING: ALL DATA ON DEVICE '{0}' WILL BE DESTROYED	هشدار:تمام داده‌ها و اطلاعات موجود در درایو '‪{0}‬' پاک خواهد شد.
+To continue, click OK. To abort the operation, click Cancel.	آیا برای ادامه این عملیات مطمئن هستید.
+aborted by user	توسط کاربر لغو شد
+Please select an image (SELECT)	لطفاً یک ایمیج انتخاب کنید (انتخاب)
+Please select a device	لطفاً یک دستگاه انتخاب کنید
+write started	نوشتن آغاز شد: {0}
+verify started	تأیید آغاز شد: {0}
+WRITE DONE	نوشتن تمام شد
+VERIFY OK	تأیید موفق
+Selected '{0}'	انتخاب شد: '{0}'
+Device list refreshed	فهرست دستگاه‌ها به‌روزرسانی شد
+no drive selected	دستگاهی انتخاب نشده
+image inspection is not available in the browser	بررسی ایمیج در مرورگر در دسترس نیست
+device access is not available in the browser	دسترسی به دستگاه در مرورگر در دسترس نیست

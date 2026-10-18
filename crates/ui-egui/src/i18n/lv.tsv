@@ -1,0 +1,47 @@
+Settings	Iestatījumi
+Language	Valoda
+Drive Properties	Ierīces īpašības
+Device	Ierīce
+Refresh	Atsvaidzināt
+Boot selection	Ielādes izvēle
+Disk or ISO image (Please select)	Disks vai ISO virtuālais attēls (Izvēlieties)
+SELECT	IZVĒLĒTIES
+Persistent partition size	Fiksētā apjoma sadaļa
+Format Options	Formatēšanas opcijas
+Image option	Virtuālā attēla īpašības
+Standard installation	Standarta instalācija
+Partition scheme	Sadaļas veids
+Target system	Datu nesēja failu sistēma
+BIOS or UEFI	BIOS vai UEFI
+UEFI (non CSM)	BIOS (bez CSM)
+Volume label	Datu nesēja nosaukums
+File system	Failu sistēma
+Cluster size	Bloka izmērs
+Show advanced drive properties	Rādīt diska paplašinātās īpašības
+Hide advanced drive properties	Slēpt diska paplašinātās īpašības
+List USB Hard Drives	USB disku saraksts
+Show advanced format options	Rādīt formatēšanas paplašinātās īpašības
+Hide advanced format options	Slēpt formatēšanas paplašinātās īpašības
+Quick format	Ātrā formatēšana
+Create extended label and icon files	Izveidot papildus nosaukumu un failu ikonas
+Check device for bad blocks:	Pārbaudīt ierīci uz bojātiem sektoriem:
+Status:	Statuss:
+READY	Gatavs darbam
+Log	Atskaite
+START	SĀKT
+OK	Apstiprināt
+Cancel	Atcelt
+WARNING: ALL DATA ON DEVICE '{0}' WILL BE DESTROYED	UZMANĪBU: VISI DATI NO NESĒJA '{0}' TIKS IZDZĒSTI!!!
+To continue, click OK. To abort the operation, click Cancel.	Turpinājumam piespiediet OK. Lai atcelt, piespiediet Atcelt.
+aborted by user	lietotājs atcēla
+Please select an image (SELECT)	Lūdzu, atlasiet attēlu (ATLASĪT)
+Please select a device	Lūdzu, atlasiet ierīci
+write started	rakstīšana sākta: {0}
+verify started	verifikācija sākta: {0}
+WRITE DONE	RAKSTĪŠANA PABEIGTA
+VERIFY OK	VERIFIKĀCIJA VEIKSMĪGA
+Selected '{0}'	Atlasīts: '{0}'
+Device list refreshed	Ierīču saraksts atsvaidzināts
+no drive selected	nav atlasīta ierīce
+image inspection is not available in the browser	attēla pārbaude nav pieejama pārlūkā
+device access is not available in the browser	piekļuve ierīcēm nav pieejama pārlūkā

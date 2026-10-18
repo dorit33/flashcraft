@@ -1,0 +1,47 @@
+Settings	Настройки
+Language	Язык
+Drive Properties	Свойства диска
+Device	Устройство
+Refresh	Обновить
+Boot selection	Метод загрузки
+Disk or ISO image (Please select)	Диск или образ ISO (выберите)
+SELECT	ВЫБРАТЬ
+Persistent partition size	Постоянный размер раздела
+Format Options	Параметры форматирования
+Image option	Параметры образа
+Standard installation	Стандартная установка
+Partition scheme	Схема раздела
+Target system	Целевая система
+BIOS or UEFI	BIOS или UEFI
+UEFI (non CSM)	UEFI (не-CSM)
+Volume label	Новая метка тома
+File system	Файловая система
+Cluster size	Размер кластера
+Show advanced drive properties	Показать расширенные свойства диска
+Hide advanced drive properties	Скрыть расширенные свойства диска
+List USB Hard Drives	Список USB-дисков
+Show advanced format options	Показать расширенные параметры форматирования
+Hide advanced format options	Скрыть расширенные параметры форматирования
+Quick format	Быстрое форматирование
+Create extended label and icon files	Создать расширенную метку и значок устройства
+Check device for bad blocks:	Проверить на плохие блоки:
+Status:	Статус:
+READY	Готов
+Log	Журнал
+START	СТАРТ
+OK	ОК
+Cancel	Отмена
+WARNING: ALL DATA ON DEVICE '{0}' WILL BE DESTROYED	ВНИМАНИЕ: ВСЕ ДАННЫЕ НА ДИСКЕ '{0}' БУДУТ УНИЧТОЖЕНЫ.
+To continue, click OK. To abort the operation, click Cancel.	Чтобы продолжить, нажмите ОК. Для выхода нажмите 'Отмена'.
+aborted by user	отменено пользователем
+Please select an image (SELECT)	Выберите образ (ВЫБРАТЬ)
+Please select a device	Выберите устройство
+write started	Запись начата: {0}
+verify started	Проверка начата: {0}
+WRITE DONE	ЗАПИСЬ ЗАВЕРШЕНА
+VERIFY OK	ПРОВЕРКА УСПЕШНА
+Selected '{0}'	Выбрано: '{0}'
+Device list refreshed	Список устройств обновлён
+no drive selected	устройство не выбрано
+image inspection is not available in the browser	проверка образа недоступна в браузере
+device access is not available in the browser	доступ к устройствам недоступен в браузере

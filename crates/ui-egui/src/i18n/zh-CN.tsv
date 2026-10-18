@@ -1,0 +1,47 @@
+Settings	设置
+Language	语言
+Drive Properties	设备选项
+Device	设备
+Refresh	刷新
+Boot selection	引导类型选择
+Disk or ISO image (Please select)	镜像文件 (请选择)
+SELECT	选择
+Persistent partition size	持久分区大小
+Format Options	格式化选项
+Image option	镜像选项
+Standard installation	标准安装
+Partition scheme	分区类型
+Target system	目标系统类型
+BIOS or UEFI	BIOS 或 UEFI
+UEFI (non CSM)	UEFI (非 CSM)
+Volume label	卷标
+File system	文件系统
+Cluster size	簇大小
+Show advanced drive properties	显示高级设备选项
+Hide advanced drive properties	隐藏高级设备选项
+List USB Hard Drives	显示 USB 外置硬盘
+Show advanced format options	显示高级格式化选项
+Hide advanced format options	隐藏高级格式化选项
+Quick format	快速格式化
+Create extended label and icon files	创建扩展的标签和图标文件
+Check device for bad blocks:	检查设备坏块:
+Status:	状态:
+READY	准备就绪
+Log	日志
+START	开始
+OK	确定
+Cancel	取消
+WARNING: ALL DATA ON DEVICE '{0}' WILL BE DESTROYED	警告：设备 '{0}' 上的所有数据将会被清除。
+To continue, click OK. To abort the operation, click Cancel.	要继续本操作，请点击【确定】。要退出点击【取消】。
+aborted by user	已被用户中止
+Please select an image (SELECT)	请选择镜像（选择）
+Please select a device	请选择设备
+write started	已开始写入：{0}
+verify started	已开始校验：{0}
+WRITE DONE	写入完成
+VERIFY OK	校验通过
+Selected '{0}'	已选择：'{0}'
+Device list refreshed	设备列表已刷新
+no drive selected	未选择设备
+image inspection is not available in the browser	镜像检查在浏览器中不可用
+device access is not available in the browser	浏览器中无法访问设备

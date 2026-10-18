@@ -1,0 +1,47 @@
+Settings	設定
+Language	語言
+Drive Properties	裝置內容
+Device	裝置
+Refresh	重新整理
+Boot selection	開機模式
+Disk or ISO image (Please select)	磁碟或 ISO 映像檔 (請選擇)
+SELECT	選擇
+Persistent partition size	固定磁區大小
+Format Options	選項
+Image option	映像檔選項
+Standard installation	標準安裝
+Partition scheme	資料分割配置
+Target system	目標系統
+BIOS or UEFI	BIOS 或 UEFI
+UEFI (non CSM)	UEFI (無 CSM)
+Volume label	磁碟區標籤
+File system	檔案系統
+Cluster size	配置單元大小
+Show advanced drive properties	顯示 裝置進階內容
+Hide advanced drive properties	隱藏 裝置進階內容
+List USB Hard Drives	顯示 USB 外接硬碟
+Show advanced format options	顯示 格式化進階選項
+Hide advanced format options	隱藏 格式化進階選項
+Quick format	快速格式化
+Create extended label and icon files	建立延伸標籤及圖示
+Check device for bad blocks:	檢查裝置毀損區塊:
+Status:	狀態:
+READY	已就緒
+Log	記錄檔
+START	執行
+OK	關閉
+Cancel	取消
+WARNING: ALL DATA ON DEVICE '{0}' WILL BE DESTROYED	警告: 此動作將完全清除此裝置上的資料: '{0}'
+To continue, click OK. To abort the operation, click Cancel.	請再次確認是否繼續。
+aborted by user	已被使用者中止
+Please select an image (SELECT)	請選擇映像（選擇）
+Please select a device	請選擇裝置
+write started	已開始寫入：{0}
+verify started	已開始驗證：{0}
+WRITE DONE	寫入完成
+VERIFY OK	驗證通過
+Selected '{0}'	已選擇：'{0}'
+Device list refreshed	裝置清單已重新整理
+no drive selected	未選擇裝置
+image inspection is not available in the browser	映像檢查在瀏覽器中不可用
+device access is not available in the browser	瀏覽器中無法存取裝置

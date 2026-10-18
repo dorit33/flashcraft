@@ -61,3 +61,22 @@ flatpak-builder run, appstreamcli validation.
   buttons, status, warning modal and log messages all localized.
 - Hungarian catalog covers the full Rufus-parity UI (Meghajtó-tulajdonságok,
   Formázási beállítások, TALLÓZÁS, INDÍTÁS, KÉSZ, Mégse…).
+
+## 2026-10-18 — all 38 Rufus languages + GPLv3 relicensing
+
+- `Lang` now covers every locale Rufus ships (38 incl. Auto/English); each has a
+  `i18n/<lang>.tsv` catalog and a native-name label in the picker.
+- Translations are imported from upstream `res/loc/rufus.loc` by
+  `tools/loc-import.py`: our English keys map to Rufus message IDs (incl.
+  composed "Show/Hide %s" strings), `%s`→`{0}` conversion, button uppercasing.
+  ~30 of 47 keys come from Rufus per language; the rest are hand translations
+  (Settings, Language, log/status messages, wasm notices).
+- Reused translations are GPLv3, so the project was relicensed
+  MIT+Apache-2.0 → GPL-3.0-only (LICENSE, Cargo.toml, spec, metainfo, README,
+  ATTRIBUTION.md). This is the one sanctioned non-clean-room reuse; all other
+  Rufus resources stay off-limits.
+- RTL: `Lang::right_to_left()` (ar/fa/he) wraps the panel in
+  `Layout::top_down(Align::Max)`, which makes `prefer_right_to_left()` true so
+  nested `ui.horizontal` rows mirror automatically.
+- `detect()` maps `<lang>_<region>` prefixes (iw→he, in→id, no/nb/nn→nb,
+  pt_BR→pt-BR, zh_TW/zh_HK→zh-TW, else zh→zh-CN).

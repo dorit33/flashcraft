@@ -1,0 +1,46 @@
+Settings	Beállítások
+Language	Nyelv
+Drive Properties	Meghajtó tulajdonságai
+Device	Eszköz
+Refresh	Frissítés
+Boot selection	Rendszerindító (boot) kiválasztása
+Disk or ISO image (Please select)	Lemez vagy ISO képfájl (Kérlek, válassz!)
+SELECT	KIVÁLASZTÁS
+Persistent partition size	Tartós partíció mérete
+Format Options	Formázási beállítások
+Image option	Kép opció
+Standard installation	Normál telepítés
+Partition scheme	Partíciós séma
+Target system	Célrendszer
+BIOS or UEFI	BIOS vagy UEFI
+UEFI (non CSM)	UEFI (nem CSM)
+Volume label	Kötetcímke
+File system	Fájlrendszer
+Cluster size	Klaszter mérete
+Show advanced drive properties	Haladó eszköz tulajdonságok megjelenítése
+Hide advanced drive properties	Haladó eszköz tulajdonságok elrejtése
+List USB Hard Drives	USB merevlemezek listázása
+Show advanced format options	Haladó formázási beállítások megjelenítése
+Hide advanced format options	Haladó formázási beállítások elrejtése
+Quick format	Gyorsformázás
+Create extended label and icon files	Kiterjesztett kötetcímke és ikonfájlok használata
+Check device for bad blocks:	Hibás blokkok keresése az eszközön:
+Status:	Állapot:
+READY	KÉSZ
+Log	Napló
+START	INDÍTÁS
+Cancel	Mégse
+WARNING: ALL DATA ON DEVICE '{0}' WILL BE DESTROYED	FIGYELMEZTETÉS: A(Z) '{0}' ESZKÖZÖN AZ ÖSSZES ADAT LE LESZ TÖRÖLVE!
+To continue, click OK. To abort the operation, click Cancel.	A művelet folytatásához kattints az OK gombra.
+aborted by user	a felhasználó megszakította
+Please select an image (SELECT)	Válassz egy lemezképet (TALLÓZÁS)
+Please select a device	Válassz egy eszközt
+write started	írás elindítva: {0}
+verify started	ellenőrzés elindítva: {0}
+WRITE DONE	ÍRÁS KÉSZ
+VERIFY OK	ELLENŐRZÉS RENDBEN
+Selected '{0}'	Kiválasztva: '{0}'
+Device list refreshed	Eszközlista frissítve
+no drive selected	nincs eszköz kiválasztva
+image inspection is not available in the browser	a böngészőben nem érhető el a lemezkép-ellenőrzés
+device access is not available in the browser	a böngészőből nem érhetőek el az eszközök

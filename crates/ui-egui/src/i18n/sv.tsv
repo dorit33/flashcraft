@@ -1,0 +1,46 @@
+Settings	Inställningar
+Language	Språk
+Drive Properties	Enhetsegenskaper
+Device	Enhet
+Refresh	Uppdatera
+Boot selection	Startval
+Disk or ISO image (Please select)	Disk- eller ISO-avbild (välj)
+SELECT	VÄLJ
+Persistent partition size	Bestående partitionsstorlek
+Format Options	Formatalternativ
+Image option	Avbildsalternativ
+Standard installation	Standardinstallation
+Partition scheme	Partitionsschema
+Target system	Målsystem
+BIOS or UEFI	BIOS eller UEFI
+UEFI (non CSM)	UEFI (icke CSM)
+Volume label	Volymetikett
+File system	Filsystem
+Cluster size	Klusterstorlek
+Show advanced drive properties	Visa avancerade enhetsegenskaper
+Hide advanced drive properties	Dölj avancerade enhetsegenskaper
+List USB Hard Drives	Lista USB-hårddiskar
+Show advanced format options	Visa avancerade formatalternativ
+Hide advanced format options	Dölj avancerade formatalternativ
+Quick format	Snabbformatering
+Create extended label and icon files	Skapa utökat namn och ikonfiler
+Check device for bad blocks:	Kontrollera enheten efter trasiga block:
+Status:	Status:
+READY	REDO
+Log	Logg
+START	STARTA
+Cancel	Avbryt
+WARNING: ALL DATA ON DEVICE '{0}' WILL BE DESTROYED	VARNING: ALL DATA PÅ ENHETEN '{0}'
+To continue, click OK. To abort the operation, click Cancel.	KOMMER ATT TAS BORT.
+aborted by user	avbruten av användaren
+Please select an image (SELECT)	Välj en avbild (VÄLJ)
+Please select a device	Välj en enhet
+write started	Skrivning startad: {0}
+verify started	Verifiering startad: {0}
+WRITE DONE	SKRIVNING KLAR
+VERIFY OK	VERIFIERING OK
+Selected '{0}'	Vald: '{0}'
+Device list refreshed	Enhetslistan uppdaterad
+no drive selected	ingen enhet vald
+image inspection is not available in the browser	avbildsgranskning är inte tillgänglig i webbläsaren
+device access is not available in the browser	enhetsåtkomst är inte tillgänglig i webbläsaren

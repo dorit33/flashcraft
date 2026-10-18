@@ -1,0 +1,47 @@
+Settings	Nastavitve
+Language	Jezik
+Drive Properties	Lastnosti pogona
+Device	Naprava
+Refresh	Osveži
+Boot selection	Izbira zagona
+Disk or ISO image (Please select)	Slika diska oz. ISO (izberite)
+SELECT	IZBERI
+Persistent partition size	Velikost trajne particije
+Format Options	Možnosti formatiranja
+Image option	Možnosti slike
+Standard installation	Standardna namestitev
+Partition scheme	Particijska shema
+Target system	Ciljni sistem
+BIOS or UEFI	BIOS ali UEFI
+UEFI (non CSM)	UEFI (brez CSM)
+Volume label	Oznaka nosilca
+File system	Datotečni sistem
+Cluster size	Velikost gruče
+Show advanced drive properties	Pokaži napredne lastnosti pogona
+Hide advanced drive properties	Skrij napredne lastnosti pogona
+List USB Hard Drives	Naštej USB trde diske
+Show advanced format options	Pokaži napredne možnosti formatiranja
+Hide advanced format options	Skrij napredne možnosti formatiranja
+Quick format	Hitro formatiranje
+Create extended label and icon files	Ustvari datoteki za ikono in podaljšano oznako
+Check device for bad blocks:	Odkrij slabe bloke:
+Status:	Stanje:
+READY	PRIPRAVLJEN
+Log	Zapisnik
+START	ZAČNI
+OK	V redu
+Cancel	Prekliči
+WARNING: ALL DATA ON DEVICE '{0}' WILL BE DESTROYED	OPOZORILO: VSI PODATKI NA NAPRAVI "{0}" BODO UNIČENI.
+To continue, click OK. To abort the operation, click Cancel.	Če želite nadaljevati s to operacijo, izberite "V redu", drugače izberite "Prekliči".
+aborted by user	prekinil uporabnik
+Please select an image (SELECT)	Izberite sliko (IZBERI)
+Please select a device	Izberite napravo
+write started	Pisanje začeto: {0}
+verify started	Preverjanje začeto: {0}
+WRITE DONE	PISANJE KONČANO
+VERIFY OK	PREVERJANJE V REDU
+Selected '{0}'	Izbrano: '{0}'
+Device list refreshed	Seznam naprav osvežen
+no drive selected	ni izbrane naprave
+image inspection is not available in the browser	pregled slike ni na voljo v brskalniku
+device access is not available in the browser	dostop do naprav ni na voljo v brskalniku

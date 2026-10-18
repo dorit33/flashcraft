@@ -1,0 +1,46 @@
+Settings	設定
+Language	言語
+Drive Properties	ドライブ プロパティ
+Device	デバイス
+Refresh	更新
+Boot selection	ブートの種類
+Disk or ISO image (Please select)	ディスクまたは ISO イメージ (選択してください)
+SELECT	選択
+Persistent partition size	保存領域のサイズ
+Format Options	フォーマット オプション
+Image option	イメージ オプション
+Standard installation	標準インストール
+Partition scheme	パーティション構成
+Target system	ターゲット システム
+BIOS or UEFI	BIOS または UEFI
+UEFI (non CSM)	UEFI (CSM 無効)
+Volume label	ボリューム ラベル
+File system	ファイル システム
+Cluster size	クラスター サイズ
+Show advanced drive properties	詳細なドライブ プロパティ を表示
+Hide advanced drive properties	詳細なドライブ プロパティ を隠す
+List USB Hard Drives	USB 接続の HDD を一覧表示
+Show advanced format options	詳細なフォーマット オプション を表示
+Hide advanced format options	詳細なフォーマット オプション を隠す
+Quick format	クイック フォーマット
+Create extended label and icon files	機能拡張されたラベルとアイコン ファイルを作成
+Check device for bad blocks:	不良ブロックを検出:
+Status:	状態:
+READY	準備完了
+Log	ログ
+START	スタート
+Cancel	キャンセル
+WARNING: ALL DATA ON DEVICE '{0}' WILL BE DESTROYED	警告: デバイス “{0}” のデータは消去されます。
+To continue, click OK. To abort the operation, click Cancel.	この操作を続けるには [OK] を、終了する場合は [キャンセル] をクリックしてください。
+aborted by user	ユーザーにより中止されました
+Please select an image (SELECT)	イメージを選択してください（選択）
+Please select a device	デバイスを選択してください
+write started	書き込みを開始しました: {0}
+verify started	検証を開始しました: {0}
+WRITE DONE	書き込み完了
+VERIFY OK	検証OK
+Selected '{0}'	選択: '{0}'
+Device list refreshed	デバイス一覧を更新しました
+no drive selected	デバイスが選択されていません
+image inspection is not available in the browser	イメージ検査はブラウザーでは利用できません
+device access is not available in the browser	デバイスアクセスはブラウザーでは利用できません

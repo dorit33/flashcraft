@@ -1,0 +1,47 @@
+Settings	Tetapan
+Language	Bahasa
+Drive Properties	Sifat cakera
+Device	Peranti
+Refresh	Segar semula
+Boot selection	Jenis boot
+Disk or ISO image (Please select)	Cakera atau imej ISO (Sila pilih)
+SELECT	PILIH
+Persistent partition size	Saiz pemetakan berterusan (persistence partition)
+Format Options	Pilihan format
+Image option	Pilihan Imej
+Standard installation	Pemasangan standard
+Partition scheme	Skema partisyen
+Target system	Sistem yang akan dipasang
+BIOS or UEFI	BIOS atau UEFI
+UEFI (non CSM)	UEFI (bukan CSM)
+Volume label	Label jilid baharu
+File system	Sistem fail
+Cluster size	Saiz gugusan
+Show advanced drive properties	Tunjuk pilihan tambahan pemacu
+Hide advanced drive properties	Sembunyi pilihan tambahan pemacu
+List USB Hard Drives	Senaraikan Cakera Keras USB
+Show advanced format options	Tunjuk pilihan format tambahan
+Hide advanced format options	Sembunyi pilihan format tambahan
+Quick format	Format pantas
+Create extended label and icon files	Cipta label lanjut dan fail ikon
+Check device for bad blocks:	Semak peranti untuk blok rosak:
+Status:	Keadaan:
+READY	SEDIA
+Log	Log
+START	MULA
+OK	OK
+Cancel	Batal
+WARNING: ALL DATA ON DEVICE '{0}' WILL BE DESTROYED	AMARAN: SEMUA DATA DI DALAM PERANTI '{0}' AKAN DIPADAM.
+To continue, click OK. To abort the operation, click Cancel.	Jika hendak teruskan, klik OK. Untuk berhenti, klik BATAL.
+aborted by user	dibatalkan oleh pengguna
+Please select an image (SELECT)	Sila pilih imej (PILIH)
+Please select a device	Sila pilih peranti
+write started	penulisan bermula: {0}
+verify started	pengesahan bermula: {0}
+WRITE DONE	PENULISAN SELESAI
+VERIFY OK	PENGESAHAN OK
+Selected '{0}'	Terpilih: '{0}'
+Device list refreshed	Senarai peranti disegarkan
+no drive selected	tiada peranti dipilih
+image inspection is not available in the browser	pemeriksaan imej tidak tersedia dalam pelayar
+device access is not available in the browser	akses peranti tidak tersedia dalam pelayar

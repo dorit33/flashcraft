@@ -1,0 +1,46 @@
+Settings	Impostazioni
+Language	Lingua
+Drive Properties	Opzioni unità
+Device	Dispositivo/unità
+Refresh	Aggiorna
+Boot selection	Tipo boot sistema
+Disk or ISO image (Please select)	File immagine disco o file ISO (seleziona)
+SELECT	SELEZIONA
+Persistent partition size	Dimensione partizione persistente
+Format Options	Opzioni formattazione
+Image option	Opzioni immagine
+Standard installation	Installazione standard
+Partition scheme	Tipo schema partizione
+Target system	Tipo sistema destinazione
+BIOS or UEFI	BIOS o UEFI
+UEFI (non CSM)	UEFI (senza CSM)
+Volume label	Etichetta volume
+File system	Sistema di file
+Cluster size	Dimensione cluster
+Show advanced drive properties	Visualizza opzioni avanzate unità
+Hide advanced drive properties	Nascondi opzioni avanzate unità
+List USB Hard Drives	Elenco unità disco USB
+Show advanced format options	Visualizza opzioni avanzate formattazione
+Hide advanced format options	Nascondi opzioni avanzate formattazione
+Quick format	Formattazione rapida
+Create extended label and icon files	Crea etichetta estesa e file icone
+Check device for bad blocks:	Test controllo blocchi errati unità:
+Status:	Stato:
+READY	PRONTO
+Log	Registro eventi
+START	AVVIA
+Cancel	Annulla
+WARNING: ALL DATA ON DEVICE '{0}' WILL BE DESTROYED	ATTENZIONE: TUTTI I DATI NELL'UNITÀ '{0}' SARANNO CANCELLATI.
+To continue, click OK. To abort the operation, click Cancel.	Per continuare seleziona 'OK'. Per annullare seleziona 'ANNULLA'.
+aborted by user	annullato dall'utente
+Please select an image (SELECT)	Seleziona un'immagine (SELEZIONA)
+Please select a device	Seleziona un dispositivo
+write started	Scrittura avviata: {0}
+verify started	Verifica avviata: {0}
+WRITE DONE	SCRITTURA COMPLETATA
+VERIFY OK	VERIFICA OK
+Selected '{0}'	Selezionato: '{0}'
+Device list refreshed	Elenco dispositivi aggiornato
+no drive selected	nessun dispositivo selezionato
+image inspection is not available in the browser	l'analisi dell'immagine non è disponibile nel browser
+device access is not available in the browser	l'accesso ai dispositivi non è disponibile nel browser

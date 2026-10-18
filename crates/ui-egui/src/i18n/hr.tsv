@@ -1,0 +1,47 @@
+Settings	Postavke
+Language	Jezik
+Drive Properties	Svojstva jedinice
+Device	Uređaj
+Refresh	Osvježi
+Boot selection	Izvor podizanja
+Disk or ISO image (Please select)	Disk ili ISO slika (Odabrati)
+SELECT	ODABERI
+Persistent partition size	Veličina trajne particije
+Format Options	Mogućnosti formatiranja
+Image option	Mogućnosti slike
+Standard installation	Standardna instalacija
+Partition scheme	Tip particije
+Target system	Ciljani sustav
+BIOS or UEFI	BIOS ili UEFI
+UEFI (non CSM)	UEFI (bez CSM)
+Volume label	Naziv jedinice
+File system	Datotečni sustav
+Cluster size	Veličina grupiranja
+Show advanced drive properties	Prikaži napredna svojstva jedinica
+Hide advanced drive properties	Sakrij napredna svojstva jedinica
+List USB Hard Drives	Prikaži USB čvrste diskove
+Show advanced format options	Prikaži napredne mogućnosti formatiranja
+Hide advanced format options	Sakrij napredne mogućnosti formatiranja
+Quick format	Brzo formatiranje
+Create extended label and icon files	Izradi produženu oznaku i ikonu
+Check device for bad blocks:	Provjera za loše blokove:
+Status:	Stanje:
+READY	SPREMNO
+Log	Zapisnik
+START	ZAPOČNI
+OK	U redu
+Cancel	Odustani
+WARNING: ALL DATA ON DEVICE '{0}' WILL BE DESTROYED	UPOZORENJE: Ovaj postupak briše postojeće datoteke na odabranoj jedinici.
+To continue, click OK. To abort the operation, click Cancel.	Za nastavak kliknite OK, za prekid kliknite Odustani.
+aborted by user	prekinuo korisnik
+Please select an image (SELECT)	Odaberite sliku (ODABERI)
+Please select a device	Odaberite uređaj
+write started	Pisanje pokrenuto: {0}
+verify started	Provjera pokrenuta: {0}
+WRITE DONE	PISANJE DOVRŠENO
+VERIFY OK	PROVJERA U REDU
+Selected '{0}'	Odabrano: '{0}'
+Device list refreshed	Popis uređaja osvježen
+no drive selected	nijedan uređaj nije odabran
+image inspection is not available in the browser	provjera slike nije dostupna u pregledniku
+device access is not available in the browser	pristup uređajima nije dostupan u pregledniku

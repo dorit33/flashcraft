@@ -1,0 +1,47 @@
+Settings	Подешавања
+Language	Језик
+Drive Properties	Osobine diska
+Device	Uređaj
+Refresh	Освежи
+Boot selection	Izbor podizanja sistema
+Disk or ISO image (Please select)	(Odaberite datoteku)
+SELECT	IZABERI
+Persistent partition size	Stalna veličina particije
+Format Options	Opcije formata
+Image option	Opcija slike
+Standard installation	Стандардна инсталација
+Partition scheme	Particijska šema
+Target system	Izabrani sistem
+BIOS or UEFI	BIOS ili UEFI
+UEFI (non CSM)	UEFI (ne CSM)
+Volume label	Naziv novog volumena
+File system	Datotečni sistem
+Cluster size	Veličina klastera
+Show advanced drive properties	Prikaži detaljnije opcije diska
+Hide advanced drive properties	Sakrij detaljnije opcije diska
+List USB Hard Drives	Pokaži USB čvrste diskove
+Show advanced format options	Prikaži detaljnije opcije formata
+Hide advanced format options	Sakrij detaljnije opcije formata
+Quick format	Brzo formatiranje
+Create extended label and icon files	Izradi produženu oznaku i ikone
+Check device for bad blocks:	Proveri prisutnost neispravnih blokova:
+Status:	Stanje:
+READY	SPREMNO
+Log	Zapisnik
+START	ZAPOČNI
+OK	U redu
+Cancel	Odustani
+WARNING: ALL DATA ON DEVICE '{0}' WILL BE DESTROYED	UPOZORENJE: SVI PODACI NA OVOM UREĐAJU '{0}' ĆE BITI UNIŠTENI.
+To continue, click OK. To abort the operation, click Cancel.	Da nastavite, odaberite U REDU. Da odustanete odaberite OTKAŽI.
+aborted by user	прекинуо корисник
+Please select an image (SELECT)	Изаберите слику (ИЗАБЕРИ)
+Please select a device	Изаберите уређај
+write started	Писање покренуто: {0}
+verify started	Провера покренута: {0}
+WRITE DONE	ПИСАЊЕ ЗАВРШЕНО
+VERIFY OK	ПРОВЕРА У РЕДУ
+Selected '{0}'	Изабрано: '{0}'
+Device list refreshed	Списак уређаја освежен
+no drive selected	ниједан уређај није изабран
+image inspection is not available in the browser	провера слике није доступна у прегледнику
+device access is not available in the browser	приступ уређајима није доступан у прегледнику

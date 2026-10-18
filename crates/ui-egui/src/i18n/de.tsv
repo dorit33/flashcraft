@@ -1,0 +1,46 @@
+Settings	Einstellungen
+Language	Sprache
+Drive Properties	Laufwerkseigenschaften
+Device	Laufwerk
+Refresh	Aktualisieren
+Boot selection	Startart
+Disk or ISO image (Please select)	Laufwerk oder ISO-Image (Bitte wählen Sie ein Image)
+SELECT	AUSWAHL
+Persistent partition size	Größe der persistenten Partition
+Format Options	Formatierungseinstellungen
+Image option	Image-Eigenschaft
+Standard installation	Standardinstallation
+Partition scheme	Partitionsschema
+Target system	Zielsystem
+BIOS or UEFI	BIOS oder UEFI
+UEFI (non CSM)	UEFI (ohne CSM)
+Volume label	Laufwerksbezeichnung
+File system	Dateisystem
+Cluster size	Größe der Zuordnungseinheit
+Show advanced drive properties	Erweiterte Laufwerkseigenschaften einblenden
+Hide advanced drive properties	Erweiterte Laufwerkseigenschaften ausblenden
+List USB Hard Drives	USB-Festplatten anzeigen
+Show advanced format options	Erweiterte Formatierungsoptionen einblenden
+Hide advanced format options	Erweiterte Formatierungsoptionen ausblenden
+Quick format	Schnellformatierung
+Create extended label and icon files	Erweiterte Bezeichnung und Symbole erstellen
+Check device for bad blocks:	Auf defekte Blöcke prüfen:
+Status:	Status:
+READY	FERTIG
+Log	Protokoll
+START	START
+Cancel	Abbrechen
+WARNING: ALL DATA ON DEVICE '{0}' WILL BE DESTROYED	WARNUNG: ALLE DATEN AUF LAUFWERK '{0}' WERDEN GELÖSCHT.
+To continue, click OK. To abort the operation, click Cancel.	Klicken Sie auf OK, um fortzufahren. Klicken Sie auf ABBRECHEN, um abzubrechen.
+aborted by user	vom Benutzer abgebrochen
+Please select an image (SELECT)	Bitte ein Abbild wählen (AUSWÄHLEN)
+Please select a device	Bitte ein Laufwerk wählen
+write started	Schreiben gestartet: {0}
+verify started	Überprüfung gestartet: {0}
+WRITE DONE	SCHREIBEN FERTIG
+VERIFY OK	ÜBERPRÜFUNG OK
+Selected '{0}'	Ausgewählt: '{0}'
+Device list refreshed	Laufwerksliste aktualisiert
+no drive selected	kein Laufwerk ausgewählt
+image inspection is not available in the browser	Abbildprüfung ist im Browser nicht verfügbar
+device access is not available in the browser	Laufwerkzugriff ist im Browser nicht verfügbar

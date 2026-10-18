@@ -1,0 +1,46 @@
+Settings	Nastavenia
+Language	Jazyk
+Drive Properties	Nastavenia zariadenia
+Device	Zariadenie
+Refresh	Obnoviť
+Boot selection	Typ bootovania
+Disk or ISO image (Please select)	Disk alebo ISO obraz (vybrať obraz)
+SELECT	PREHLIADAŤ
+Persistent partition size	Trvalá veľkosť partície
+Format Options	Nastavenia formátovania
+Image option	Nastavenia obrazu
+Standard installation	Štandardná inštalácia
+Partition scheme	Schéma oddielu
+Target system	Cieľový systém
+BIOS or UEFI	BIOS alebo UEFI
+UEFI (non CSM)	UEFI (bez CSM)
+Volume label	Nový názov zväzku
+File system	Súborový systém
+Cluster size	Veľkosť klastra
+Show advanced drive properties	Zobraziť pokročilé nastavenia zariadenia
+Hide advanced drive properties	Skryť pokročilé nastavenia zariadenia
+List USB Hard Drives	Zobraziť zoznam USB pevných diskov (USB HDD)
+Show advanced format options	Zobraziť pokročilé nastavenia formátovania
+Hide advanced format options	Skryť pokročilé nastavenia formátovania
+Quick format	Rýchle formátovanie
+Create extended label and icon files	Použiť poskytnutú menovku a súbory miniatúry
+Check device for bad blocks:	Skontrolovať chybné bloky zariadenia:
+Status:	Stav:
+READY	PRIPRAVENÝ
+Log	Záznam činnosti programu Rufus
+START	ŠTART
+Cancel	Zrušiť
+WARNING: ALL DATA ON DEVICE '{0}' WILL BE DESTROYED	VAROVANIE: PO SPUSTENÍ FORMÁTOVANIA BUDÚ VYMAZANÉ VŠETKY ÚDAJE NA CIEĽOVOM DISKU: {0}
+To continue, click OK. To abort the operation, click Cancel.	Ak chcete spustiť formátovanie disku stlačte tlačidlo OK.
+aborted by user	prerušené používateľom
+Please select an image (SELECT)	Vyberte obraz (VYBRAŤ)
+Please select a device	Vyberte zariadenie
+write started	Zápis spustený: {0}
+verify started	Overovanie spustené: {0}
+WRITE DONE	ZÁPIS DOKONČENÝ
+VERIFY OK	OVERENIE OK
+Selected '{0}'	Vybrané: '{0}'
+Device list refreshed	Zoznam zariadení obnovený
+no drive selected	nie je vybrané žiadne zariadenie
+image inspection is not available in the browser	kontrola obrazu nie je v prehliadači dostupná
+device access is not available in the browser	prístup k zariadeniam nie je v prehliadači dostupný

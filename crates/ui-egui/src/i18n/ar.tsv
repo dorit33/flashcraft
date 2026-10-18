@@ -1,0 +1,47 @@
+Settings	الإعدادات
+Language	اللغة
+Drive Properties	خصائص محرك الأقراص
+Device	الجهاز
+Refresh	تحديث
+Boot selection	اختيار نوع الإقلاع
+Disk or ISO image (Please select)	(الرجاء الأختيار) قرص أو صورة ISO
+SELECT	اختيار
+Persistent partition size	حجم التقسيم المستمر
+Format Options	خيارات التهيئة
+Image option	خيارات صورة القرص
+Standard installation	تثبيت قياسي
+Partition scheme	مخطط التقسيم
+Target system	النظام الهدف
+BIOS or UEFI	BIOS أو UEFI
+UEFI (non CSM)	UEFI (بدون CSM)
+Volume label	تسمية وحدة التخزين
+File system	نظام الملفات
+Cluster size	حجم المجموعة
+Show advanced drive properties	أظهار خصائص محرك الأقراص المتقدّمة
+Hide advanced drive properties	أخفاء خصائص محرك الأقراص المتقدّمة
+List USB Hard Drives	قائمة محركات الأقراص الثابتة USB
+Show advanced format options	أظهار خيارات التهّيئة المتقدّمة
+Hide advanced format options	أخفاء خيارات التهّيئة المتقدّمة
+Quick format	التهيئة السريعة
+Create extended label and icon files	إنشاء تسمية موسّعة وأيقونة ملفات
+Check device for bad blocks:	فحص الجهاز من الأجزاء التالفة:
+Status:	الحالة:
+READY	جاهز
+Log	السجل
+START	بدء
+OK	موافق
+Cancel	إلغاء
+WARNING: ALL DATA ON DEVICE '{0}' WILL BE DESTROYED	تحذير: كل البيانات على الجهاز '{0}' سيتم حذفها.
+To continue, click OK. To abort the operation, click Cancel.	لمتابعة هذه العملية، انقر فوق "موافق". للإنهاء، انقر فوق "إلغاء".
+aborted by user	تم الإلغاء من قبل المستخدم
+Please select an image (SELECT)	الرجاء تحديد صورة (تحديد)
+Please select a device	الرجاء تحديد جهاز
+write started	بدأت الكتابة: {0}
+verify started	بدأ التحقق: {0}
+WRITE DONE	اكتملت الكتابة
+VERIFY OK	تم التحقق بنجاح
+Selected '{0}'	تم التحديد: '{0}'
+Device list refreshed	تم تحديث قائمة الأجهزة
+no drive selected	لم يتم تحديد جهاز
+image inspection is not available in the browser	فحص الصورة غير متوفر في المتصفح
+device access is not available in the browser	الوصول إلى الأجهزة غير متوفر في المتصفح

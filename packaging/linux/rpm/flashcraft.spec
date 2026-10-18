@@ -6,7 +6,7 @@ Name:           flashcraft
 Version:        0.1.0
 Release:        1%{?dist}
 Summary:        Write bootable images to removable drives
-License:        MIT OR Apache-2.0
+License:        GPL-3.0-only
 URL:            https://github.com/cdori/flashcraft
 Source0:        %{name}-%{version}-linux-%{_arch}.tar.gz
 

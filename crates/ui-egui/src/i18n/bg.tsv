@@ -1,0 +1,47 @@
+Settings	Настройки
+Language	Език
+Drive Properties	Свойства на устройството
+Device	Устройство
+Refresh	Опресни
+Boot selection	Тип на стартирането
+Disk or ISO image (Please select)	Диск или ISO образ (Моля, изберете)
+SELECT	ИЗБЕРИ
+Persistent partition size	Размер на устойчив дял
+Format Options	Опции за форматиране
+Image option	Опция за образ
+Standard installation	Стандартна инсталация
+Partition scheme	Дялова схема
+Target system	Целева система
+BIOS or UEFI	BIOS или UEFI
+UEFI (non CSM)	UEFI (без CSM)
+Volume label	Нов етикет на тома
+File system	Файлова система
+Cluster size	Размер на клъстера
+Show advanced drive properties	Покажи разширени свойства на устройството
+Hide advanced drive properties	Скрий разширени свойства на устройството
+List USB Hard Drives	Изброяване на USB дискове
+Show advanced format options	Покажи разширени опции за форматиране
+Hide advanced format options	Скрий разширени опции за форматиране
+Quick format	Бързо форматиране
+Create extended label and icon files	Създай разширен етикет и икони
+Check device for bad blocks:	Провери устройството за лоши сектори:
+Status:	Статус:
+READY	ГОТОВО
+Log	Регистър
+START	СТАРТ
+OK	ОК
+Cancel	Откажи
+WARNING: ALL DATA ON DEVICE '{0}' WILL BE DESTROYED	ВНИМАНИЕ: ВСИЧКАТА ИНФОРМАЦИЯ НА УСТРОЙСТВО '{0}' ЩЕ БЪДЕ УНИЩОЖЕНА.
+To continue, click OK. To abort the operation, click Cancel.	За да продължите с тази операция, натиснете OK. За да я прекратите, натиснете ОТКАЖИ.
+aborted by user	отказано от потребителя
+Please select an image (SELECT)	Изберете образ (ИЗБЕРИ)
+Please select a device	Изберете устройство
+write started	Записването започна: {0}
+verify started	Проверката започна: {0}
+WRITE DONE	ЗАПИСВАНЕТО ПРИКЛЮЧИ
+VERIFY OK	ПРОВЕРКАТА Е УСПЕШНА
+Selected '{0}'	Избрано: '{0}'
+Device list refreshed	Списъкът с устройства е опреснен
+no drive selected	не е избрано устройство
+image inspection is not available in the browser	проверката на образи не е достъпна в браузъра
+device access is not available in the browser	достъпът до устройства не е достъпен в браузъра

@@ -4,7 +4,7 @@
   <name>FlashCraft</name>
   <summary>Write bootable images to removable drives</summary>
   <metadata_license>MIT</metadata_license>
-  <project_license>MIT OR Apache-2.0</project_license>
+  <project_license>GPL-3.0-only</project_license>
   <description>
     <p>
       FlashCraft writes bootable images (ISO 9660, disk images) to removable

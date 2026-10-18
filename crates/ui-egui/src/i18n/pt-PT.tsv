@@ -1,0 +1,46 @@
+Settings	Definições
+Language	Idioma
+Drive Properties	Propriedades da unidade
+Device	Dispositivo
+Refresh	Atualizar
+Boot selection	Tipo de arranque
+Disk or ISO image (Please select)	Disco ou imagem ISO (selecionar)
+SELECT	SELECIONAR
+Persistent partition size	Tamanho da partição persistente
+Format Options	Opções de formatação
+Image option	Opções da Imagem
+Standard installation	Instalação padrão
+Partition scheme	Esquema de partições
+Target system	Sistema do destino
+BIOS or UEFI	BIOS ou UEFI
+UEFI (non CSM)	UEFI (não CSM)
+Volume label	Nome
+File system	Sistema de ficheiros
+Cluster size	Tamanho do cluster
+Show advanced drive properties	Mostrar propriedades avançadas da unidade
+Hide advanced drive properties	Ocultar propriedades avançadas da unidade
+List USB Hard Drives	Mostrar unidades USB
+Show advanced format options	Mostrar opções avançadas de formatação
+Hide advanced format options	Ocultar opções avançadas de formatação
+Quick format	Formatação rápida
+Create extended label and icon files	Criar nomes estendidos e ícones
+Check device for bad blocks:	Procurar erros no disco USB:
+Status:	Estado:
+READY	PRONTO
+Log	Histórico de eventos
+START	INICIAR
+Cancel	Cancelar
+WARNING: ALL DATA ON DEVICE '{0}' WILL BE DESTROYED	AVISO: TODOS OS DADOS EM {0} SERÃO ELIMINADOS.
+To continue, click OK. To abort the operation, click Cancel.	Para continuar, prima OK. Para sair da operação, prima CANCELAR.
+aborted by user	cancelado pelo utilizador
+Please select an image (SELECT)	Selecione uma imagem (SELECIONAR)
+Please select a device	Selecione um dispositivo
+write started	Gravação iniciada: {0}
+verify started	Verificação iniciada: {0}
+WRITE DONE	GRAVAÇÃO CONCLUÍDA
+VERIFY OK	VERIFICAÇÃO OK
+Selected '{0}'	Selecionado: '{0}'
+Device list refreshed	Lista de dispositivos atualizada
+no drive selected	nenhum dispositivo selecionado
+image inspection is not available in the browser	a inspeção de imagem não está disponível no navegador
+device access is not available in the browser	o acesso a dispositivos não está disponível no navegador

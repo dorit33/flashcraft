@@ -76,7 +76,10 @@ dialog:
 
 We studied Rufus's *behaviour and feature list* only. Never copy its code, icons, fonts or
 resources. Implement from public docs (sysfs, ISO 9660, UEFI boot specs) and observation.
-Third-party assets must be permissively licensed and get a row in `ATTRIBUTION.md`.
+One deliberate exception: the UI translations are imported from `res/loc/rufus.loc` by
+`tools/loc-import.py`. That file is GPLv3 — exactly why this project is licensed
+GPL-3.0-only, so the reuse is legal. Every other Rufus resource stays off-limits.
+Third-party assets must get a row in `ATTRIBUTION.md`.
 
 ### Other rules
 

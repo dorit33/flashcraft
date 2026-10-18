@@ -1,0 +1,46 @@
+Settings	Nastavení
+Language	Jazyk
+Drive Properties	Vlastnosti disku
+Device	Zařízení
+Refresh	Obnovit
+Boot selection	Výběr boot
+Disk or ISO image (Please select)	Disk nebo obraz ISO (Prosím vyberte)
+SELECT	VYBRAT
+Persistent partition size	Velikost trvalého oddílu
+Format Options	Možnosti formátování
+Image option	Možnosti obrazu
+Standard installation	Standardní instalace
+Partition scheme	Oddíl a typ cílového systému
+Target system	Cílový systém
+BIOS or UEFI	BIOS nebo UEFI
+UEFI (non CSM)	UEFI (ne CSM)
+Volume label	Název svazku
+File system	Souborový systém
+Cluster size	Velikost clusteru
+Show advanced drive properties	Zobrazit pokročilé vlastnosti disku
+Hide advanced drive properties	Skrýt pokročilé vlastnosti disku
+List USB Hard Drives	Seznam USB disků
+Show advanced format options	Zobrazit pokročilé možnosti formátování
+Hide advanced format options	Skrýt pokročilé možnosti formátování
+Quick format	Rychlý formát
+Create extended label and icon files	Vytvořit rozšířené označení a symbol souborů
+Check device for bad blocks:	Kontrola vadných bloků:
+Status:	Stav:
+READY	PŘIPRAVEN
+Log	Záznam činnosti programu Rufus
+START	SPUSTIT
+Cancel	Zrušit
+WARNING: ALL DATA ON DEVICE '{0}' WILL BE DESTROYED	VAROVÁNÍ: VŠECHNA DATA NA CÍLOVÉM DISKU {0}. BUDOU SMAZÁNA
+To continue, click OK. To abort the operation, click Cancel.	Chcete-li pokračovat v této operaci, klikněte na tlačítko OK.
+aborted by user	přerušeno uživatelem
+Please select an image (SELECT)	Vyberte obraz (VYBRAT)
+Please select a device	Vyberte zařízení
+write started	Zápis zahájen: {0}
+verify started	Ověřování zahájeno: {0}
+WRITE DONE	ZÁPIS DOKONČEN
+VERIFY OK	OVĚŘENÍ OK
+Selected '{0}'	Vybráno: '{0}'
+Device list refreshed	Seznam zařízení obnoven
+no drive selected	není vybráno žádné zařízení
+image inspection is not available in the browser	kontrola obrazu není v prohlížeči dostupná
+device access is not available in the browser	přístup k zařízením není v prohlížeči dostupný

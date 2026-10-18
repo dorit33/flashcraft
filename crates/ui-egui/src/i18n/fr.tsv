@@ -1,0 +1,46 @@
+Settings	Paramètres
+Language	Langue
+Drive Properties	Options de Périphérique
+Device	Périphérique
+Refresh	Actualiser
+Boot selection	Type de démarrage
+Disk or ISO image (Please select)	Image disque ou ISO (Veuillez sélectionner)
+SELECT	SÉLECTION
+Persistent partition size	Taille de partition persistente
+Format Options	Options de Formatage
+Image option	Option d'image
+Standard installation	Installation standard
+Partition scheme	Schéma de partition
+Target system	Système de destination
+BIOS or UEFI	BIOS ou UEFI
+UEFI (non CSM)	UEFI (sans CSM)
+Volume label	Nom de volume
+File system	Système de fichiers
+Cluster size	Taille d'unité d'allocation
+Show advanced drive properties	Afficher les options de périphérique avancées
+Hide advanced drive properties	Cacher les options de périphérique avancées
+List USB Hard Drives	Lister les disques durs USB
+Show advanced format options	Afficher les options de formatage avancées
+Hide advanced format options	Cacher les options de formatage avancées
+Quick format	Formatage rapide
+Create extended label and icon files	Ajouter un label étendu et une icône
+Check device for bad blocks:	Vérification de mauvais blocs:
+Status:	Statut:
+READY	PRÊT
+Log	Journal
+START	DÉMARRER
+Cancel	Annuler
+WARNING: ALL DATA ON DEVICE '{0}' WILL BE DESTROYED	ATTENTION : TOUTES LES DONNEES DU VOLUME '{0}' VONT ETRE EFFACEES.
+To continue, click OK. To abort the operation, click Cancel.	Pour continuer cette opération, cliquez sur OK.
+aborted by user	annulé par l'utilisateur
+Please select an image (SELECT)	Veuillez sélectionner une image (SÉLECTION)
+Please select a device	Veuillez sélectionner un périphérique
+write started	Écriture démarrée : {0}
+verify started	Vérification démarrée : {0}
+WRITE DONE	ÉCRITURE TERMINÉE
+VERIFY OK	VÉRIFICATION OK
+Selected '{0}'	Sélectionné : '{0}'
+Device list refreshed	Liste des périphériques actualisée
+no drive selected	aucun périphérique sélectionné
+image inspection is not available in the browser	l'inspection d'image n'est pas disponible dans le navigateur
+device access is not available in the browser	l'accès aux périphériques n'est pas disponible dans le navigateur

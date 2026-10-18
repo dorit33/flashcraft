@@ -1,0 +1,46 @@
+Settings	Cài đặt
+Language	Ngôn ngữ
+Drive Properties	Thuộc tính thiết bị lưu
+Device	Thiết bị lưu
+Refresh	Làm mới
+Boot selection	Tùy chọn khởi động
+Disk or ISO image (Please select)	Đĩa hoặc tệp tin ISO (Vui lòng chọn)
+SELECT	CHỌN
+Persistent partition size	Kích thước phân vùng cố định
+Format Options	Tùy chọn định dạng
+Image option	Tùy chọn tệp tin
+Standard installation	Cài đặt tiêu chuẩn
+Partition scheme	Sơ đồ phân vùng
+Target system	Hệ thống khởi động
+BIOS or UEFI	BIOS hoặc UEFI
+UEFI (non CSM)	UEFI (không CSM)
+Volume label	Nhãn thiết bị lưu
+File system	Hệ thống tập tin
+Cluster size	Kích thước cụm
+Show advanced drive properties	Hiện thuộc tính ổ đĩa nâng cao
+Hide advanced drive properties	Ẩn thuộc tính ổ đĩa nâng cao
+List USB Hard Drives	Liệt kê danh sách ổ USB
+Show advanced format options	Hiện tùy chọn định dạng nâng cao
+Hide advanced format options	Ẩn tùy chọn định dạng nâng cao
+Quick format	Định dạng nhanh
+Create extended label and icon files	Tạo nhãn mở rộng và tệp tin biểu tượng
+Check device for bad blocks:	Kiểm tra lỗi khối trên thiết bị lưu trữ:
+Status:	Trạng thái:
+READY	SẴN SÀNG
+Log	Nhật ký
+START	BẮT ĐẦU
+Cancel	Huỷ
+WARNING: ALL DATA ON DEVICE '{0}' WILL BE DESTROYED	CẢNH BÁO: TẤT CẢ DỮ LIỆU TRÊN THIẾT BỊ '{0}' SẼ BỊ XOÁ.
+To continue, click OK. To abort the operation, click Cancel.	Để tiếp tục tiến trình này, nhấn OK. Để thoát nhấn HUỶ.
+aborted by user	người dùng đã hủy
+Please select an image (SELECT)	Vui lòng chọn ảnh (CHỌN)
+Please select a device	Vui lòng chọn thiết bị
+write started	bắt đầu ghi: {0}
+verify started	bắt đầu xác minh: {0}
+WRITE DONE	GHI HOÀN TẤT
+VERIFY OK	XÁC MINH OK
+Selected '{0}'	Đã chọn: '{0}'
+Device list refreshed	Đã làm mới danh sách thiết bị
+no drive selected	chưa chọn thiết bị
+image inspection is not available in the browser	kiểm tra ảnh không khả dụng trong trình duyệt
+device access is not available in the browser	truy cập thiết bị không khả dụng trong trình duyệt

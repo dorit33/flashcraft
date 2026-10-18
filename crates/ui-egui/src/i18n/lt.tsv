@@ -1,0 +1,46 @@
+Settings	Nustatymai
+Language	Kalba
+Drive Properties	Disko ypatybės
+Device	Įrenginys
+Refresh	Atnaujinti
+Boot selection	Įkrovos parinktis
+Disk or ISO image (Please select)	(Prašome pasirinkti atvaizdą)
+SELECT	PASIRINKITE
+Persistent partition size	Išliekamojo skaidinio dydis
+Format Options	Formatavimo parinktys
+Image option	Atvaizdo parinktis
+Standard installation	Standartinis diegimas
+Partition scheme	Skaidinių schema
+Target system	Paskirties sistema
+BIOS or UEFI	BIOS arba UEFI
+UEFI (non CSM)	UEFI (ne CSM)
+Volume label	Tomo žymė
+File system	Failų sistema
+Cluster size	Klasterio dydis
+Show advanced drive properties	Rodyti išsamias disko ypatybes
+Hide advanced drive properties	Slėpti išsamias disko ypatybes
+List USB Hard Drives	Išvardinti USB kietuosius diskus
+Show advanced format options	Rodyti išsamias formatavimo parinktis
+Hide advanced format options	Slėpti išsamias formatavimo parinktis
+Quick format	Greitasis formatavimas
+Create extended label and icon files	Kurti išplėstinių žymių ir piktogramų failus
+Check device for bad blocks:	Tikrinti įrenginį dėl blogų blokų:
+Status:	Būsena:
+READY	PASIRUOŠĘS
+Log	Dienynas
+START	PRADĖTI
+Cancel	Atšaukti
+WARNING: ALL DATA ON DEVICE '{0}' WILL BE DESTROYED	ĮSPĖJIMAS: VISI DUOMENYS ĮRENGINYJE „{0}“ BUS SUNAIKINTI.
+To continue, click OK. To abort the operation, click Cancel.	Norėdami tęsti šį veiksmą, spauskite Gerai. Norėdami išeiti - spauskite Atšaukti.
+aborted by user	atšaukė vartotojas
+Please select an image (SELECT)	Pasirinkite atvaizdą (PASIRINKTI)
+Please select a device	Pasirinkite įrenginį
+write started	pradėtas rašymas: {0}
+verify started	pradėtas tikrinimas: {0}
+WRITE DONE	RAŠYMAS BAIGTAS
+VERIFY OK	TIKRINIMAS SĖKMINGAS
+Selected '{0}'	Pasirinkta: '{0}'
+Device list refreshed	Įrenginių sąrašas atnaujintas
+no drive selected	nepasirinktas įrenginys
+image inspection is not available in the browser	atvaizdo tikrinimas nepasiekiamas naršyklėje
+device access is not available in the browser	prieiga prie įrenginių nepasiekiama naršyklėje

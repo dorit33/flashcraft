@@ -364,233 +364,243 @@ impl FlashcraftUi {
         self.poll_job(lang);
 
         egui::CentralPanel::default().show(ctx, |ui| {
-            // ── Settings strip (language) ────────────────────────
-            ui.horizontal(|ui| {
-                if ui.small_button(t("Settings", lang).as_ref()).clicked() {
-                    self.settings_open = !self.settings_open;
-                }
-                if self.settings_open {
-                    ui.label(t("Language", lang).as_ref());
-                    let current = self.lang;
-                    egui::ComboBox::from_id_salt("lang")
-                        .selected_text(current.label())
+            // Mirror the layout for right-to-left languages: a vertical
+            // layout with cross_align Max makes `prefer_right_to_left()`
+            // true, so nested `ui.horizontal` rows flow RTL.
+            let layout = if lang.right_to_left() {
+                egui::Layout::top_down(egui::Align::Max)
+            } else {
+                egui::Layout::top_down(egui::Align::LEFT)
+            };
+            ui.with_layout(layout, |ui| {
+                // ── Settings strip (language) ────────────────────────
+                ui.horizontal(|ui| {
+                    if ui.small_button(t("Settings", lang).as_ref()).clicked() {
+                        self.settings_open = !self.settings_open;
+                    }
+                    if self.settings_open {
+                        ui.label(t("Language", lang).as_ref());
+                        let current = self.lang;
+                        egui::ComboBox::from_id_salt("lang")
+                            .selected_text(current.label())
+                            .show_ui(ui, |ui| {
+                                for l in Lang::ALL {
+                                    ui.selectable_value(&mut self.lang, *l, l.label());
+                                }
+                            });
+                    }
+                });
+
+                // ── Drive Properties ────────────────────────────────
+                Self::section(ui, &t("Drive Properties", lang));
+                Self::row(ui, &t("Device", lang), |ui| {
+                    let chosen = self
+                        .drives
+                        .iter()
+                        .find(|d| Some(&d.path) == self.selected_drive.as_ref());
+                    egui::ComboBox::from_id_salt("device")
+                        .selected_text(chosen.map(Self::drive_label).unwrap_or_default())
+                        .width(240.0)
                         .show_ui(ui, |ui| {
-                            for l in Lang::ALL {
-                                ui.selectable_value(&mut self.lang, *l, l.label());
+                            for d in &self.drives {
+                                let label = if let Err(reason) = d.writable() {
+                                    format!("{}  ({reason})", Self::drive_label(d))
+                                } else {
+                                    Self::drive_label(d)
+                                };
+                                ui.selectable_value(
+                                    &mut self.selected_drive,
+                                    Some(d.path.clone()),
+                                    label,
+                                );
                             }
                         });
-                }
-            });
-
-            // ── Drive Properties ────────────────────────────────
-            Self::section(ui, &t("Drive Properties", lang));
-            Self::row(ui, &t("Device", lang), |ui| {
-                let chosen = self
-                    .drives
-                    .iter()
-                    .find(|d| Some(&d.path) == self.selected_drive.as_ref());
-                egui::ComboBox::from_id_salt("device")
-                    .selected_text(chosen.map(Self::drive_label).unwrap_or_default())
-                    .width(240.0)
-                    .show_ui(ui, |ui| {
-                        for d in &self.drives {
-                            let label = if let Err(reason) = d.writable() {
-                                format!("{}  ({reason})", Self::drive_label(d))
-                            } else {
-                                Self::drive_label(d)
-                            };
-                            ui.selectable_value(
-                                &mut self.selected_drive,
-                                Some(d.path.clone()),
-                                label,
-                            );
-                        }
+                    if ui
+                        .small_button("⟳")
+                        .on_hover_text(t("Refresh", lang))
+                        .clicked()
+                    {
+                        self.refresh_drives();
+                        self.say(t("Device list refreshed", lang));
+                    }
+                });
+                Self::row(ui, &t("Boot selection", lang), |ui| {
+                    let mut sel = t("Disk or ISO image (Please select)", lang).to_string();
+                    Self::combo(
+                        ui,
+                        "boot",
+                        &mut sel,
+                        &["Disk or ISO image (Please select)"],
+                        true,
+                    );
+                    #[cfg(not(target_arch = "wasm32"))]
+                    if ui.button(t("SELECT", lang).as_ref()).clicked() {
+                        self.browse_image(lang);
+                    }
+                });
+                if !self.image_path.is_empty() {
+                    Self::row(ui, "", |ui| {
+                        ui.label(RichText::new(&self.image_path).weak());
                     });
-                if ui
-                    .small_button("⟳")
-                    .on_hover_text(t("Refresh", lang))
-                    .clicked()
+                }
+                Self::row(ui, &t("Persistent partition size", lang), |ui| {
+                    ui.add_enabled(
+                        false,
+                        egui::Slider::new(&mut self.persistent_partition, 0.0..=64.0).suffix(" GB"),
+                    );
+                });
+
+                // ── Format Options ──────────────────────────────────
+                Self::section(ui, &t("Format Options", lang));
+                Self::row(ui, &t("Image option", lang), |ui| {
+                    Self::combo(
+                        ui,
+                        "imgopt",
+                        &mut self.image_option,
+                        &["Standard installation"],
+                        true,
+                    );
+                });
+                Self::row(ui, &t("Partition scheme", lang), |ui| {
+                    Self::combo(
+                        ui,
+                        "scheme",
+                        &mut self.partition_scheme,
+                        PARTITION_SCHEMES,
+                        true,
+                    );
+                });
+                Self::row(ui, &t("Target system", lang), |ui| {
+                    let target = if self.partition_scheme == "GPT" {
+                        t("UEFI (non CSM)", lang).to_string()
+                    } else {
+                        t("BIOS or UEFI", lang).to_string()
+                    };
+                    ui.add_enabled(
+                        false,
+                        egui::TextEdit::singleline(&mut target.clone()).desired_width(240.0),
+                    );
+                });
+                Self::row(ui, &t("Volume label", lang), |ui| {
+                    ui.add(egui::TextEdit::singleline(&mut self.volume_label).desired_width(240.0));
+                });
+                Self::row(ui, &t("File system", lang), |ui| {
+                    Self::combo(ui, "fs", &mut self.file_system, FILE_SYSTEMS, false);
+                });
+                Self::row(ui, &t("Cluster size", lang), |ui| {
+                    Self::combo(ui, "cluster", &mut self.cluster_size, CLUSTER_SIZES, false);
+                });
+
+                // ── Advanced ────────────────────────────────────────
+                let adv_drive_key = if self.show_adv_drive {
+                    "Hide advanced drive properties"
+                } else {
+                    "Show advanced drive properties"
+                };
+                if ui.small_button(t(adv_drive_key, lang).as_ref()).clicked() {
+                    self.show_adv_drive = !self.show_adv_drive;
+                }
+                if self.show_adv_drive
+                    && ui
+                        .checkbox(
+                            &mut self.list_usb_hard_drives,
+                            t("List USB Hard Drives", lang).as_ref(),
+                        )
+                        .clicked()
                 {
                     self.refresh_drives();
-                    self.say(t("Device list refreshed", lang));
                 }
-            });
-            Self::row(ui, &t("Boot selection", lang), |ui| {
-                let mut sel = t("Disk or ISO image (Please select)", lang).to_string();
-                Self::combo(
-                    ui,
-                    "boot",
-                    &mut sel,
-                    &["Disk or ISO image (Please select)"],
-                    true,
-                );
-                #[cfg(not(target_arch = "wasm32"))]
-                if ui.button(t("SELECT", lang).as_ref()).clicked() {
-                    self.browse_image(lang);
-                }
-            });
-            if !self.image_path.is_empty() {
-                Self::row(ui, "", |ui| {
-                    ui.label(RichText::new(&self.image_path).weak());
-                });
-            }
-            Self::row(ui, &t("Persistent partition size", lang), |ui| {
-                ui.add_enabled(
-                    false,
-                    egui::Slider::new(&mut self.persistent_partition, 0.0..=64.0).suffix(" GB"),
-                );
-            });
-
-            // ── Format Options ──────────────────────────────────
-            Self::section(ui, &t("Format Options", lang));
-            Self::row(ui, &t("Image option", lang), |ui| {
-                Self::combo(
-                    ui,
-                    "imgopt",
-                    &mut self.image_option,
-                    &["Standard installation"],
-                    true,
-                );
-            });
-            Self::row(ui, &t("Partition scheme", lang), |ui| {
-                Self::combo(
-                    ui,
-                    "scheme",
-                    &mut self.partition_scheme,
-                    PARTITION_SCHEMES,
-                    true,
-                );
-            });
-            Self::row(ui, &t("Target system", lang), |ui| {
-                let target = if self.partition_scheme == "GPT" {
-                    t("UEFI (non CSM)", lang).to_string()
+                let adv_fmt_key = if self.show_adv_format {
+                    "Hide advanced format options"
                 } else {
-                    t("BIOS or UEFI", lang).to_string()
+                    "Show advanced format options"
                 };
-                ui.add_enabled(
-                    false,
-                    egui::TextEdit::singleline(&mut target.clone()).desired_width(240.0),
-                );
-            });
-            Self::row(ui, &t("Volume label", lang), |ui| {
-                ui.add(egui::TextEdit::singleline(&mut self.volume_label).desired_width(240.0));
-            });
-            Self::row(ui, &t("File system", lang), |ui| {
-                Self::combo(ui, "fs", &mut self.file_system, FILE_SYSTEMS, false);
-            });
-            Self::row(ui, &t("Cluster size", lang), |ui| {
-                Self::combo(ui, "cluster", &mut self.cluster_size, CLUSTER_SIZES, false);
-            });
-
-            // ── Advanced ────────────────────────────────────────
-            let adv_drive_key = if self.show_adv_drive {
-                "Hide advanced drive properties"
-            } else {
-                "Show advanced drive properties"
-            };
-            if ui.small_button(t(adv_drive_key, lang).as_ref()).clicked() {
-                self.show_adv_drive = !self.show_adv_drive;
-            }
-            if self.show_adv_drive
-                && ui
-                    .checkbox(
-                        &mut self.list_usb_hard_drives,
-                        t("List USB Hard Drives", lang).as_ref(),
-                    )
-                    .clicked()
-            {
-                self.refresh_drives();
-            }
-            let adv_fmt_key = if self.show_adv_format {
-                "Hide advanced format options"
-            } else {
-                "Show advanced format options"
-            };
-            if ui.small_button(t(adv_fmt_key, lang).as_ref()).clicked() {
-                self.show_adv_format = !self.show_adv_format;
-            }
-            if self.show_adv_format {
-                ui.checkbox(&mut self.quick_format, t("Quick format", lang).as_ref());
-                ui.checkbox(
-                    &mut self.extended_label,
-                    t("Create extended label and icon files", lang).as_ref(),
-                );
-                ui.horizontal(|ui| {
-                    ui.label(t("Check device for bad blocks", lang).as_ref());
-                    let mut passes = BAD_BLOCK_PASSES[self.bad_block_passes].to_string();
-                    Self::combo(ui, "badblocks", &mut passes, BAD_BLOCK_PASSES, false);
-                    if let Some(i) = BAD_BLOCK_PASSES.iter().position(|p| *p == passes) {
-                        self.bad_block_passes = i;
-                    }
-                });
-            }
-
-            // ── Status bar ──────────────────────────────────────
-            ui.add_space(6.0);
-            ui.separator();
-            #[cfg(not(target_arch = "wasm32"))]
-            if let Some(p) = &self.progress {
-                if self.job_rx.is_some() {
-                    ui.add(
-                        egui::ProgressBar::new(p.percent() as f32 / 100.0)
-                            .fill(Color32::from_rgb(0x4c, 0xaf, 0x50))
-                            .show_percentage(),
+                if ui.small_button(t(adv_fmt_key, lang).as_ref()).clicked() {
+                    self.show_adv_format = !self.show_adv_format;
+                }
+                if self.show_adv_format {
+                    ui.checkbox(&mut self.quick_format, t("Quick format", lang).as_ref());
+                    ui.checkbox(
+                        &mut self.extended_label,
+                        t("Create extended label and icon files", lang).as_ref(),
                     );
-                }
-            }
-            let shown_status = if self.status == "READY" {
-                t("READY", lang).to_string()
-            } else {
-                self.status.clone()
-            };
-            let status_text = if self.status_err {
-                RichText::new(shown_status).color(Color32::LIGHT_RED)
-            } else {
-                RichText::new(shown_status)
-            };
-            ui.horizontal(|ui| {
-                ui.label(RichText::new(t("Status:", lang).as_ref()).weak());
-                ui.label(status_text);
-            });
-            if let Some(err) = &self.drives_error {
-                ui.colored_label(Color32::YELLOW, err);
-            }
-
-            // ── Bottom bar ──────────────────────────────────────
-            ui.with_layout(egui::Layout::bottom_up(egui::Align::LEFT), |ui| {
-                ui.horizontal(|ui| {
-                    if ui.small_button(t("Log", lang).as_ref()).clicked() {
-                        self.show_log = !self.show_log;
-                    }
-                    ui.label(RichText::new("FlashCraft 0.1.0").weak().small());
-                    ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
-                        #[cfg(not(target_arch = "wasm32"))]
-                        {
-                            if ui
-                                .add_enabled(
-                                    self.job_rx.is_none(),
-                                    egui::Button::new(t("START", lang).as_ref())
-                                        .min_size(egui::vec2(90.0, 26.0)),
-                                )
-                                .clicked()
-                            {
-                                self.start_pressed(lang);
-                            }
+                    ui.horizontal(|ui| {
+                        ui.label(t("Check device for bad blocks", lang).as_ref());
+                        let mut passes = BAD_BLOCK_PASSES[self.bad_block_passes].to_string();
+                        Self::combo(ui, "badblocks", &mut passes, BAD_BLOCK_PASSES, false);
+                        if let Some(i) = BAD_BLOCK_PASSES.iter().position(|p| *p == passes) {
+                            self.bad_block_passes = i;
                         }
-                        #[cfg(target_arch = "wasm32")]
-                        let _ = ui;
                     });
-                });
-                if self.show_log {
-                    egui::ScrollArea::vertical()
-                        .max_height(120.0)
-                        .stick_to_bottom(true)
-                        .show(ui, |ui| {
-                            for line in &self.log {
-                                ui.label(RichText::new(line).small().monospace());
-                            }
-                        });
                 }
+
+                // ── Status bar ──────────────────────────────────────
+                ui.add_space(6.0);
+                ui.separator();
+                #[cfg(not(target_arch = "wasm32"))]
+                if let Some(p) = &self.progress {
+                    if self.job_rx.is_some() {
+                        ui.add(
+                            egui::ProgressBar::new(p.percent() as f32 / 100.0)
+                                .fill(Color32::from_rgb(0x4c, 0xaf, 0x50))
+                                .show_percentage(),
+                        );
+                    }
+                }
+                let shown_status = if self.status == "READY" {
+                    t("READY", lang).to_string()
+                } else {
+                    self.status.clone()
+                };
+                let status_text = if self.status_err {
+                    RichText::new(shown_status).color(Color32::LIGHT_RED)
+                } else {
+                    RichText::new(shown_status)
+                };
+                ui.horizontal(|ui| {
+                    ui.label(RichText::new(t("Status:", lang).as_ref()).weak());
+                    ui.label(status_text);
+                });
+                if let Some(err) = &self.drives_error {
+                    ui.colored_label(Color32::YELLOW, err);
+                }
+
+                // ── Bottom bar ──────────────────────────────────────
+                ui.with_layout(egui::Layout::bottom_up(egui::Align::LEFT), |ui| {
+                    ui.horizontal(|ui| {
+                        if ui.small_button(t("Log", lang).as_ref()).clicked() {
+                            self.show_log = !self.show_log;
+                        }
+                        ui.label(RichText::new("FlashCraft 0.1.0").weak().small());
+                        ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
+                            #[cfg(not(target_arch = "wasm32"))]
+                            {
+                                if ui
+                                    .add_enabled(
+                                        self.job_rx.is_none(),
+                                        egui::Button::new(t("START", lang).as_ref())
+                                            .min_size(egui::vec2(90.0, 26.0)),
+                                    )
+                                    .clicked()
+                                {
+                                    self.start_pressed(lang);
+                                }
+                            }
+                            #[cfg(target_arch = "wasm32")]
+                            let _ = ui;
+                        });
+                    });
+                    if self.show_log {
+                        egui::ScrollArea::vertical()
+                            .max_height(120.0)
+                            .stick_to_bottom(true)
+                            .show(ui, |ui| {
+                                for line in &self.log {
+                                    ui.label(RichText::new(line).small().monospace());
+                                }
+                            });
+                    }
+                });
             });
         });
 

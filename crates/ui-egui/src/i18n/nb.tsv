@@ -1,0 +1,46 @@
+Settings	Innstillinger
+Language	Språk
+Drive Properties	Stasjonsegenskaper
+Device	Enhet
+Refresh	Oppdater
+Boot selection	Oppstartstype
+Disk or ISO image (Please select)	Disk- eller ISO-bilde (Vennligst velg)
+SELECT	VELG
+Persistent partition size	Vedvarende partisjonsstørrelse
+Format Options	Format-valg
+Image option	Bildevalg
+Standard installation	Standardinstallasjon
+Partition scheme	Partisjonsskjema
+Target system	Målsystem
+BIOS or UEFI	BIOS eller UEFI
+UEFI (non CSM)	UEFI (ikke CSM)
+Volume label	Volumnavn
+File system	Filsystem
+Cluster size	Klyngestørrelse
+Show advanced drive properties	Vis avanserte stasjonsegenskaper
+Hide advanced drive properties	Skjul avanserte stasjonsegenskaper
+List USB Hard Drives	Vis USB-harddisker
+Show advanced format options	Vis avanserte formatalternativer
+Hide advanced format options	Skjul avanserte formatalternativer
+Quick format	Hurtigformatering
+Create extended label and icon files	Opprett utvidet merke og ikonfiler
+Check device for bad blocks:	Sjekk enhet for dårlige blokker:
+Status:	Status:
+READY	KLAR
+Log	Logg
+START	START
+Cancel	Avbryt
+WARNING: ALL DATA ON DEVICE '{0}' WILL BE DESTROYED	ADVARSEL: ALLE DATA PÅ '{0}'-STASJONEN VIL BLI OVERSKREVET.
+To continue, click OK. To abort the operation, click Cancel.	For å fortsette denne operasjonen, klikk OK. For å avslutte, klikk Avbryt.
+aborted by user	avbrutt av brukeren
+Please select an image (SELECT)	Velg en avbildning (VELG)
+Please select a device	Velg en enhet
+write started	Skriving startet: {0}
+verify started	Verifisering startet: {0}
+WRITE DONE	SKRIVING FERDIG
+VERIFY OK	VERIFISERING OK
+Selected '{0}'	Valgt: '{0}'
+Device list refreshed	Enhetslisten oppdatert
+no drive selected	ingen enhet valgt
+image inspection is not available in the browser	avbildningsinspeksjon er ikke tilgjengelig i nettleseren
+device access is not available in the browser	enhetstilgang er ikke tilgjengelig i nettleseren

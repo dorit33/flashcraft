@@ -1,0 +1,47 @@
+Settings	Ayarlar
+Language	Dil
+Drive Properties	Sürücü Özellikleri
+Device	Aygıt
+Refresh	Yenile
+Boot selection	Önyükleme seçimi
+Disk or ISO image (Please select)	Disk ya da ISO yansısı (Lütfen seçin)
+SELECT	SEÇ
+Persistent partition size	Kalıcı disk bölümü boyutu
+Format Options	Biçimlendirme Seçenekleri
+Image option	Yansı Seçeneği
+Standard installation	Standart kurulum
+Partition scheme	Disk bölüm düzeni
+Target system	Hedef sistem
+BIOS or UEFI	BIOS ya da UEFI
+UEFI (non CSM)	UEFI (CSM yok)
+Volume label	Yeni birim etiketi
+File system	Dosya sistemi
+Cluster size	Ayırma Birimi boyutu
+Show advanced drive properties	gelişmiş sürücü özelliklerini göster
+Hide advanced drive properties	gelişmiş sürücü özelliklerini gizle
+List USB Hard Drives	USB Sabit Sürücüleri Listele
+Show advanced format options	gelişmiş biçimlendirme seçeneklerini göster
+Hide advanced format options	gelişmiş biçimlendirme seçeneklerini gizle
+Quick format	Hızlı biçimlendir
+Create extended label and icon files	Genişletilmiş etiket ve simge dosyaları oluştur
+Check device for bad blocks:	Hatalı bloklar için aygıtı denetle:
+Status:	Durum:
+READY	HAZIR
+Log	Günlük
+START	BAŞLAT
+OK	Tamam
+Cancel	Vazgeç
+WARNING: ALL DATA ON DEVICE '{0}' WILL BE DESTROYED	UYARI: '{0}' AYGITINDAKİ TÜM VERİ YOK EDİLECEK.
+To continue, click OK. To abort the operation, click Cancel.	İşleme devam etmek için TAMAM'a tıklayın. Çıkmak için İPTAL'e tıklayın.
+aborted by user	kullanıcı iptal etti
+Please select an image (SELECT)	Bir kalıp seçin (SEÇ)
+Please select a device	Bir aygıt seçin
+write started	Yazma başlatıldı: {0}
+verify started	Doğrulama başlatıldı: {0}
+WRITE DONE	YAZMA TAMAMLANDI
+VERIFY OK	DOĞRULAMA TAMAM
+Selected '{0}'	Seçildi: '{0}'
+Device list refreshed	Aygıt listesi yenilendi
+no drive selected	aygıt seçilmedi
+image inspection is not available in the browser	kalıp incelemesi tarayıcıda kullanılamaz
+device access is not available in the browser	aygıt erişimi tarayıcıda kullanılamaz

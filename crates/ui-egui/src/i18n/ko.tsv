@@ -1,0 +1,47 @@
+Settings	설정
+Language	언어
+Drive Properties	드라이브 속성
+Device	장치
+Refresh	새로 고침
+Boot selection	부팅 선택
+Disk or ISO image (Please select)	디스크 또는 ISO 이미지 (선택해 주세요)
+SELECT	선택
+Persistent partition size	영구 파티션 크기
+Format Options	포맷 옵션
+Image option	이미지 옵션
+Standard installation	표준 설치
+Partition scheme	파티션 구성
+Target system	대상 시스템
+BIOS or UEFI	BIOS 또는 UEFI
+UEFI (non CSM)	UEFI (비 CSM)
+Volume label	볼륨 레이블
+File system	파일 시스템
+Cluster size	클러스터 크기
+Show advanced drive properties	고급 드라이브 속성 표시
+Hide advanced drive properties	고급 드라이브 속성 숨기기
+List USB Hard Drives	USB 하드 드라이브 목록
+Show advanced format options	고급 포맷 옵션 표시
+Hide advanced format options	고급 포맷 옵션 숨기기
+Quick format	빠른 포맷
+Create extended label and icon files	확장 레이블 및 아이콘 파일 만들기
+Check device for bad blocks:	장치의 불량 블록 검사:
+Status:	상태:
+READY	준비
+Log	로그
+START	시작
+OK	확인
+Cancel	취소
+WARNING: ALL DATA ON DEVICE '{0}' WILL BE DESTROYED	경고: '{0}' 장치의 모든 데이터가 삭제됩니다.
+To continue, click OK. To abort the operation, click Cancel.	이 작업을 계속하려면 확인을 클릭합니다. 종료하려면 취소를 클릭합니다.
+aborted by user	사용자가 취소했습니다
+Please select an image (SELECT)	이미지를 선택하세요 (선택)
+Please select a device	디바이스를 선택하세요
+write started	쓰기 시작됨: {0}
+verify started	검증 시작됨: {0}
+WRITE DONE	쓰기 완료
+VERIFY OK	검증 완료
+Selected '{0}'	선택됨: '{0}'
+Device list refreshed	디바이스 목록이 새로 고쳐졌습니다
+no drive selected	선택된 디바이스 없음
+image inspection is not available in the browser	이미지 검사는 브라우저에서 사용할 수 없습니다
+device access is not available in the browser	디바이스 액세스는 브라우저에서 사용할 수 없습니다
