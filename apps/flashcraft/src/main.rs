@@ -114,7 +114,7 @@ fn load_fonts(ctx: &egui::Context) {
 fn main() -> eframe::Result<()> {
     let options = eframe::NativeOptions {
         viewport: egui::ViewportBuilder::default()
-            .with_inner_size([480.0, 560.0])
+            .with_inner_size([560.0, 700.0])
             .with_resizable(false),
         ..Default::default()
     };

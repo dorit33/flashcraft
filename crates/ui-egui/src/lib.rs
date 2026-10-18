@@ -53,7 +53,6 @@ pub struct FlashcraftUi {
     image_path: String,
     #[cfg(not(target_arch = "wasm32"))]
     image_info: Option<core::ImageInfo>,
-    persistent_partition: f32,
     // Format Options
     image_option: String,
     partition_scheme: String,
@@ -93,7 +92,6 @@ impl Default for FlashcraftUi {
             image_path: String::new(),
             #[cfg(not(target_arch = "wasm32"))]
             image_info: None,
-            persistent_partition: 0.0,
             image_option: "Standard installation".to_string(),
             partition_scheme: "MBR".to_string(),
             volume_label: String::new(),
@@ -364,8 +362,8 @@ impl FlashcraftUi {
             // ── Rufus IDD_DIALOG, rendered 1:1 ───────────────────
             // From res/rufus.rc: DIALOGEX 12,12,232,326. Dialog units are
             // scaled to pixels; x positions mirror for RTL languages.
-            const DU_X: f32 = 1.9;
-            const DU_Y: f32 = 1.62;
+            const DU_X: f32 = 2.3;
+            const DU_Y: f32 = 2.0;
             const DU_W: f32 = 232.0;
             let rtl = lang.right_to_left();
             let origin = ui.cursor().min + egui::vec2(0.0, 6.0);
@@ -540,24 +538,8 @@ impl FlashcraftUi {
                 &["Standard installation"],
                 true,
             );
-            ui.allocate_new_ui(
-                egui::UiBuilder::new().max_rect(ctl(125.0, 76.0, 30.0, 8.0)),
-                |ui| {
-                    ui.add_enabled(
-                        false,
-                        egui::Slider::new(&mut self.persistent_partition, 0.0..=64.0),
-                    );
-                },
-            );
-            let mut psize = format!("{}", self.persistent_partition as u32);
-            ui.allocate_new_ui(
-                egui::UiBuilder::new().max_rect(ctl(160.0, 74.0, 34.0, 12.0)),
-                |ui| {
-                    ui.add_enabled(false, egui::TextEdit::singleline(&mut psize));
-                },
-            );
-            let mut punit = "GB".to_string();
-            combo(ui, 199.0, 74.0, 24.0, "punits", &mut punit, &["GB"], false);
+            // Persistent partition controls (IDC_PERSISTENCE_*) stay hidden —
+            // Rufus only shows them for ISOs that support persistence.
             text(ui, 8.0, 87.0, t("Partition scheme", lang).as_ref());
             text(ui, 128.0, 87.0, t("Target system", lang).as_ref());
             combo(
