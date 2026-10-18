@@ -15,4 +15,6 @@ cp "$TARBALL" "$HOME/rpmbuild/SOURCES/"
 
 rpmbuild -bb packaging/linux/rpm/flashcraft.spec \
     --define "_arch $ARCH"
-find "$HOME/rpmbuild/RPMS" -name "flashcraft-${VER}-*.rpm" -newer "$TARBALL"
+find "$HOME/rpmbuild/RPMS" -name "flashcraft-${VER}-*.rpm" -newer "$TARBALL" \
+    -exec cp {} dist/ \;
+ls "dist/flashcraft-${VER}"-*.rpm

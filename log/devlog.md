@@ -235,3 +235,14 @@ flatpak-builder run, appstreamcli validation.
 - Failures now carry the tools' own stderr in the error message.
 - Test updated: a stale (not actually mounted) entry is a no-op, matching
   the idempotent semantics.
+
+## 2026-10-18 — fresh full release matrix
+
+- Rebuilt all 11 artifacts with the auto-unmount/pkexec/phase/label work:
+  rpm, deb, AppImage, tar.gz, flatpak, x64+x86 msi, x64 portable zip,
+  source zip, web zip, SHA256SUMS.txt. `sha256sum -c` all green.
+- Fixed rpm.spec %install: it copied share/applications/flashcraft.desktop
+  but the tarball ships dev.flashcraft.app.desktop (stale name → build break).
+- rpm.sh now copies the built rpm into dist/ (release.sh publishes from
+  dist/ only — the parent dir kept a stale rpm before this fix).
+- checksums.sh find now covers *.msi as well.

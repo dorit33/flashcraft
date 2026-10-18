@@ -32,7 +32,7 @@ mkdir -p %{buildroot}%{_bindir}
 mkdir -p %{buildroot}%{_datadir}/applications
 mkdir -p %{buildroot}%{_datadir}/metainfo
 cp -a bin/flashcraft bin/flashcraft-cli %{buildroot}%{_bindir}/
-cp -a share/applications/flashcraft.desktop %{buildroot}%{_datadir}/applications/
+cp -a share/applications/dev.flashcraft.app.desktop %{buildroot}%{_datadir}/applications/
 cp -a share/metainfo/dev.flashcraft.app.metainfo.xml %{buildroot}%{_datadir}/metainfo/
 if [ -d share/icons ]; then
     mkdir -p %{buildroot}%{_datadir}/icons
