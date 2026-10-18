@@ -38,6 +38,10 @@ if [ -d share/icons ]; then
     mkdir -p %{buildroot}%{_datadir}/icons
     cp -a share/icons/hicolor %{buildroot}%{_datadir}/icons/
 fi
+if [ -d share/doc/flashcraft ]; then
+    mkdir -p %{buildroot}%{_docdir}/flashcraft
+    cp -a share/doc/flashcraft/* %{buildroot}%{_docdir}/flashcraft/
+fi
 
 %files
 %{_bindir}/flashcraft
@@ -45,6 +49,8 @@ fi
 %{_datadir}/applications/flashcraft.desktop
 %{_datadir}/metainfo/dev.flashcraft.app.metainfo.xml
 %{_datadir}/icons/hicolor/*/apps/dev.flashcraft.app.png
+%license %{_docdir}/flashcraft/LICENSE
+%doc %{_docdir}/flashcraft/ATTRIBUTION.md
 
 %changelog
 * Sun Oct 18 2026 FlashCraft contributors <noreply@localhost> - 0.1.0-1

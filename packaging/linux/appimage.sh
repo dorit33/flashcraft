@@ -31,6 +31,8 @@ mkdir -p "$APPDIR/usr/bin" "$APPDIR/usr/share/applications" \
 cp "dist/flashcraft-${VER}-linux-${ARCH}/bin/"* "$APPDIR/usr/bin/"
 cp packaging/linux/flashcraft.desktop "$APPDIR/flashcraft.desktop"
 cp packaging/linux/dev.flashcraft.app.metainfo.xml "$APPDIR/usr/share/metainfo/"
+mkdir -p "$APPDIR/usr/share/doc/flashcraft"
+cp LICENSE ATTRIBUTION.md "$APPDIR/usr/share/doc/flashcraft/"
 cp assets/app-icon/hicolor/128x128/apps/dev.flashcraft.app.png \
     "$APPDIR/usr/share/icons/hicolor/128x128/apps/"
 cp "$APPDIR/usr/share/icons/hicolor/128x128/apps/dev.flashcraft.app.png" "$APPDIR/"

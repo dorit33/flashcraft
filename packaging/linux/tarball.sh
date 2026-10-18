@@ -12,10 +12,12 @@ OUT="dist/${PKG}"
 cargo build --release -p flashcraft -p flashcraft-cli
 
 rm -rf "$OUT" "${OUT}.tar.gz"
-mkdir -p "$OUT/bin" "$OUT/share/applications" "$OUT/share/metainfo"
+mkdir -p "$OUT/bin" "$OUT/share/applications" "$OUT/share/metainfo" \
+    "$OUT/share/doc/flashcraft"
 cp target/release/flashcraft target/release/flashcraft-cli "$OUT/bin/"
 cp packaging/linux/flashcraft.desktop "$OUT/share/applications/"
 cp packaging/linux/dev.flashcraft.app.metainfo.xml "$OUT/share/metainfo/"
+cp LICENSE ATTRIBUTION.md "$OUT/share/doc/flashcraft/"
 if [ -d assets/app-icon/hicolor ]; then
     mkdir -p "$OUT/share/icons"
     cp -r assets/app-icon/hicolor "$OUT/share/icons/"

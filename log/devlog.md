@@ -112,3 +112,12 @@ flatpak-builder run, appstreamcli validation.
 - Labels render in left_to_right child UIs (LTEXT semantics); second-column
   label rects are edge-clamped; status/error text is dark red/amber on the
   light face; progress fill is Rufus green #06B025.
+
+## 2026-10-18 — License packaging audit
+
+- Every artifact now ships the license: tarball + AppImage carry
+  share/doc/flashcraft/{LICENSE,ATTRIBUTION.md}; the rpm uses %license/%doc;
+  the deb gains a Debian-format copyright file naming the GPLv3 and the
+  Rufus-translation attribution.
+- Rebuilt dist/ artifacts — the earlier rpm still advertised
+  MIT OR Apache-2.0 from before the relicensing.

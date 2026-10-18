@@ -21,6 +21,24 @@ mkdir -p "$STAGE/usr" "$STAGE/DEBIAN"
 tar -xzf "dist/flashcraft-${VER}-linux-${ARCH}.tar.gz" -C "$STAGE/usr" --strip-components 1
 
 INSTALLED=$(du -sk "$STAGE/usr" | cut -f1)
+cat > "$STAGE/usr/share/doc/flashcraft/copyright" <<EOF
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: flashcraft
+Source: https://github.com/cdori/flashcraft
+
+Files: *
+Copyright: FlashCraft contributors
+License: GPL-3.0-only
+ This program is free software: you can redistribute it and/or modify it
+ under the terms of the GNU General Public License version 3 only, as
+ published by the Free Software Foundation. On Debian systems, the complete
+ text of the GNU General Public License version 3 can be found in
+ /usr/share/common-licenses/GPL-3.
+ .
+ The UI translation catalogs under crates/ui-egui/src/i18n/ incorporate
+ translations from Rufus' res/loc/rufus.loc (GPL-3.0), © Pete Batard and
+ the Rufus translators. See ATTRIBUTION.md in this directory.
+EOF
 cat > "$STAGE/DEBIAN/control" <<EOF
 Package: flashcraft
 Version: ${VER}
