@@ -541,7 +541,7 @@ impl FlashcraftUi {
                 true,
             );
             ui.allocate_new_ui(
-                egui::UiBuilder::new().max_rect(ctl(125.0, 76.0, 34.0, 8.0)),
+                egui::UiBuilder::new().max_rect(ctl(125.0, 76.0, 30.0, 8.0)),
                 |ui| {
                     ui.add_enabled(
                         false,
@@ -551,13 +551,13 @@ impl FlashcraftUi {
             );
             let mut psize = format!("{}", self.persistent_partition as u32);
             ui.allocate_new_ui(
-                egui::UiBuilder::new().max_rect(ctl(160.0, 74.0, 36.0, 12.0)),
+                egui::UiBuilder::new().max_rect(ctl(160.0, 74.0, 34.0, 12.0)),
                 |ui| {
                     ui.add_enabled(false, egui::TextEdit::singleline(&mut psize));
                 },
             );
             let mut punit = "GB".to_string();
-            combo(ui, 200.0, 74.0, 24.0, "punits", &mut punit, &["GB"], false);
+            combo(ui, 199.0, 74.0, 24.0, "punits", &mut punit, &["GB"], false);
             text(ui, 8.0, 87.0, t("Partition scheme", lang).as_ref());
             text(ui, 128.0, 87.0, t("Target system", lang).as_ref());
             combo(

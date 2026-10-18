@@ -68,6 +68,9 @@ fn win32_visuals() -> egui::Style {
     style.visuals = v;
     style.spacing.button_padding = egui::vec2(4.0, 1.0);
     style
+        .text_styles
+        .insert(egui::TextStyle::Button, egui::FontId::proportional(11.5));
+    style
 }
 
 /// Liberation Sans (Arial metrics, close to Segoe UI) as the UI font, plus
