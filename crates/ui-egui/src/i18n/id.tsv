@@ -21,14 +21,17 @@ Hide advanced drive properties	Sembunyikan properti drive lanjutan
 List USB Hard Drives	Daftar USB Hard Drives
 Show advanced format options	Tampilkan opsi format lanjutan
 Hide advanced format options	Sembunyikan opsi format lanjutan
+Add fixes for old BIOSes (extra partition, align, etc.)	Tambah perbaikan untuk BIOS lama (partisi ekstra, penyesuaian, dll.)
+Enable runtime UEFI media validation	Aktifkan validasi media UEFI runtime
 Quick format	Format cepat
 Create extended label and icon files	Buat label dan berkas ikon tambahan
-Check device for bad blocks:	Periksa blok buruk pada perangkat:
+Check device for bad blocks	Periksa blok buruk pada perangkat
 READY	SIAP
 Log	Catatan
 START	MULAI
 OK	Oke
 Cancel	Batal
+Close	Tutup
 WARNING: ALL DATA ON DEVICE '{0}' WILL BE DESTROYED	PERINGATAN: SEMUA DATA PADA PERANGKAT '{0}' AKAN DIHAPUS.
 To continue, click OK. To abort the operation, click Cancel.	Untuk melanjutkan operasi ini, klik OKE. Untuk keluar klik BATAL.
 aborted by user	dibatalkan oleh pengguna

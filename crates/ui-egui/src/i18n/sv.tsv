@@ -22,14 +22,17 @@ Hide advanced drive properties	Dölj avancerade enhetsegenskaper
 List USB Hard Drives	Lista USB-hårddiskar
 Show advanced format options	Visa avancerade formatalternativ
 Hide advanced format options	Dölj avancerade formatalternativ
+Add fixes for old BIOSes (extra partition, align, etc.)	Lägg till korrigeringar för äldre BIOS:ar (extra partition, etc)
+Enable runtime UEFI media validation	Aktivera runtime UEFI-mediavalidering
 Quick format	Snabbformatering
 Create extended label and icon files	Skapa utökat namn och ikonfiler
-Check device for bad blocks:	Kontrollera enheten efter trasiga block:
+Check device for bad blocks	Kontrollera enheten efter trasiga block
 Status:	Status:
 READY	REDO
 Log	Logg
 START	STARTA
 Cancel	Avbryt
+Close	Stäng
 WARNING: ALL DATA ON DEVICE '{0}' WILL BE DESTROYED	VARNING: ALL DATA PÅ ENHETEN '{0}'
 To continue, click OK. To abort the operation, click Cancel.	KOMMER ATT TAS BORT.
 aborted by user	avbruten av användaren

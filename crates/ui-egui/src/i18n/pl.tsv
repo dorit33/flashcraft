@@ -22,14 +22,17 @@ Hide advanced drive properties	Ukryj zaawansowane właściwości dysku
 List USB Hard Drives	Pokaż dyski twarde USB
 Show advanced format options	Pokaż zaawansowane opcje formatowania
 Hide advanced format options	Ukryj zaawansowane opcje formatowania
+Add fixes for old BIOSes (extra partition, align, etc.)	Dodaj łatkę dla starych BIOSów (dodatkowa partycja, itp.)
+Enable runtime UEFI media validation	Włącz weryfikację nośnika UEFI w czasie wykonywania
 Quick format	Szybkie formatowanie
 Create extended label and icon files	Utwórz rozszerzoną nazwę i pliki ikon
-Check device for bad blocks:	Szukaj błędnych sektorów na urządzeniu:
+Check device for bad blocks	Szukaj błędnych sektorów na urządzeniu
 Status:	Stan:
 READY	Gotowy
 Log	Dziennik
 START	START
 Cancel	Anuluj
+Close	Zamknij
 WARNING: ALL DATA ON DEVICE '{0}' WILL BE DESTROYED	UWAGA: WSZYSTKIE DANE NA URZĄDZENIU '{0}' ZOSTANĄ ZNISZCZONE.
 To continue, click OK. To abort the operation, click Cancel.	Aby kontynuować tę operację naciśnij OK. Aby wyjść naciśnij ANULUJ.
 aborted by user	przerwane przez użytkownika

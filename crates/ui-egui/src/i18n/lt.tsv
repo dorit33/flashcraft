@@ -22,14 +22,17 @@ Hide advanced drive properties	Slėpti išsamias disko ypatybes
 List USB Hard Drives	Išvardinti USB kietuosius diskus
 Show advanced format options	Rodyti išsamias formatavimo parinktis
 Hide advanced format options	Slėpti išsamias formatavimo parinktis
+Add fixes for old BIOSes (extra partition, align, etc.)	Pataisos seniems BIOS (papildomas skaidinys, ir kt.)
+Enable runtime UEFI media validation	Įgalinti vykdymo laiko UEFI laikmenos patvirtinimą
 Quick format	Greitasis formatavimas
 Create extended label and icon files	Kurti išplėstinių žymių ir piktogramų failus
-Check device for bad blocks:	Tikrinti įrenginį dėl blogų blokų:
+Check device for bad blocks	Tikrinti įrenginį dėl blogų blokų
 Status:	Būsena:
 READY	PASIRUOŠĘS
 Log	Dienynas
 START	PRADĖTI
 Cancel	Atšaukti
+Close	Uždaryti
 WARNING: ALL DATA ON DEVICE '{0}' WILL BE DESTROYED	ĮSPĖJIMAS: VISI DUOMENYS ĮRENGINYJE „{0}“ BUS SUNAIKINTI.
 To continue, click OK. To abort the operation, click Cancel.	Norėdami tęsti šį veiksmą, spauskite Gerai. Norėdami išeiti - spauskite Atšaukti.
 aborted by user	atšaukė vartotojas

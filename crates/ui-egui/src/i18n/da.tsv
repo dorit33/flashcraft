@@ -22,14 +22,17 @@ Hide advanced drive properties	Skjul avancerede drev indstillinger
 List USB Hard Drives	Vis USB-harddiske
 Show advanced format options	Vis avancerede formateringsindstillinger
 Hide advanced format options	Skjul avancerede formateringsindstillinger
+Add fixes for old BIOSes (extra partition, align, etc.)	Tilføj rettelser for ældre BIOS'er
+Enable runtime UEFI media validation	Slå runtime UEFI medie validering til
 Quick format	Ekspresformatering
 Create extended label and icon files	Brug udvidet etiket og ikon-filer
-Check device for bad blocks:	Søg efter fejlbehæftede blokke:
+Check device for bad blocks	Søg efter fejlbehæftede blokke
 Status:	Status:
 READY	Klar
 Log	Log
 START	START
 Cancel	Annuller
+Close	Afslut
 WARNING: ALL DATA ON DEVICE '{0}' WILL BE DESTROYED	ADVARSEL: AL DATA PÅ '{0}' VIL FORSVINDE.
 To continue, click OK. To abort the operation, click Cancel.	Klik på OK for at fortsætte, eller Annullér for at afbryde.
 aborted by user	afbrudt af brugeren

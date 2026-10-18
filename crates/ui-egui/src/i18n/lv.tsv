@@ -22,15 +22,18 @@ Hide advanced drive properties	Slēpt diska paplašinātās īpašības
 List USB Hard Drives	USB disku saraksts
 Show advanced format options	Rādīt formatēšanas paplašinātās īpašības
 Hide advanced format options	Slēpt formatēšanas paplašinātās īpašības
+Add fixes for old BIOSes (extra partition, align, etc.)	Pievienot vecāku BIOSu labojumus (partīcijām, dalījumam, u.c.)
+Enable runtime UEFI media validation	Ieslēgt UEFI nesēja pārbaudi izpildīšanas laikā
 Quick format	Ātrā formatēšana
 Create extended label and icon files	Izveidot papildus nosaukumu un failu ikonas
-Check device for bad blocks:	Pārbaudīt ierīci uz bojātiem sektoriem:
+Check device for bad blocks	Pārbaudīt ierīci uz bojātiem sektoriem
 Status:	Statuss:
 READY	Gatavs darbam
 Log	Atskaite
 START	SĀKT
 OK	Apstiprināt
 Cancel	Atcelt
+Close	Aizvērt
 WARNING: ALL DATA ON DEVICE '{0}' WILL BE DESTROYED	UZMANĪBU: VISI DATI NO NESĒJA '{0}' TIKS IZDZĒSTI!!!
 To continue, click OK. To abort the operation, click Cancel.	Turpinājumam piespiediet OK. Lai atcelt, piespiediet Atcelt.
 aborted by user	lietotājs atcēla

@@ -22,14 +22,17 @@ Hide advanced drive properties	Ascundere proprietăți unitate avansate
 List USB Hard Drives	Afișare unități conectate prin USB
 Show advanced format options	Afișare opțiuni formatare avansate
 Hide advanced format options	Ascundere opțiuni formatare avansate
+Add fixes for old BIOSes (extra partition, align, etc.)	Adăugare remedieri pentru BIOS-uri vechi (partiție extra, aliniere, etc.)
+Enable runtime UEFI media validation	Activați validarea mediilor UEFI în timpul execuției
 Quick format	Formatare rapidă
 Create extended label and icon files	Creare fișiere extinse pentru etichete și iconițe
-Check device for bad blocks:	Căutare blocuri defecte:
+Check device for bad blocks	Căutare blocuri defecte
 Status:	Stare:
 READY	GATA
 Log	Jurnal
 START	START
 Cancel	Anulare
+Close	Închidere
 WARNING: ALL DATA ON DEVICE '{0}' WILL BE DESTROYED	ATENȚIE: TOATE DATELE DE PE DISPOZITIVUL '{0}' VOR FI DISTRUSE.
 To continue, click OK. To abort the operation, click Cancel.	Pentru a continua, alegeți OK. Pentru a renunța, alegeți ANULARE.
 aborted by user	anulat de utilizator

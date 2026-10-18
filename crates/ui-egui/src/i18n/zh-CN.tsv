@@ -22,15 +22,18 @@ Hide advanced drive properties	隐藏高级设备选项
 List USB Hard Drives	显示 USB 外置硬盘
 Show advanced format options	显示高级格式化选项
 Hide advanced format options	隐藏高级格式化选项
+Add fixes for old BIOSes (extra partition, align, etc.)	添加对旧 BIOS 修正(额外的分区，校准等)
+Enable runtime UEFI media validation	启用运行时 UEFI 介质验证
 Quick format	快速格式化
 Create extended label and icon files	创建扩展的标签和图标文件
-Check device for bad blocks:	检查设备坏块:
+Check device for bad blocks	检查设备坏块
 Status:	状态:
 READY	准备就绪
 Log	日志
 START	开始
 OK	确定
 Cancel	取消
+Close	关闭
 WARNING: ALL DATA ON DEVICE '{0}' WILL BE DESTROYED	警告：设备 '{0}' 上的所有数据将会被清除。
 To continue, click OK. To abort the operation, click Cancel.	要继续本操作，请点击【确定】。要退出点击【取消】。
 aborted by user	已被用户中止

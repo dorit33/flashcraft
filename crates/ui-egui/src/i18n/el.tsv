@@ -22,14 +22,17 @@ Hide advanced drive properties	Απόκρυψη επιλογές δίσκου γ
 List USB Hard Drives	Εμφάνιση συσκευων USB
 Show advanced format options	Εμφάνιση προηγμένες επιλογές διαμόρφωσης
 Hide advanced format options	Απόκρυψη προηγμένες επιλογές διαμόρφωσης
+Add fixes for old BIOSes (extra partition, align, etc.)	Προσθήκη διορθώσεων για παλαιότερα BIOS(επιπλέον διχοτόμηση, ευθυγράμμιση, κλπ.)
+Enable runtime UEFI media validation	Ενεργοποίηση επικύρωσης μέσων UEFI χρόνου εκτέλεσης
 Quick format	Γρήγορη διαμόρφωση
 Create extended label and icon files	Δημιουργία εκτεταμένης ετικέτας και εικονιδίων
-Check device for bad blocks:	Ελέγξτε τη συσκευή για κατεστραμμένους τομείς:
+Check device for bad blocks	Ελέγξτε τη συσκευή για κατεστραμμένους τομείς
 Status:	Κατάσταση:
 READY	Έτοιμο για χρήση
 Log	Αρχείο καταγραφής
 START	ΕΚΚΊΝΗΣΗ
 Cancel	Άκυρο
+Close	Κλείσιμο
 WARNING: ALL DATA ON DEVICE '{0}' WILL BE DESTROYED	ΠΡΟΣΟΧΗ: ΟΛΑ ΤΑ ΔΕΔΟΜΈΝΑ ΣΤΗ ΣΥΣΚΕΥΗ '{0}' ΘΑ ΔΙΑΓΡΑΦΟΥΝ.
 To continue, click OK. To abort the operation, click Cancel.	Για να προχωρήσετε με την ενέργεια κάντε κλικ στο OK. Διαφορετικά,για ακύρωση κάντε κλικ στο Άκυρο.
 aborted by user	ακυρώθηκε από τον χρήστη

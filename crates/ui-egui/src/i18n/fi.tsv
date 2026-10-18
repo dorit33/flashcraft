@@ -22,14 +22,17 @@ Hide advanced drive properties	Piilota aseman lisäasetukset
 List USB Hard Drives	Näytä USB-kiintolevyt
 Show advanced format options	Näytä formatoinnin lisäasetukset
 Hide advanced format options	Piilota formatoinnin lisäasetukset
+Add fixes for old BIOSes (extra partition, align, etc.)	Lisää korjauksia vanhoja BIOS-versioita varten
+Enable runtime UEFI media validation	Ota käyttöön ajonaikainen UEFI-tietovälineen tarkistus
 Quick format	Pika-alustus
 Create extended label and icon files	Luo laajennetut nimi- ja kuvaketiedostot
-Check device for bad blocks:	Vioittuneiden lohkojen tarkistus:
+Check device for bad blocks	Vioittuneiden lohkojen tarkistus
 Status:	Tila:
 READY	VALMIINA
 Log	Loki
 START	ALOITA
 Cancel	Peruuta
+Close	Sulje
 WARNING: ALL DATA ON DEVICE '{0}' WILL BE DESTROYED	VAROITUS: KAIKKI TIEDOT LAITTEESSA '{0}' POISTETAAN.
 To continue, click OK. To abort the operation, click Cancel.	Jatkaaksesi toimenpidettä valitse OK. Lopettaaksesi valitse PERUUTA.
 aborted by user	käyttäjä keskeytti

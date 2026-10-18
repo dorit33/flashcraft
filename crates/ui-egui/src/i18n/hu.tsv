@@ -22,14 +22,17 @@ Hide advanced drive properties	Haladó eszköz tulajdonságok elrejtése
 List USB Hard Drives	USB merevlemezek listázása
 Show advanced format options	Haladó formázási beállítások megjelenítése
 Hide advanced format options	Haladó formázási beállítások elrejtése
+Add fixes for old BIOSes (extra partition, align, etc.)	Javítások hozzáadása régi BIOS-okhoz (extra partíció, igazítás, stb.)
+Enable runtime UEFI media validation	Futásidejű UEFI adathordozó érvényesítés
 Quick format	Gyorsformázás
 Create extended label and icon files	Kiterjesztett kötetcímke és ikonfájlok használata
-Check device for bad blocks:	Hibás blokkok keresése az eszközön:
+Check device for bad blocks	Hibás blokkok keresése az eszközön
 Status:	Állapot:
 READY	KÉSZ
 Log	Napló
 START	INDÍTÁS
 Cancel	Mégse
+Close	Bezárás
 WARNING: ALL DATA ON DEVICE '{0}' WILL BE DESTROYED	FIGYELMEZTETÉS: A(Z) '{0}' ESZKÖZÖN AZ ÖSSZES ADAT LE LESZ TÖRÖLVE!
 To continue, click OK. To abort the operation, click Cancel.	A művelet folytatásához kattints az OK gombra.
 aborted by user	a felhasználó megszakította

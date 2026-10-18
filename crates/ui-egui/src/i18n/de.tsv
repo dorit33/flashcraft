@@ -22,14 +22,17 @@ Hide advanced drive properties	Erweiterte Laufwerkseigenschaften ausblenden
 List USB Hard Drives	USB-Festplatten anzeigen
 Show advanced format options	Erweiterte Formatierungsoptionen einblenden
 Hide advanced format options	Erweiterte Formatierungsoptionen ausblenden
+Add fixes for old BIOSes (extra partition, align, etc.)	Fix für ältere BIOSe verwenden (zusätzliche Partition usw.)
+Enable runtime UEFI media validation	UEFI-Medienvalidierung zur Laufzeit aktivieren
 Quick format	Schnellformatierung
 Create extended label and icon files	Erweiterte Bezeichnung und Symbole erstellen
-Check device for bad blocks:	Auf defekte Blöcke prüfen:
+Check device for bad blocks	Auf defekte Blöcke prüfen
 Status:	Status:
 READY	FERTIG
 Log	Protokoll
 START	START
 Cancel	Abbrechen
+Close	Schließen
 WARNING: ALL DATA ON DEVICE '{0}' WILL BE DESTROYED	WARNUNG: ALLE DATEN AUF LAUFWERK '{0}' WERDEN GELÖSCHT.
 To continue, click OK. To abort the operation, click Cancel.	Klicken Sie auf OK, um fortzufahren. Klicken Sie auf ABBRECHEN, um abzubrechen.
 aborted by user	vom Benutzer abgebrochen

@@ -22,15 +22,18 @@ Hide advanced drive properties	Sembunyi pilihan tambahan pemacu
 List USB Hard Drives	Senaraikan Cakera Keras USB
 Show advanced format options	Tunjuk pilihan format tambahan
 Hide advanced format options	Sembunyi pilihan format tambahan
+Add fixes for old BIOSes (extra partition, align, etc.)	Tambah pembaikan untuk BIOS lama
+Enable runtime UEFI media validation	Dayakan pengesahan media UEFI masa jalan
 Quick format	Format pantas
 Create extended label and icon files	Cipta label lanjut dan fail ikon
-Check device for bad blocks:	Semak peranti untuk blok rosak:
+Check device for bad blocks	Semak peranti untuk blok rosak
 Status:	Keadaan:
 READY	SEDIA
 Log	Log
 START	MULA
 OK	OK
 Cancel	Batal
+Close	Tutup
 WARNING: ALL DATA ON DEVICE '{0}' WILL BE DESTROYED	AMARAN: SEMUA DATA DI DALAM PERANTI '{0}' AKAN DIPADAM.
 To continue, click OK. To abort the operation, click Cancel.	Jika hendak teruskan, klik OK. Untuk berhenti, klik BATAL.
 aborted by user	dibatalkan oleh pengguna

@@ -22,14 +22,17 @@ Hide advanced drive properties	詳細なドライブ プロパティ を隠す
 List USB Hard Drives	USB 接続の HDD を一覧表示
 Show advanced format options	詳細なフォーマット オプション を表示
 Hide advanced format options	詳細なフォーマット オプション を隠す
+Add fixes for old BIOSes (extra partition, align, etc.)	古い BIOS のために修正を追加 (パーティションの拡張、並び替え、その他)
+Enable runtime UEFI media validation	ランタイムUEFIメディア検証を有効化
 Quick format	クイック フォーマット
 Create extended label and icon files	機能拡張されたラベルとアイコン ファイルを作成
-Check device for bad blocks:	不良ブロックを検出:
+Check device for bad blocks	不良ブロックを検出
 Status:	状態:
 READY	準備完了
 Log	ログ
 START	スタート
 Cancel	キャンセル
+Close	閉じる
 WARNING: ALL DATA ON DEVICE '{0}' WILL BE DESTROYED	警告: デバイス “{0}” のデータは消去されます。
 To continue, click OK. To abort the operation, click Cancel.	この操作を続けるには [OK] を、終了する場合は [キャンセル] をクリックしてください。
 aborted by user	ユーザーにより中止されました

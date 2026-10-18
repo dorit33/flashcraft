@@ -22,15 +22,18 @@ Hide advanced drive properties	gelişmiş sürücü özelliklerini gizle
 List USB Hard Drives	USB Sabit Sürücüleri Listele
 Show advanced format options	gelişmiş biçimlendirme seçeneklerini göster
 Hide advanced format options	gelişmiş biçimlendirme seçeneklerini gizle
+Add fixes for old BIOSes (extra partition, align, etc.)	Eski BIOSlar için düzeltme ekle (ekstra bölüm, hizalama vs.)
+Enable runtime UEFI media validation	Çalışma zamanı UEFI ortam doğrulamasını etkinleştir
 Quick format	Hızlı biçimlendir
 Create extended label and icon files	Genişletilmiş etiket ve simge dosyaları oluştur
-Check device for bad blocks:	Hatalı bloklar için aygıtı denetle:
+Check device for bad blocks	Hatalı bloklar için aygıtı denetle
 Status:	Durum:
 READY	HAZIR
 Log	Günlük
 START	BAŞLAT
 OK	Tamam
 Cancel	Vazgeç
+Close	Kapat
 WARNING: ALL DATA ON DEVICE '{0}' WILL BE DESTROYED	UYARI: '{0}' AYGITINDAKİ TÜM VERİ YOK EDİLECEK.
 To continue, click OK. To abort the operation, click Cancel.	İşleme devam etmek için TAMAM'a tıklayın. Çıkmak için İPTAL'e tıklayın.
 aborted by user	kullanıcı iptal etti

@@ -22,15 +22,18 @@ Hide advanced drive properties	הסתרת מאפייני כונן מתקדמים
 List USB Hard Drives	הצגת רשימה של כונני USB קשיחים
 Show advanced format options	הצגת אפשרויות אתחול מתקדמות
 Hide advanced format options	הסתרת אפשרויות אתחול מתקדמות
+Add fixes for old BIOSes (extra partition, align, etc.)	הוספת תיקונים ל־BIOS־ים ישנים (מחיצה נוספת, יישור...)
+Enable runtime UEFI media validation	הפעלת אימות מדיה של UEFI בזמן ריצה
 Quick format	אתחול מהיר
 Create extended label and icon files	יצירת תווית מורחבת וקובצי סמל
-Check device for bad blocks:	בדיקת ההתקן אחר אזורים פגומים:
+Check device for bad blocks	בדיקת ההתקן אחר אזורים פגומים
 Status:	מצב:
 READY	מוכן
 Log	יומן רישום
 START	התחלה
 OK	אישור
 Cancel	ביטול
+Close	סגירה
 WARNING: ALL DATA ON DEVICE '{0}' WILL BE DESTROYED	אזהרה: כל הנתונים על ההתקן '{0}' יושמדו.
 To continue, click OK. To abort the operation, click Cancel.	כדי להמשיך בפעולה זו, יש ללחוץ על אישור. כדי לצאת יש ללחוץ על ביטול.
 aborted by user	בוטל על ידי המשתמש

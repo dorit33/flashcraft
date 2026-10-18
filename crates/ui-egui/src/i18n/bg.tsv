@@ -22,15 +22,18 @@ Hide advanced drive properties	Скрий разширени свойства н
 List USB Hard Drives	Изброяване на USB дискове
 Show advanced format options	Покажи разширени опции за форматиране
 Hide advanced format options	Скрий разширени опции за форматиране
+Add fixes for old BIOSes (extra partition, align, etc.)	Добави поправки за стари BIOS-и
+Enable runtime UEFI media validation	Активиране на валидиране на UEFI носителя по време на работа
 Quick format	Бързо форматиране
 Create extended label and icon files	Създай разширен етикет и икони
-Check device for bad blocks:	Провери устройството за лоши сектори:
+Check device for bad blocks	Провери устройството за лоши сектори
 Status:	Статус:
 READY	ГОТОВО
 Log	Регистър
 START	СТАРТ
 OK	ОК
 Cancel	Откажи
+Close	Затвори
 WARNING: ALL DATA ON DEVICE '{0}' WILL BE DESTROYED	ВНИМАНИЕ: ВСИЧКАТА ИНФОРМАЦИЯ НА УСТРОЙСТВО '{0}' ЩЕ БЪДЕ УНИЩОЖЕНА.
 To continue, click OK. To abort the operation, click Cancel.	За да продължите с тази операция, натиснете OK. За да я прекратите, натиснете ОТКАЖИ.
 aborted by user	отказано от потребителя

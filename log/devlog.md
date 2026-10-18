@@ -80,3 +80,22 @@ flatpak-builder run, appstreamcli validation.
   nested `ui.horizontal` rows mirror automatically.
 - `detect()` maps `<lang>_<region>` prefixes (iw→he, in→id, no/nb/nn→nb,
   pt_BR→pt-BR, zh_TW/zh_HK→zh-TW, else zh→zh-CN).
+
+## 2026-10-18 — UI rebuilt from rufus.rc IDD_DIALOG
+
+- The dialog is now laid out from the actual Rufus dialog template
+  (`src/rufus.rc`, IDD_DIALOG 232×326 dialog units) instead of a row flow:
+  a `ctl(x,y,w,h)` helper converts dialog units to pixels, and every control
+  sits at its .rc coordinates — paired Partition scheme/Target system and
+  File system/Cluster size columns, Image option + persistence slider/size/
+  units row, advanced sections as checkboxes (BS_AUTOCHECKBOX), Status label,
+  always-visible progress bar, START + CLOSE bottom-right.
+- New fields: `old_bios_fixes`, `uefi_media_validation`, `bad_blocks` (matching
+  the .rc checkboxes; disabled until their backends land). New i18n keys:
+  Close, Add fixes for old BIOSes…, Enable runtime UEFI media validation —
+  all imported from rufus.loc; "Check device for bad blocks" lost its colon.
+- Log is a separate `egui::Window` (mirrors IDD_LOG); CLOSE quits via
+  ViewportCommand::Close; the boot combo shows the selected ISO's name.
+- loc-import merge order changed: existing catalog rows win over rufus.loc so
+  hand-edited translations are never overwritten on re-import.
+- x-mirroring kept for ar/fa/he (ctl flips x' = 232 − x − w).

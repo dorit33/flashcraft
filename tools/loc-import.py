@@ -24,9 +24,11 @@ KEYS = [
     "Show advanced drive properties", "Hide advanced drive properties",
     "List USB Hard Drives",
     "Show advanced format options", "Hide advanced format options",
+    "Add fixes for old BIOSes (extra partition, align, etc.)",
+    "Enable runtime UEFI media validation",
     "Quick format", "Create extended label and icon files",
-    "Check device for bad blocks:",
-    "Status:", "READY", "Log", "START", "OK", "Cancel",
+    "Check device for bad blocks",
+    "Status:", "READY", "Log", "START", "OK", "Cancel", "Close",
     "WARNING: ALL DATA ON DEVICE '{0}' WILL BE DESTROYED",
     "To continue, click OK. To abort the operation, click Cancel.",
     "aborted by user",
@@ -56,7 +58,10 @@ MAP = {
     "List USB Hard Drives": ("IDC_LIST_USB_HDD", ""),
     "Quick format": ("IDC_QUICK_FORMAT", ""),
     "Create extended label and icon files": ("IDC_EXTENDED_LABEL", ""),
-    "Check device for bad blocks:": ("IDC_BAD_BLOCKS", "colon"),
+    "Check device for bad blocks": ("IDC_BAD_BLOCKS", ""),
+    "Add fixes for old BIOSes (extra partition, align, etc.)": ("IDC_OLD_BIOS_FIXES", ""),
+    "Enable runtime UEFI media validation": ("IDC_UEFI_MEDIA_VALIDATION", ""),
+    "Close": ("IDCANCEL", ""),
     "Status:": ("IDS_STATUS_TXT", "colon"),
     "READY": ("MSG_210", ""),
     "Log": ("IDD_LOG", ""),
@@ -342,14 +347,14 @@ def main():
         existing = read_tsv(os.path.join(out_dir, fname + ".tsv"))
         rows, from_loc, from_hand = {}, 0, 0
         for key in KEYS:
-            val = None
-            if key in MAP:
+            # Rows already in the catalog win (they may carry hand edits or
+            # reviewer corrections); rufus.loc fills only missing keys.
+            val = existing.get(key)
+            if not val and key in MAP:
                 mid, spec = MAP[key]
                 val = apply_transform(get(loc_map, mid), spec, loc_map)
                 if val:
                     from_loc += 1
-            if not val and key in existing:
-                val = existing[key]
             if not val:
                 val = HAND.get(fname, {}).get(key)
             if val and key not in MAP:
