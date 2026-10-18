@@ -6,6 +6,7 @@ members = [
     "crates/ui-egui",
     "apps/flashcraft",
     "apps/flashcraft-cli",
+    "apps/flashcraft-web",
     "xtask",
 ]
 

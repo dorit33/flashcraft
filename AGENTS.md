@@ -127,11 +127,19 @@ Every installer carries `LICENSE` + `ATTRIBUTION.md` under `share/doc/flashcraft
 ```sh
 cargo xtask version set 0.2.0
 ./packaging/linux/tarball.sh   # then deb.sh | rpm.sh | appimage.sh
+./packaging/web/web.sh         # wasm build → dist/flashcraft-web-<ver>.zip (needs wasm-bindgen-cli)
+./packaging/source.sh          # source zip → dist/flashcraft-<ver>.zip
+./packaging/release.sh         # copy dist/* next to the source dir + SHA256SUMS.txt
 # flatpak: flatpak run org.flatpak.Builder packaging/flatpak/build \
 #   packaging/flatpak/dev.flashcraft.app.yml --force-clean --user \
 #   --install-deps-from=flathub --repo=packaging/flatpak/repo
 # flatpak build-bundle packaging/flatpak/repo dist/flashcraft-<ver>-x86_64.flatpak dev.flashcraft.app
 ```
+
+The release matrix is Linux + source + web **by design**: `flashcraft-native` enumerates
+and writes drives through sysfs and polkit, so a Windows or macOS build would show an
+empty device list. If a real Windows backend ever lands, add the `packaging/windows/`
+row back (`craftrules/standards/packaging.md`).
 
 ## 6. Parallel agents
 

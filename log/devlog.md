@@ -154,3 +154,16 @@ flatpak-builder run, appstreamcli validation.
   moved next to it.
 - xtask: child cargo runs via the CARGO env path AND gets the cargo dir on
   PATH (cargo-fmt/clippy resolve); ci green from the new root.
+
+## 2026-10-18 — full release matrix
+
+- New apps/flashcraft-web crate: eframe WebRunner shell over ui-egui
+  (canvas element lookup via web-sys; trunk-independent index.html with a
+  plain module loader, since trunk fails to build on this toolchain).
+- New packaging scripts: env.sh (shared ROOT/VER/DIST prelude),
+  web/web.sh (wasm-bindgen → flashcraft-web-<ver>.zip), source.sh
+  (git archive → flashcraft-<ver>.zip), checksums.sh, release.sh
+  (publishes dist/* next to the source dir + regenerates SHA256SUMS).
+- Release dir now: 5 linux installers + source zip + web zip + SHA256SUMS.
+  Windows/macOS rows intentionally absent — flashcraft-native is sysfs/polkit
+  only; reason documented in AGENTS.md and craftrules packaging.md.

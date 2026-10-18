@@ -14,6 +14,16 @@ One script per format under `packaging/`; everything consumes the released binar
 | `packaging/web/` | wasm build (`trunk` + `wasm-bindgen`) |
 | `packaging/freebsd/` | port/pkg where the platform is supported |
 | `packaging/icons.sh` | renders the icon set from the master `assets/app-icon/<app>.svg` |
+| `packaging/source.sh` | `<slug>-<ver>.zip` — `git archive` of the tagged source tree |
+| `packaging/checksums.sh` | `SHA256SUMS.txt` over every release artifact |
+| `packaging/release.sh` | copies `dist/` artifacts next to the source dir and regenerates checksums |
+
+Platforms that genuinely don't apply (e.g. a sysfs-based app that only works on
+Linux) are documented in the app's AGENTS.md rather than shipped broken — a row
+missing from the matrix on purpose still needs the reason written down. Build
+tools that aren't standard (WiX/wixl, mingw, trunk, wasm-bindgen) are stated in
+the script's header comment; a script fails loudly when its tool is missing —
+it never fakes an artifact.
 
 ## Rules
 
