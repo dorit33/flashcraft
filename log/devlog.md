@@ -14,5 +14,19 @@
   write→verify roundtrip on temp files.
 
 **Still open:** decompressor backends (.xz/.gz/.zip), udisks2 unmount/eject, FAT32 formatting,
-bad-block scan, checksums, i18n (hu first), app icon, packaging, real-device soak test,
+bad-block scan, checksums, i18n (hu first), real-device soak test,
 control channel (`--control PORT`), web build via trunk.
+
+## 2026-10-18 — packaging
+
+- `packaging/icons.sh` renders `assets/app-icon/flashcraft.svg` (original artwork) to hicolor
+  PNGs via `rsvg-convert`.
+- `packaging/linux/`: `flashcraft.desktop` (validated), `dev.flashcraft.app.metainfo.xml`,
+  `tarball.sh`, `deb.sh` (dpkg-deb), `rpm.sh` + `rpm/flashcraft.spec` (rpmbuild, debug_package
+  off — binary payload), `appimage.sh` (downloads appimagetool into `packaging/.cache`),
+  `flatpak/dev.flashcraft.app.yml`.
+- Built and verified: `.rpm` 5.0 MB, `.deb` 4.6 MB, `.tar.gz` 6.9 MB, `.AppImage` 7.2 MB —
+  all carry both binaries, desktop file, metainfo and all icon sizes.
+
+**Still open:** signed builds/SHA256SUMS.txt, release workflow (`.github/workflows/release.yml`),
+flatpak-builder run, appstreamcli validation.

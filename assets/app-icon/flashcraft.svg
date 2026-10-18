@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- FlashCraft app icon — original artwork, drawn for this project. -->
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128">
+  <rect width="128" height="128" rx="0" fill="#1d1f24"/>
+  <!-- usb stick body -->
+  <rect x="34" y="52" width="60" height="52" rx="4" fill="#3a3f4a"/>
+  <rect x="34" y="52" width="60" height="10" rx="4" fill="#4a5060"/>
+  <!-- usb plug -->
+  <rect x="46" y="30" width="36" height="24" rx="2" fill="#6a7280"/>
+  <rect x="52" y="36" width="8" height="8" fill="#2a2e36"/>
+  <rect x="68" y="36" width="8" height="8" fill="#2a2e36"/>
+  <!-- lightning bolt -->
+  <path d="M70 58 L54 82 L66 82 L58 104 L82 74 L68 74 L78 58 Z" fill="#f2c94c"/>
+</svg>

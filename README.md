@@ -37,6 +37,18 @@
 - Byte-for-byte read-back verification.
 - Every destructive path refuses first: non-removable, mounted, zero-size, oversized.
 
+## Downloads
+
+`dist/` (built locally by the scripts in `packaging/`):
+
+| File | What it is |
+|---|---|
+| `flashcraft-<ver>-linux-x86_64.rpm` | Fedora, openSUSE, RHEL: `sudo dnf install ./flashcraft-…rpm` |
+| `flashcraft-<ver>-linux-x86_64.deb` | Debian, Ubuntu, Mint, Pop!_OS: `sudo apt install ./flashcraft-…deb` |
+| `flashcraft-<ver>-linux-x86_64.AppImage` | Runs on almost any distro: `chmod +x` and run |
+| `flashcraft-<ver>-linux-x86_64.tar.gz` | Plain tree (`bin/`, `share/`) for everyone else |
+| `packaging/flatpak/dev.flashcraft.app.yml` | Flatpak manifest (`flatpak-builder`) |
+
 ## Get started
 
 You need a recent stable Rust (1.85 or newer). On Linux, install the windowing headers first

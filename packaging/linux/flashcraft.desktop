@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=FlashCraft
+Comment=Write bootable images to removable drives
+Exec=flashcraft
+Icon=dev.flashcraft.app
+Categories=Utility;
+Terminal=false
+StartupNotify=true
+Keywords=usb;iso;image;boot;flash;write;

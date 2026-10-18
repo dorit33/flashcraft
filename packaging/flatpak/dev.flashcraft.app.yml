@@ -1,0 +1,28 @@
+# Flatpak manifest for FlashCraft.
+# Build: flatpak-builder build dev.flashcraft.app.yml --force-clean
+app-id: dev.flashcraft.app
+runtime: org.freedesktop.Platform
+runtime-version: "24.08"
+sdk: org.freedesktop.Sdk
+command: flashcraft
+finish-args:
+  - --socket=wayland
+  - --socket=fallback-x11
+  - --socket=pulseaudio
+  - --device=dri
+  - --share=ipc
+  # Device writes go through the host udisks2 daemon (planned); raw block
+  # access stays out of the sandbox on purpose.
+modules:
+  - name: flashcraft
+    buildsystem: simple
+    sources:
+      - type: dir
+        path: ../..
+    build-commands:
+      - cargo build --release -p flashcraft -p flashcraft-cli
+      - install -Dm755 target/release/flashcraft /app/bin/flashcraft
+      - install -Dm755 target/release/flashcraft-cli /app/bin/flashcraft-cli
+      - install -Dm644 packaging/linux/flashcraft.desktop /app/share/applications/flashcraft.desktop
+      - install -Dm644 packaging/linux/dev.flashcraft.app.metainfo.xml /app/share/metainfo/dev.flashcraft.app.metainfo.xml
+      - install -Dm644 assets/app-icon/hicolor/128x128/apps/dev.flashcraft.app.png /app/share/icons/hicolor/128x128/apps/dev.flashcraft.app.png

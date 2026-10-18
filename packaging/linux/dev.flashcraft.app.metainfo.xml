@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>dev.flashcraft.app</id>
+  <name>FlashCraft</name>
+  <summary>Write bootable images to removable drives</summary>
+  <metadata_license>MIT</metadata_license>
+  <project_license>MIT OR Apache-2.0</project_license>
+  <description>
+    <p>
+      FlashCraft writes bootable images (ISO 9660, disk images) to removable
+      drives, byte-for-byte, with read-back verification. A clean-room,
+      pure-Rust reimplementation of Rufus — native, small, no Electron.
+    </p>
+    <p>
+      Only removable, unmounted devices can be written: the safety is
+      structural, not a warning you can click through.
+    </p>
+  </description>
+  <launchable type="desktop-id">flashcraft.desktop</launchable>
+  <url type="homepage">https://github.com/cdori/flashcraft</url>
+  <provides>
+    <binary>flashcraft</binary>
+    <binary>flashcraft-cli</binary>
+  </provides>
+  <releases>
+    <release version="0.1.0" date="2026-10-18"/>
+  </releases>
+  <content_rating type="oars-1.1"/>
+</component>

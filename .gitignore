@@ -1,5 +1,7 @@
 /target
 **/target
+/dist
+packaging/.cache
 Cargo.lock.bak
 *.swp
 .DS_Store
