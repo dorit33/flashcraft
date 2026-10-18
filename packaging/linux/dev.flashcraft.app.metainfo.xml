@@ -16,7 +16,7 @@
       structural, not a warning you can click through.
     </p>
   </description>
-  <launchable type="desktop-id">flashcraft.desktop</launchable>
+  <launchable type="desktop-id">dev.flashcraft.app.desktop</launchable>
   <url type="homepage">https://github.com/cdori/flashcraft</url>
   <provides>
     <binary>flashcraft</binary>

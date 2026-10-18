@@ -5,3 +5,6 @@ packaging/.cache
 Cargo.lock.bak
 *.swp
 .DS_Store
+packaging/flatpak/repo
+packaging/flatpak/build
+packaging/flatpak/.flatpak-builder

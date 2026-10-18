@@ -121,3 +121,13 @@ flatpak-builder run, appstreamcli validation.
   Rufus-translation attribution.
 - Rebuilt dist/ artifacts — the earlier rpm still advertised
   MIT OR Apache-2.0 from before the relicensing.
+
+## 2026-10-18 — Flatpak via org.flatpak.Builder
+
+- org.flatpak.Builder installed user-remote (no root); manifest now builds
+  from source in the 25.08 sandbox via rust-stable SDK extension with
+  network build-args for crates.io.
+- Desktop file renamed to dev.flashcraft.app.desktop across every packager
+  (flatpak refuses non-app-id export names); metainfo launchable updated.
+- Bundle exported to dist/flashcraft-0.1.0-x86_64.flatpak and verified:
+  installs user-remote and the sandboxed CLI lists host devices.

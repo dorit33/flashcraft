@@ -46,7 +46,7 @@ fi
 %files
 %{_bindir}/flashcraft
 %{_bindir}/flashcraft-cli
-%{_datadir}/applications/flashcraft.desktop
+%{_datadir}/applications/dev.flashcraft.app.desktop
 %{_datadir}/metainfo/dev.flashcraft.app.metainfo.xml
 %{_datadir}/icons/hicolor/*/apps/dev.flashcraft.app.png
 %license %{_docdir}/flashcraft/LICENSE

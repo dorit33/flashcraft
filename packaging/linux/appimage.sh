@@ -29,7 +29,7 @@ rm -rf "$APPDIR"
 mkdir -p "$APPDIR/usr/bin" "$APPDIR/usr/share/applications" \
     "$APPDIR/usr/share/icons/hicolor/128x128/apps" "$APPDIR/usr/share/metainfo"
 cp "dist/flashcraft-${VER}-linux-${ARCH}/bin/"* "$APPDIR/usr/bin/"
-cp packaging/linux/flashcraft.desktop "$APPDIR/flashcraft.desktop"
+cp packaging/linux/flashcraft.desktop "$APPDIR/dev.flashcraft.app.desktop"
 cp packaging/linux/dev.flashcraft.app.metainfo.xml "$APPDIR/usr/share/metainfo/"
 mkdir -p "$APPDIR/usr/share/doc/flashcraft"
 cp LICENSE ATTRIBUTION.md "$APPDIR/usr/share/doc/flashcraft/"

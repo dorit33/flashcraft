@@ -15,7 +15,7 @@ rm -rf "$OUT" "${OUT}.tar.gz"
 mkdir -p "$OUT/bin" "$OUT/share/applications" "$OUT/share/metainfo" \
     "$OUT/share/doc/flashcraft"
 cp target/release/flashcraft target/release/flashcraft-cli "$OUT/bin/"
-cp packaging/linux/flashcraft.desktop "$OUT/share/applications/"
+cp packaging/linux/flashcraft.desktop "$OUT/share/applications/dev.flashcraft.app.desktop"
 cp packaging/linux/dev.flashcraft.app.metainfo.xml "$OUT/share/metainfo/"
 cp LICENSE ATTRIBUTION.md "$OUT/share/doc/flashcraft/"
 if [ -d assets/app-icon/hicolor ]; then
