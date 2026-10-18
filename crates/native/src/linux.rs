@@ -79,6 +79,44 @@ pub fn list_drives_live() -> Result<Vec<DriveInfo>> {
     list_drives(Path::new("/sys/block"), &mounts)
 }
 
+/// Unmount every mounted partition listed on `drive` — the Rufus behaviour:
+/// START unmounts the volumes itself instead of refusing. `udisksctl` works
+/// unprivileged via polkit for user-mounted volumes; `umount` is the fallback
+/// (works when the process already runs as root, which writes need anyway).
+/// On success `drive.mounted` is emptied; anything still mounted is an error.
+pub fn unmount_partitions(drive: &mut DriveInfo) -> Result<()> {
+    for dev in drive.mounted.clone() {
+        let ok = std::process::Command::new("udisksctl")
+            .args(["unmount", "-b", &dev])
+            .status()
+            .map(|s| s.success())
+            .unwrap_or(false)
+            || std::process::Command::new("umount")
+                .arg(&dev)
+                .status()
+                .map(|s| s.success())
+                .unwrap_or(false);
+        if !ok {
+            return Err(Error::Backend(format!(
+                "cannot unmount {dev} (udisksctl/umount failed)"
+            )));
+        }
+    }
+    // Trust but verify: re-read /proc/mounts rather than believing exit codes.
+    let mounts = fs::read_to_string("/proc/mounts")
+        .map_err(|e| Error::Backend(format!("cannot read /proc/mounts: {e}")))?;
+    let still = mounted_devices(&mounts);
+    drive.mounted.retain(|m| still.contains(m));
+    if drive.mounted.is_empty() {
+        Ok(())
+    } else {
+        Err(Error::Backend(format!(
+            "still mounted: {}",
+            drive.mounted.join(", ")
+        )))
+    }
+}
+
 /// Effective uid without libc/unsafe: parse `/proc/self/status`.
 pub fn effective_uid() -> Option<u32> {
     let status = fs::read_to_string("/proc/self/status").ok()?;
@@ -121,6 +159,35 @@ mod tests {
         assert!(sdbi.is_some_and(|d| d.mounted == vec!["/dev/sdb1".to_string()]));
 
         let _ = fs::remove_dir_all(&root);
+    }
+
+    #[test]
+    fn unmount_empty_is_noop() {
+        let mut d = DriveInfo {
+            name: "sdb".into(),
+            path: "/dev/sdb".into(),
+            size_bytes: 1024,
+            removable: true,
+            vendor: None,
+            model: None,
+            mounted: vec![],
+        };
+        unmount_partitions(&mut d).unwrap();
+        assert!(d.mounted.is_empty());
+    }
+
+    #[test]
+    fn unmount_fake_node_fails() {
+        let mut d = DriveInfo {
+            name: "sdb".into(),
+            path: "/dev/sdb".into(),
+            size_bytes: 1024,
+            removable: true,
+            vendor: None,
+            model: None,
+            mounted: vec!["/dev/fc-nonexistent-node".into()],
+        };
+        assert!(matches!(unmount_partitions(&mut d), Err(Error::Backend(_))));
     }
 
     #[test]

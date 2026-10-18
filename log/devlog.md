@@ -181,3 +181,15 @@ flatpak-builder run, appstreamcli validation.
   8 installers + source zip + web zip + SHA256SUMS.
 - AGENTS.md documents that Windows binaries run but see no drives
   (sysfs/polkit backend is Linux-only; Windows backend is roadmap work).
+
+## 2026-10-18 — Rufus-parity: auto-unmount on write
+
+- linux::unmount_partitions: udisksctl then umount fallback per mounted
+  partition, verified by re-reading /proc/mounts. WritePlan stays strict —
+  no plan is ever built for a mounted drive; the unmount runs inside the
+  write path after the confirmation gate (UI warning dialog / CLI --yes).
+- UI: START on a mounted drive now opens the warning (blocked_only_by_mounts
+  checks the sole refusal), the job unmounts in the thread then re-plans.
+  JobMsg::Status streams localized status keys ("Unmounting mounted
+  partitions", hu.tsv entry added, others fall back to English).
+- CLI: write unmounts after root + --yes checks; verify stays strict.

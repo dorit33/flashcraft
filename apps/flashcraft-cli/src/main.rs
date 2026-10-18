@@ -117,15 +117,32 @@ fn run(args: &[String]) -> Result<(), Error> {
                     "media.write needs root (sudo/pkexec flashcraft-cli write …)".into(),
                 ));
             }
-            let plan = build_plan(image, drive)?;
+            let drives = linux::list_drives_live()?;
+            let mut dev = drives
+                .iter()
+                .find(|d| d.path == *drive || d.name == *drive)
+                .cloned()
+                .ok_or_else(|| Error::BadDrive(format!("no such device: {drive}")))?;
             let spec = command("media.write");
             let destructive = spec.is_some_and(|s| s.destructive);
             if destructive && !args.iter().any(|a| a == "--yes") {
                 return Err(Error::Refused(format!(
                     "media.write overwrites {} completely; repeat with --yes to confirm",
-                    plan.drive.path
+                    dev.path
                 )));
             }
+            // Rufus parity: mounted partitions are unmounted after the
+            // confirmation gate, then the plan is re-validated.
+            if dev.writable() == Err("device has mounted partitions") {
+                eprintln!(
+                    "unmounting {} partition(s) on {} …",
+                    dev.mounted.len(),
+                    dev.path
+                );
+                linux::unmount_partitions(&mut dev)?;
+            }
+            let info = flashcraft_native::inspect_image(image)?;
+            let plan = WritePlan::new(info, dev)?;
             eprintln!("writing {} -> {}", plan.image.path, plan.drive.path);
             flashcraft_native::write_image(&plan, &mut print_progress)?;
             eprintln!("\ndone; run `flashcraft-cli verify {image} {drive}` to check");

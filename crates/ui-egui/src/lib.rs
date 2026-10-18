@@ -39,6 +39,8 @@ const BAD_BLOCK_PASSES: &[&str] = &["1 Pass", "2 Passes", "3 Passes", "4 Passes"
 #[cfg(not(target_arch = "wasm32"))]
 enum JobMsg {
     Progress(core::Progress),
+    /// A localized status line keyed by an i18n catalog key.
+    Status(&'static str),
     Done(Result<&'static str, String>),
 }
 
@@ -241,6 +243,26 @@ impl FlashcraftUi {
         }
     }
 
+    /// The drive's *only* refusal is that partitions are mounted — the image
+    /// side already validates. Rufus proceeds here and unmounts during the
+    /// write; so do we (the unmount happens after the warning is confirmed).
+    #[cfg(not(target_arch = "wasm32"))]
+    fn blocked_only_by_mounts(&self) -> bool {
+        let Some(path) = self.selected_drive.as_deref() else {
+            return false;
+        };
+        let Some(dev) = self.drives.iter().find(|d| d.path == path) else {
+            return false;
+        };
+        let Some(img) = &self.image_info else {
+            return false;
+        };
+        dev.writable() == Err("device has mounted partitions")
+            && img.size_bytes > 0
+            && img.compression.is_none()
+            && img.size_bytes <= dev.size_bytes
+    }
+
     /// START pressed: build the plan, then pop the destruction warning.
     #[cfg(not(target_arch = "wasm32"))]
     fn start_pressed(&mut self, lang: Resolved) {
@@ -255,17 +277,23 @@ impl FlashcraftUi {
             self.say(t("Please select a device", lang));
             return;
         }
-        if self.build_plan().is_some() {
+        if self.blocked_only_by_mounts() || self.build_plan().is_some() {
             self.confirm_destroy = true;
         }
     }
 
     /// Warning accepted: run the job on a thread, report over a channel.
+    /// A mounted drive is unmounted here (after confirmation), like Rufus;
+    /// the plan is built in the thread so the mount state is re-checked.
     #[cfg(not(target_arch = "wasm32"))]
     fn start_job(&mut self, verify_only: bool, ctx: &egui::Context, lang: Resolved) {
-        let Some(plan) = self.build_plan() else {
+        let Some(drive_path) = self.selected_drive.clone() else {
             return;
         };
+        let Some(dev) = self.drives.iter().find(|d| d.path == drive_path).cloned() else {
+            return;
+        };
+        let image_path = self.image_path.clone();
         let (tx, rx) = channel::<JobMsg>();
         let ctx = ctx.clone();
         self.say(tf(
@@ -275,24 +303,34 @@ impl FlashcraftUi {
                 "write started"
             },
             lang,
-            &format!("{} -> {}", plan.image.path, plan.drive.path),
+            &format!("{} -> {}", image_path, drive_path),
         ));
         self.status_err = false;
         self.progress = Some(core::Progress::default());
         self.job_rx = Some(rx);
         thread::spawn(move || {
             let txp = tx.clone();
-            let result = if verify_only {
-                flashcraft_native::verify_image(&plan, &mut |p| {
-                    let _ = txp.send(JobMsg::Progress(p));
+            let result = (|| {
+                let mut dev = dev;
+                if !verify_only && !dev.mounted.is_empty() {
+                    let _ = txp.send(JobMsg::Status("Unmounting mounted partitions"));
                     ctx.request_repaint();
-                })
-            } else {
-                flashcraft_native::write_image(&plan, &mut |p| {
-                    let _ = txp.send(JobMsg::Progress(p));
-                    ctx.request_repaint();
-                })
-            };
+                    flashcraft_native::linux::unmount_partitions(&mut dev)?;
+                }
+                let info = flashcraft_native::inspect_image(&image_path)?;
+                let plan = core::WritePlan::new(info, dev)?;
+                if verify_only {
+                    flashcraft_native::verify_image(&plan, &mut |p| {
+                        let _ = txp.send(JobMsg::Progress(p));
+                        ctx.request_repaint();
+                    })
+                } else {
+                    flashcraft_native::write_image(&plan, &mut |p| {
+                        let _ = txp.send(JobMsg::Progress(p));
+                        ctx.request_repaint();
+                    })
+                }
+            })();
             let done = match result {
                 Ok(()) => Ok(if verify_only {
                     "VERIFY OK"
@@ -311,10 +349,15 @@ impl FlashcraftUi {
         let Some(rx) = &self.job_rx else {
             return;
         };
-        let mut done = None;
+        let mut msgs = Vec::new();
         while let Ok(msg) = rx.try_recv() {
+            msgs.push(msg);
+        }
+        let mut done = None;
+        for msg in msgs {
             match msg {
                 JobMsg::Progress(p) => self.progress = Some(p),
+                JobMsg::Status(key) => self.say(t(key, lang).to_string()),
                 JobMsg::Done(result) => done = Some(result),
             }
         }
