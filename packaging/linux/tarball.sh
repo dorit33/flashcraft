@@ -9,12 +9,22 @@ ARCH=$(uname -m)
 PKG="flashcraft-${VER}-linux-${ARCH}"
 OUT="dist/${PKG}"
 
-cargo build --release -p flashcraft -p flashcraft-cli
+# Portable payload: prefer the container build against old glibc so the
+# artifact runs on older distros too; fall back to a host build when
+# podman is unavailable (host-glibc-pinned, dev machines only).
+BINDIR="target/release"
+if [ "${FLASHCRAFT_HOST_BUILD:-0}" = "1" ] || \
+   ! ./packaging/linux/portable-build.sh; then
+    echo "tarball.sh: falling back to host build (host glibc required)" >&2
+    cargo build --release -p flashcraft -p flashcraft-cli
+else
+    BINDIR="target/linux-portable"
+fi
 
 rm -rf "$OUT" "${OUT}.tar.gz"
 mkdir -p "$OUT/bin" "$OUT/share/applications" "$OUT/share/metainfo" \
     "$OUT/share/doc/flashcraft"
-cp target/release/flashcraft target/release/flashcraft-cli "$OUT/bin/"
+cp "$BINDIR/flashcraft" "$BINDIR/flashcraft-cli" "$OUT/bin/"
 cp packaging/linux/flashcraft.desktop "$OUT/share/applications/dev.flashcraft.app.desktop"
 cp packaging/linux/dev.flashcraft.app.metainfo.xml "$OUT/share/metainfo/"
 cp LICENSE ATTRIBUTION.md "$OUT/share/doc/flashcraft/"

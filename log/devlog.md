@@ -246,3 +246,18 @@ flatpak-builder run, appstreamcli validation.
 - rpm.sh now copies the built rpm into dist/ (release.sh publishes from
   dist/ only — the parent dir kept a stale rpm before this fix).
 - checksums.sh find now covers *.msi as well.
+
+## 2026-10-18 — portable glibc baseline (Pop!_OS fix)
+
+- Reported on Pop!_OS 24.04 (deb installed, icon present, app would not
+  start): the host-built binaries need GLIBC_2.43 — they do not even load
+  on glibc 2.39 systems.
+- New packaging/linux/portable-build.sh: podman + ubuntu:22.04 container
+  build → glibc 2.35 requirement (Ubuntu 22.04+/Pop 24.04/Debian 12+/Fedora).
+  tarball.sh uses those binaries; falls back to host build only when
+  podman is missing (FLASHCRAFT_HOST_BUILD=1 forces host build).
+- SELinux note: the podman bind mount needs :Z or the container cannot
+  write into the repo (cargo install died with EACCES).
+- Rebuilt tarball/deb/appimage/rpm; all now carry GLIBC_2.35-max binaries.
+- scripts/checksums.sh already covers .msi; rpm lands in dist/ for
+  release.sh.
