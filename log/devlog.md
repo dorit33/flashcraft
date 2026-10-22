@@ -261,3 +261,26 @@ flatpak-builder run, appstreamcli validation.
 - Rebuilt tarball/deb/appimage/rpm; all now carry GLIBC_2.35-max binaries.
 - scripts/checksums.sh already covers .msi; rpm lands in dist/ for
   release.sh.
+
+## 2026-10-22 — Craft-style icon, full Rufus controls wired, formatting & checksums
+
+- New Craft-family app icon (`assets/app-icon/flashcraft.svg` + all hicolor
+  PNG renders + scalable SVG): 512x512 rounded tile (`rx=112`), warm paper
+  (`#efe9dc`), deep ink (`#0b0b0c`) with engraved cross-hatching, electric
+  crimson-amber tile (`#d9381e`) and golden lightning bolt (`#f59f00`).
+  Wired into the desktop window (`ViewportBuilder::with_icon`) and header badge.
+- Pure-Rust streaming MD5, SHA-1, SHA-256 in `flashcraft-core::checksum`
+  (`image.checksum` command, CLI `checksum`, and UI `#` Checksums window).
+- On-the-fly compressed image streaming (`.xz`, `.gz`, `.zst`, `.bz2`, `.zip`)
+  on both write and verify.
+- Standalone drive partitioning & formatting (`Non bootable` mode in Rufus /
+  `media.format` command / CLI `format`): MBR & GPT via `sfdisk`, plus
+  `FAT32`, `NTFS`, `exFAT`, `UDF`, `ext4`, `ext3`, `ext2` formatters with
+  configurable cluster size, volume label, quick/full zero-fill, and
+  `autorun.inf` extended label creation.
+- Bad-block scanning (1..=4 passes, `media.badblocks`), legacy BIOS MBR
+  active-flag fix (`--old-bios-fixes`), post-write verification toggle
+  (`--verify`), and persistent `writable` ext4 partition creation (`--persistence`).
+- Responsive, structured Rufus UI layout with section dividers, active
+  controls, overlaid progress bar status + MB/s speed, elapsed timer,
+  Cancel during active jobs, Verify button, Checksums (`#`), Log and About.

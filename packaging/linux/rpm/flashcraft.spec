@@ -48,7 +48,7 @@ fi
 %{_bindir}/flashcraft-cli
 %{_datadir}/applications/dev.flashcraft.app.desktop
 %{_datadir}/metainfo/dev.flashcraft.app.metainfo.xml
-%{_datadir}/icons/hicolor/*/apps/dev.flashcraft.app.png
+%{_datadir}/icons/hicolor/*/apps/dev.flashcraft.app.*
 %license %{_docdir}/flashcraft/LICENSE
 %doc %{_docdir}/flashcraft/ATTRIBUTION.md
 

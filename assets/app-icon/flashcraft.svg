@@ -1,14 +1,101 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!-- FlashCraft app icon — original artwork, drawn for this project. -->
-<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128">
-  <rect width="128" height="128" rx="0" fill="#1d1f24"/>
-  <!-- usb stick body -->
-  <rect x="34" y="52" width="60" height="52" rx="4" fill="#3a3f4a"/>
-  <rect x="34" y="52" width="60" height="10" rx="4" fill="#4a5060"/>
-  <!-- usb plug -->
-  <rect x="46" y="30" width="36" height="24" rx="2" fill="#6a7280"/>
-  <rect x="52" y="36" width="8" height="8" fill="#2a2e36"/>
-  <rect x="68" y="36" width="8" height="8" fill="#2a2e36"/>
-  <!-- lightning bolt -->
-  <path d="M70 58 L54 82 L66 82 L58 104 L82 74 L68 74 L78 58 Z" fill="#f2c94c"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <!-- FlashCraft icon — Craft-family style: rounded 512x512 tile (rx=112),
+       warm paper (#efe9dc), deep ink (#0b0b0c) with engraved cross-hatching,
+       and electric crimson-amber tile (#d9381e) with golden-amber accents (#f59f00).
+       Original artwork, licensed GPL-3.0-only. -->
+  <defs>
+    <clipPath id="tile">
+      <rect width="512" height="512" rx="112"/>
+    </clipPath>
+  </defs>
+  <g clip-path="url(#tile)">
+    <!-- Background tile -->
+    <rect width="512" height="512" fill="#d9381e"/>
+
+    <!-- Subtle engraved background rays / radial hash marks in ink -->
+    <g stroke="#0b0b0c" stroke-width="5" stroke-linecap="round" opacity="0.18">
+      <line x1="72" y1="88" x2="108" y2="118"/>
+      <line x1="56" y1="142" x2="96" y2="160"/>
+      <line x1="440" y1="92" x2="402" y2="122"/>
+      <line x1="456" y1="148" x2="414" y2="166"/>
+      <line x1="64" y1="382" x2="106" y2="362"/>
+      <line x1="88" y1="430" x2="124" y2="402"/>
+      <line x1="446" y1="378" x2="404" y2="358"/>
+      <line x1="422" y1="428" x2="386" y2="398"/>
+    </g>
+
+    <!-- Main tilted USB flash drive + lightning emblem -->
+    <g transform="rotate(-8 256 256)" stroke="#0b0b0c" stroke-linejoin="round" stroke-linecap="round">
+
+      <!-- Drop shadow in solid ink -->
+      <path d="M188 68 H324 C331 68 336 73 336 80 V168 H362 C378 168 390 180 390 196 V384 C390 426 356 460 314 460 H214 C172 460 138 426 138 384 V196 C138 180 150 168 166 168 H176 V80 C176 73 181 68 188 68 Z"
+            fill="#0b0b0c" stroke="none" transform="translate(10, 12)"/>
+
+      <!-- USB Metal Plug (top) -->
+      <rect x="176" y="64" width="160" height="112" rx="12" fill="#efe9dc" stroke-width="14"/>
+      <!-- Plug inner seam & engraved shading lines -->
+      <line x1="176" y1="150" x2="336" y2="150" stroke-width="8"/>
+      <g stroke-width="4.5">
+        <line x1="190" y1="158" x2="190" y2="170"/>
+        <line x1="204" y1="158" x2="204" y2="170"/>
+        <line x1="218" y1="158" x2="218" y2="170"/>
+        <line x1="294" y1="158" x2="294" y2="170"/>
+        <line x1="308" y1="158" x2="308" y2="170"/>
+        <line x1="322" y1="158" x2="322" y2="170"/>
+      </g>
+      <!-- USB Contact Windows -->
+      <rect x="202" y="88" width="38" height="42" rx="6" fill="#0b0b0c" stroke-width="8"/>
+      <rect x="272" y="88" width="38" height="42" rx="6" fill="#0b0b0c" stroke-width="8"/>
+      <!-- Gold contact pins inside windows -->
+      <rect x="210" y="96" width="22" height="14" rx="2" fill="#f59f00" stroke="none"/>
+      <rect x="280" y="96" width="22" height="14" rx="2" fill="#f59f00" stroke="none"/>
+
+      <!-- Drive Body (warm paper #efe9dc with bold ink outline) -->
+      <path d="M158 168 H354 C372 168 386 182 386 200 V376 C386 420 350 456 306 456 H206 C162 456 126 420 126 376 V200 C126 182 140 168 158 168 Z"
+            fill="#efe9dc" stroke-width="14"/>
+
+      <!-- Collar band on the drive body in app accent color -->
+      <path d="M126 214 H386 V246 H126 Z" fill="#d9381e" stroke-width="12"/>
+
+      <!-- Engraved woodcut hatching on the left/bottom side of the casing -->
+      <g stroke-width="5">
+        <line x1="142" y1="264" x2="174" y2="264"/>
+        <line x1="142" y1="280" x2="168" y2="280"/>
+        <line x1="142" y1="296" x2="164" y2="296"/>
+        <line x1="142" y1="312" x2="160" y2="312"/>
+        <line x1="142" y1="328" x2="164" y2="328"/>
+        <line x1="142" y1="344" x2="168" y2="344"/>
+        <line x1="142" y1="360" x2="174" y2="360"/>
+        <line x1="144" y1="376" x2="180" y2="376"/>
+        <line x1="150" y1="392" x2="188" y2="392"/>
+        <line x1="160" y1="408" x2="198" y2="408"/>
+        <line x1="176" y1="422" x2="212" y2="422"/>
+      </g>
+
+      <!-- Engraved hatching on the right edge -->
+      <g stroke-width="4.5">
+        <line x1="354" y1="376" x2="370" y2="376"/>
+        <line x1="348" y1="392" x2="366" y2="392"/>
+        <line x1="338" y1="408" x2="358" y2="408"/>
+      </g>
+
+      <!-- Keyring hole at the bottom center -->
+      <circle cx="256" cy="424" r="14" fill="#d9381e" stroke-width="9"/>
+
+      <!-- Center Lightning Bolt (Flash symbol) breaking across the drive -->
+      <path d="M284 190 L196 312 H258 L228 408 L334 276 H270 Z"
+            fill="#f59f00" stroke="#0b0b0c" stroke-width="13" stroke-linejoin="round"/>
+      <!-- Inner highlight on the lightning bolt -->
+      <path d="M272 218 L216 298 H258 L244 352 L308 286 H266 Z"
+            fill="#efe9dc" stroke="none"/>
+    </g>
+
+    <!-- Crisp spark accents around the drive -->
+    <g fill="#efe9dc" stroke="#0b0b0c" stroke-width="7" stroke-linejoin="round">
+      <path d="M78 198 L88 220 L110 230 L88 240 L78 262 L68 240 L46 230 L68 220 Z"/>
+      <path d="M434 250 L444 272 L466 282 L444 292 L434 314 L424 292 L402 282 L424 272 Z"/>
+      <circle cx="88" cy="316" r="10"/>
+      <circle cx="424" cy="196" r="10"/>
+    </g>
+  </g>
 </svg>

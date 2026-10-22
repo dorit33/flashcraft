@@ -12,6 +12,7 @@
     clippy::unreachable
 )]
 
+pub mod checksum;
 pub mod commands;
 pub mod drive;
 pub mod error;
@@ -19,9 +20,13 @@ pub mod image;
 pub mod plan;
 pub mod progress;
 
+pub use checksum::{hash_bytes, Checksums, MultiHasher};
 pub use commands::{command, registry, CommandSpec};
 pub use drive::DriveInfo;
 pub use error::{Error, Result};
 pub use image::{ImageInfo, ImageKind};
-pub use plan::{validate_write_params, WriteParams, WritePlan};
+pub use plan::{
+    is_supported_compression, parse_cluster_bytes, validate_write_params, FileSystem, FormatPlan,
+    PartitionScheme, WriteParams, WritePlan,
+};
 pub use progress::{Phase, Progress};

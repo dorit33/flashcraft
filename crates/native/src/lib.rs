@@ -14,4 +14,6 @@
 pub mod linux;
 pub mod ops;
 
-pub use ops::{inspect_image, verify_image, write_image};
+pub use ops::{
+    compute_checksums, format_drive, inspect_image, scan_bad_blocks, verify_image, write_image,
+};

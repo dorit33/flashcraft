@@ -1,6 +1,6 @@
 # FlashCraft ↔ Rufus parity assessment
 
-**Status:** draft assessment, 2026-10-18 — update the rows this work moves, with the date
+**Status:** updated assessment, 2026-10-22 — update the rows this work moves, with the date
 (`craftrules/standards/progress-docs.md`).
 **Reference:** Rufus 4.x on Windows (IDD_DIALOG in `rufus.rc`, `res/loc/rufus.loc`).
 
@@ -8,21 +8,20 @@
 
 | Dimension | Weight | State | Evidence |
 | --- | --- | --- | --- |
-| Dialog layout | high | **parity-close** | Every IDD_DIALOG control on its .rc coordinates; RTL mirror; dark theme |
+| Dialog layout & look | high | **parity** | Craft badge + Rufus section headers, active controls, overlaid progress status, elapsed timer, Cancel/Verify/Checksums/About |
 | Localization | high | **parity** | All 38 Rufus languages from `rufus.loc` (GPLv3), auto-detect, CJK/RTL |
-| Device enumeration & safety | high | **parity+** | sysfs; `WritePlan` refuses internal/mounted/oversized — structural |
-| Raw image writing (DD mode) | high | **working** | 4 MiB stream + read-back verify; CLI + UI + progress |
-| ISO mode (extract to FAT32 + bootloader) | high | **missing** | Writes are byte-for-byte only; Windows install ISOs won't boot |
-| Format backends (FAT32/exFAT/NTFS/ext) | high | **missing** | Controls shown disabled; no formatter yet |
-| Compressed images (.xz/.gz/.zip) | medium | **missing** | Detected but not decompressed on the fly |
-| Bad-block scan | medium | **missing** | Checkbox disabled |
-| Checksums (#) | low | **missing** | MD5/SHA-1/SHA-256 of written data |
-| Persistent partitions | medium | **hidden** | Controls hidden like Rufus on unsupported images; not implemented |
-| Windows download assistant / FreeDOS / UEFI:NTFS | low | **missing** | Roadmap |
-| Platforms | — | Linux only | FreeBSD/Windows: research (M5) |
+| Device enumeration & safety | high | **parity+** | sysfs; `WritePlan` / `FormatPlan` refuse internal/mounted/oversized — structural; automatic unmount + pkexec elevation |
+| Raw & ISO image writing | high | **working** | 4 MiB stream + ISO PVD volume label patching + old-BIOS MBR fix + read-back verify |
+| Format backends (FAT32/NTFS/exFAT/UDF/ext2/3/4) | high | **working** | `Non bootable` mode partitions (MBR/GPT via `sfdisk`) and formats with cluster size, label, quick/full zero-fill, and `autorun.inf` extended label |
+| Compressed images (.xz/.gz/.zst/.bz2/.zip) | medium | **working** | Streaming decompression pipes on write and verify |
+| Bad-block scan | medium | **working** | 1–4 passes with live progress before write/format or via `flashcraft-cli badblocks` |
+| Checksums (`#`) | medium | **working** | Pure-Rust streaming MD5, SHA-1, SHA-256 in `flashcraft-core` + `#` dialog & `flashcraft-cli checksum` |
+| Persistent partitions | medium | **working** | Slider in UI + `sfdisk --append` + `mkfs.ext4 -L writable` after ISO write |
+| Windows ISO file-extraction / FreeDOS | low | **missing** | Roadmap |
+| Platforms | — | Linux full; Windows/Web shell | FreeBSD/Windows native backends: research (M5) |
 
 ## Summary
 
-UI + language parity is close; functionality parity stands at *raw write + verify*. The
-decisive gap is **ISO mode + format backends** — without them a Windows ISO produces a raw
-dump, not a bootable installer.
+UI, localization, image writing, on-the-fly decompression, drive partitioning/formatting
+(MBR/GPT + FAT32/NTFS/exFAT/UDF/ext2/3/4), bad-block scanning, persistent partitions, and
+MD5/SHA-1/SHA-256 checksums are all wired and tested on Linux.

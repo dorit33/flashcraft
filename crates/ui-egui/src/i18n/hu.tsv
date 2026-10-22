@@ -52,3 +52,34 @@ Requesting administrator rights	Rendszergazdai jogosultság kérése
 Writing {0}%	Írás: {0}%
 Verifying {0}%	Ellenőrzés: {0}%
 Syncing to device…	Szinkronizálás az eszközre…
+Formatting {0}%	Formázás: {0}%
+Scanning bad blocks {0}%	Hibás blokkok keresése: {0}%
+Computing checksums {0}%	Ellenőrzőösszegek számítása: {0}%
+Non bootable	Nem indítható (csak formázás)
+DD Image (raw sector copy)	DD lemezkép (nyers szektormásolás)
+FORMAT DONE	FORMÁZÁS KÉSZ
+format started	formázás elindítva: {0}
+Checksums	Ellenőrzőösszegek (MD5 / SHA-1 / SHA-256)
+Verify	Ellenőrzés
+About	Névjegy
+Clear	Törlés
+Copy	Másolás
+Copied to clipboard	Vágólapra másolva
+1 Pass	1 menet
+2 Passes	2 menet
+3 Passes	3 menet
+4 Passes	4 menet
+FAT32 (default)	FAT32 (alapértelmezett)
+4096 bytes (default)	4096 bájt (alapértelmezett)
+8192 bytes	8192 bájt
+16 kilobytes	16 kilobájt
+32 kilobytes	32 kilobájt
+64 kilobytes	64 kilobájt
+No persistence (0 MB)	Nincs tartós partíció (0 MB)
+mounted — will unmount automatically	csatolva — írás előtt automatikusan leválasztva
+device is not removable	nem cserélhető eszköz
+device reports zero size	nulla méretű eszköz
+device has mounted partitions	csatolt partícióval rendelkezik
+Cancelling operation…	Művelet megszakítása…
+Contributors	Közreműködők
+License	Licenc

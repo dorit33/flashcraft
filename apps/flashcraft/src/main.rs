@@ -61,11 +61,22 @@ fn load_fonts(ctx: &egui::Context) {
     ctx.set_fonts(fonts);
 }
 
+fn app_icon() -> Option<egui::IconData> {
+    let bytes =
+        include_bytes!("../../../assets/app-icon/hicolor/256x256/apps/dev.flashcraft.app.png");
+    eframe::icon_data::from_png_bytes(bytes).ok()
+}
+
 fn main() -> eframe::Result<()> {
+    let mut viewport = egui::ViewportBuilder::default()
+        .with_inner_size([560.0, 720.0])
+        .with_min_inner_size([520.0, 660.0])
+        .with_resizable(true);
+    if let Some(icon) = app_icon() {
+        viewport = viewport.with_icon(std::sync::Arc::new(icon));
+    }
     let options = eframe::NativeOptions {
-        viewport: egui::ViewportBuilder::default()
-            .with_inner_size([560.0, 700.0])
-            .with_resizable(false),
+        viewport,
         ..Default::default()
     };
     let mut ui = FlashcraftUi::default();

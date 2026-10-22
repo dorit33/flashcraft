@@ -30,9 +30,16 @@ const SPECS: &[CommandSpec] = &[
         destructive: false,
     },
     CommandSpec {
+        id: "image.checksum",
+        label: "Compute image checksums",
+        summary: "Compute MD5, SHA-1 and SHA-256 digests of an image file.",
+        params_doc: r#"{"image": "path/to/image.iso"}"#,
+        destructive: false,
+    },
+    CommandSpec {
         id: "media.write",
         label: "Write image to drive",
-        summary: "Write the image byte-for-byte to a removable drive, then sync.",
+        summary: "Write the image (or decompressed stream) to a removable drive, then sync.",
         params_doc: r#"{"image": "path/to/image.iso", "drive": "/dev/sdX"}"#,
         destructive: true,
     },
@@ -41,6 +48,21 @@ const SPECS: &[CommandSpec] = &[
         label: "Verify written drive",
         summary: "Read the drive back and compare it against the image.",
         params_doc: r#"{"image": "path/to/image.iso", "drive": "/dev/sdX"}"#,
+        destructive: false,
+    },
+    CommandSpec {
+        id: "media.format",
+        label: "Format removable drive",
+        summary:
+            "Partition (MBR/GPT) and format (FAT32/NTFS/exFAT/UDF/ext2/3/4) a removable drive.",
+        params_doc: r#"{"drive": "/dev/sdX", "scheme": "MBR|GPT", "fs": "FAT32|NTFS|exFAT|UDF|ext2|ext3|ext4"}"#,
+        destructive: true,
+    },
+    CommandSpec {
+        id: "media.badblocks",
+        label: "Scan drive for bad blocks",
+        summary: "Scan a removable drive for bad sectors over 1..=4 passes.",
+        params_doc: r#"{"drive": "/dev/sdX", "passes": 1}"#,
         destructive: false,
     },
 ];

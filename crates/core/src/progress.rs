@@ -6,11 +6,14 @@ use serde::{Deserialize, Serialize};
 #[derive(Debug, Clone, Copy, Default, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(rename_all = "lowercase")]
 pub enum Phase {
+    BadBlocks,
+    Formatting,
     #[default]
     Writing,
     Verifying,
     /// All bytes handed to the kernel; waiting for the device flush.
     Syncing,
+    Hashing,
 }
 
 #[derive(Debug, Clone, Copy, Default, Serialize, Deserialize)]

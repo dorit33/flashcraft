@@ -11,4 +11,6 @@ for size in 16 24 32 48 64 128 256 512; do
     mkdir -p "$out"
     rsvg-convert -w "$size" -h "$size" "$SRC" -o "$out/dev.flashcraft.app.png"
 done
+mkdir -p assets/app-icon/hicolor/scalable/apps
+cp "$SRC" assets/app-icon/hicolor/scalable/apps/dev.flashcraft.app.svg
 echo "icons rendered"
