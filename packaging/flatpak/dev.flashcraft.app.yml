@@ -35,5 +35,8 @@ modules:
       - install -Dm644 packaging/linux/flashcraft.desktop /app/share/applications/dev.flashcraft.app.desktop
       - install -Dm644 packaging/linux/dev.flashcraft.app.metainfo.xml /app/share/metainfo/dev.flashcraft.app.metainfo.xml
       - install -Dm644 assets/app-icon/hicolor/128x128/apps/dev.flashcraft.app.png /app/share/icons/hicolor/128x128/apps/dev.flashcraft.app.png
+      - install -Dm644 assets/app-icon/hicolor/256x256/apps/dev.flashcraft.app.png /app/share/icons/hicolor/256x256/apps/dev.flashcraft.app.png
+      - install -Dm644 assets/app-icon/hicolor/512x512/apps/dev.flashcraft.app.png /app/share/icons/hicolor/512x512/apps/dev.flashcraft.app.png
+      - install -Dm644 assets/app-icon/hicolor/scalable/apps/dev.flashcraft.app.svg /app/share/icons/hicolor/scalable/apps/dev.flashcraft.app.svg
       - install -Dm644 LICENSE /app/share/doc/flashcraft/LICENSE
       - install -Dm644 ATTRIBUTION.md /app/share/doc/flashcraft/ATTRIBUTION.md
