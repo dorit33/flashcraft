@@ -20,10 +20,23 @@ use std::process::{Command, ExitCode};
 mod version;
 
 fn root() -> PathBuf {
-    Path::new(env!("CARGO_MANIFEST_DIR"))
-        .parent()
-        .map(Path::to_path_buf)
-        .unwrap_or_else(|| PathBuf::from(".."))
+    if let Ok(dir) = std::env::var("CARGO_MANIFEST_DIR") {
+        let p = Path::new(&dir);
+        if p.exists() {
+            return p
+                .parent()
+                .map(Path::to_path_buf)
+                .unwrap_or_else(|| p.to_path_buf());
+        }
+    }
+    let compile_dir = Path::new(env!("CARGO_MANIFEST_DIR"));
+    if compile_dir.exists() {
+        return compile_dir
+            .parent()
+            .map(Path::to_path_buf)
+            .unwrap_or_else(|| PathBuf::from(".."));
+    }
+    std::env::current_dir().unwrap_or_else(|_| PathBuf::from("."))
 }
 
 fn run(cmd: &str, args: &[&str]) -> Result<(), String> {
