@@ -30,3 +30,8 @@ find . -maxdepth 1 -type f \
        -o -name "*.flatpak" -o -name "*.zip" -o -name "*.msi" \) \
     -exec sha256sum {} + | sed 's|  \./|  |' | sort -k2 > SHA256SUMS.txt
 cat SHA256SUMS.txt
+
+# Clean build caches so the released source directory stays lean like sibling Craft apps.
+rm -rf "$ROOT/target" "$DIST" "$ROOT/.flatpak-builder" \
+    "$ROOT/packaging/.flatpak-builder" "$ROOT/packaging/.cache" \
+    "$ROOT/packaging/flatpak/build" "$ROOT/packaging/flatpak/repo"
