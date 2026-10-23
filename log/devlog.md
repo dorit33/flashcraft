@@ -323,3 +323,12 @@ flatpak-builder run, appstreamcli validation.
   image, unknown tool → `isError`, unknown method → -32601).
 - Registered in `~/.config/devin/mcp_config.json` as the `flashcraft` server;
   `cargo xtask ci` green.
+- MCP destructive tools now elevate like the GUI: when the server is not
+  root, media.write/verify/format/badblocks run `pkexec flashcraft-cli …
+  --progress` and stream the child's JSON progress lines onward as MCP
+  `notifications/progress`. `precheck_dev` refuses structurally-unsuitable
+  drives in the parent before any polkit prompt (mounted devices pass — the
+  elevated child unmounts them itself).
+- Live-tested: `media_verify` on /dev/sdd read back the full 3.9 GB Pop!_OS
+  image through pkexec and reported success; refusal paths (no `confirm`,
+  non-removable drive) still short-circuit before elevation.
