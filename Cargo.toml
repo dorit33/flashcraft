@@ -15,8 +15,8 @@ version = "0.2.0"
 edition = "2021"
 rust-version = "1.85"
 license = "GPL-3.0-only"
-repository = "https://github.com/cdori/flashcraft"
-homepage = "https://github.com/cdori/flashcraft"
+repository = "https://github.com/dorit33/flashcraft"
+homepage = "https://github.com/dorit33/flashcraft"
 
 [workspace.lints.rust]
 unsafe_code = "forbid"

@@ -17,7 +17,7 @@
     </p>
   </description>
   <launchable type="desktop-id">dev.flashcraft.app.desktop</launchable>
-  <url type="homepage">https://github.com/cdori/flashcraft</url>
+  <url type="homepage">https://github.com/dorit33/flashcraft</url>
   <provides>
     <binary>flashcraft</binary>
     <binary>flashcraft-cli</binary>

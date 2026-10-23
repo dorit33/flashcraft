@@ -24,7 +24,7 @@ INSTALLED=$(du -sk "$STAGE/usr" | cut -f1)
 cat > "$STAGE/usr/share/doc/flashcraft/copyright" <<EOF
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: flashcraft
-Source: https://github.com/cdori/flashcraft
+Source: https://github.com/dorit33/flashcraft
 
 Files: *
 Copyright: FlashCraft contributors

@@ -7,7 +7,7 @@ Version:        0.2.0
 Release:        1%{?dist}
 Summary:        Write bootable images to removable drives
 License:        GPL-3.0-only
-URL:            https://github.com/cdori/flashcraft
+URL:            https://github.com/dorit33/flashcraft
 Source0:        %{name}-%{version}-linux-%{_arch}.tar.gz
 
 BuildArch:      %{_arch}
