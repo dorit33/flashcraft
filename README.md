@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="assets/app-icon/hicolor/128x128/apps/dev.flashcraft.app.png" width="96" alt="FlashCraft icon">
+</p>
+
 <h1 align="center">FlashCraft</h1>
 
 <p align="center">
@@ -9,7 +13,10 @@
   <img alt="100% Rust" src="https://img.shields.io/badge/100%25-Rust-b7410e?style=flat-square&logo=rust">
   <img alt="Linux · FreeBSD · Web-native" src="https://img.shields.io/badge/Linux%20%C2%B7%20FreeBSD%20%C2%B7%20Web-native-26282e?style=flat-square">
   <img alt="License: GPL-3.0-only" src="https://img.shields.io/badge/license-GPL--3.0-3a3a3a?style=flat-square">
-  <img alt="Status: early alpha" src="https://img.shields.io/badge/status-early%20alpha-d69e2e?style=flat-square">
+</p>
+
+<p align="center">
+  <img src="docs/screenshot.png" alt="FlashCraft after writing a Pop!_OS image to a USB drive" width="553">
 </p>
 
 <table>
@@ -32,22 +39,38 @@
 ## Features
 
 - Enumerates removable drives from sysfs: size, vendor, model, mount state.
-- Detects image kinds by header sniff (ISO 9660, MBR/GPT disk image, compressed).
-- Streams images in 4 MiB chunks with live progress; never loads the file into memory.
-- Byte-for-byte read-back verification.
-- Every destructive path refuses first: non-removable, mounted, zero-size, oversized.
+- Writes ISO 9660 / MBR / GPT images in 4 MiB streamed chunks with live
+  **Writing → Verifying → Syncing** progress, cancel, throughput and elapsed time.
+- Byte-for-byte read-back verification and automatic unmount before writes;
+  elevation through `pkexec`/polkit — never a setuid binary.
+- ISO 9660 volume-label patching so the label you type lands on the media.
+- Compressed images streamed on the fly: `.xz`, `.gz`, `.zst`, `.bz2`, `.zip`.
+- MD5 / SHA-1 / SHA-256 checksums computed on the fly, copyable to clipboard.
+- Non-bootable formatting: MBR/GPT partition schemes with FAT32, NTFS, exFAT,
+  UDF, ext4, ext3 or ext2 — cluster-size selection, quick format, extended
+  label + `autorun.inf`.
+- Persistent `ext4` partition sizing, 1–4-pass bad-block scan, old-BIOS fixes,
+  runtime UEFI media validation.
+- 38-language UI (translations reused from Rufus' GPLv3 catalog).
 
 ## Downloads
 
-`dist/` (built locally by the scripts in `packaging/`):
+Get the installers from the [Releases page](https://github.com/dorit33/flashcraft/releases)
+(`dist/` is built locally by the scripts in `packaging/`):
 
 | File | What it is |
 |---|---|
-| `flashcraft-<ver>-linux-x86_64.rpm` | Fedora, openSUSE, RHEL: `sudo dnf install ./flashcraft-…rpm` |
+| `flashcraft-<ver>-1.*.x86_64.rpm` | Fedora, openSUSE, RHEL: `sudo dnf install ./flashcraft-…rpm` |
 | `flashcraft-<ver>-linux-x86_64.deb` | Debian, Ubuntu, Mint, Pop!_OS: `sudo apt install ./flashcraft-…deb` |
 | `flashcraft-<ver>-linux-x86_64.AppImage` | Runs on almost any distro: `chmod +x` and run |
 | `flashcraft-<ver>-linux-x86_64.tar.gz` | Plain tree (`bin/`, `share/`) for everyone else |
-| `packaging/flatpak/dev.flashcraft.app.yml` | Flatpak manifest (`flatpak-builder`) |
+| `flashcraft-<ver>-x86_64.flatpak` | Flatpak bundle (`flatpak install`) |
+| `flashcraft-<ver>-windows-{x64,x86}.msi`, `-windows-x64-portable.zip` | Windows builds — the UI runs; drive backend is Linux-only for now |
+| `flashcraft-web-<ver>.zip` | WebAssembly build of the same UI |
+| `flashcraft-<ver>.zip`, `SHA256SUMS.txt` | Source archive + checksums |
+
+Linux binaries are built against **GLIBC_2.35** in a container, so they run on
+Pop!_OS 22.04+, Debian 12+, Fedora and anything newer.
 
 ## Get started
 
@@ -68,9 +91,11 @@ Block-device writes need root; the supported grant is a polkit prompt (`pkexec`)
 
 ## Status
 
-Early alpha. Linux enumeration, image inspect, write and verify work today; the egui app is a
-thin shell over the same commands. See `ROADMAP.md` for what's next (decompression backends,
-bad-block check, persistent partitions, FAT32 formatting, packaging).
+v0.2.0. On Linux the full path works end to end: enumerate, inspect, write, verify,
+sync, format, checksums. The Windows packages cross-build and the app opens, but
+`flashcraft-native` enumerates drives through Linux sysfs/polkit only — a real
+Windows backend is roadmap work. Flatpak runs sandboxed without raw block-device
+access; host udisks2 integration is planned. See `ROADMAP.md` and `docs/gaps.md`.
 
 ## License
 
