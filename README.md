@@ -91,7 +91,7 @@ Block-device writes need root; the supported grant is a polkit prompt (`pkexec`)
 
 ## Status
 
-v0.2.0. On Linux the full path works end to end: enumerate, inspect, write, verify,
+v0.3.0. On Linux the full path works end to end: enumerate, inspect, write, verify,
 sync, format, checksums. The Windows packages cross-build and the app opens, but
 `flashcraft-native` enumerates drives through Linux sysfs/polkit only — a real
 Windows backend is roadmap work. Flatpak runs sandboxed without raw block-device
