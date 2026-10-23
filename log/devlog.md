@@ -284,3 +284,15 @@ flatpak-builder run, appstreamcli validation.
 - Responsive, structured Rufus UI layout with section dividers, active
   controls, overlaid progress bar status + MB/s speed, elapsed timer,
   Cancel during active jobs, Verify button, Checksums (`#`), Log and About.
+
+## 2026-10-23 — v0.2.0 local rebuild + artifact refresh
+
+- `cargo xtask ci` green (fmt/clippy/tests/layers/wasm).
+- Full packaging matrix rebuilt from clean target: tar.gz, deb, rpm (fc44),
+  AppImage, flatpak bundle, web zip, windows x64 msi + portable zip + x86 msi,
+  source zip. `release.sh` published all 11 artifacts next to the source dir
+  with a fresh `SHA256SUMS.txt`, then cleaned `target/`, `dist/` and
+  `.flatpak-builder` caches.
+- Checksums differ from the published GitHub v0.2.0 assets (build metadata —
+  builds are not byte-reproducible); published release left untouched.
+- craft-gyujto catalog repo pushed to github.com/dorit33/craft-gyujto, Pages on.
