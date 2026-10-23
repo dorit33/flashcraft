@@ -296,3 +296,12 @@ flatpak-builder run, appstreamcli validation.
 - Checksums differ from the published GitHub v0.2.0 assets (build metadata —
   builds are not byte-reproducible); published release left untouched.
 - craft-gyujto catalog repo pushed to github.com/dorit33/craft-gyujto, Pages on.
+
+## 2026-10-23 — v0.3.0 release
+
+- `cargo xtask version set 0.3.0`; workspace, Cargo.lock, RPM spec and AppStream
+  release stamped. `cargo xtask ci` green.
+- Full matrix rebuilt: tar.gz, deb, rpm (fc44), AppImage, flatpak bundle, web zip,
+  windows x64 msi + portable zip + x86 msi, source zip; `release.sh` published all
+  11 artifacts with fresh `SHA256SUMS.txt` and cleaned build caches.
+- Tagged v0.3.0; GitHub release carries the full artifact matrix.
