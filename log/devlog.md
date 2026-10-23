@@ -332,3 +332,12 @@ flatpak-builder run, appstreamcli validation.
 - Live-tested: `media_verify` on /dev/sdd read back the full 3.9 GB Pop!_OS
   image through pkexec and reported success; refusal paths (no `confirm`,
   non-removable drive) still short-circuit before elevation.
+
+## 0.3.1
+
+- MCP control channel hardened: device-touching tools (media.write/verify/
+  format/badblocks) elevate through `pkexec flashcraft-cli … --progress` —
+  same polkit model as the GUI — and forward live progress notifications.
+- Structural refusals short-circuit in the unprivileged parent before any
+  password prompt.
+- Version bump + full release matrix rebuild.

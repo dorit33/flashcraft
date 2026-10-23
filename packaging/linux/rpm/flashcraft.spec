@@ -3,7 +3,7 @@
 # Build: packaging/linux/rpm.sh
 %global debug_package %{nil}
 Name:           flashcraft
-Version:        0.3.0
+Version:        0.3.1
 Release:        1%{?dist}
 Summary:        Write bootable images to removable drives
 License:        GPL-3.0-only
