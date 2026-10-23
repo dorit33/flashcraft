@@ -305,3 +305,21 @@ flatpak-builder run, appstreamcli validation.
   windows x64 msi + portable zip + x86 msi, source zip; `release.sh` published all
   11 artifacts with fresh `SHA256SUMS.txt` and cleaned build caches.
 - Tagged v0.3.0; GitHub release carries the full artifact matrix.
+
+## 2026-10-23 — MCP server (`flashcraft-cli mcp`)
+
+- `flashcraft-cli mcp` serves the command registry over MCP: newline-delimited
+  JSON-RPC 2.0 on stdio (initialize/ping/tools/list/tools/call, resources and
+  prompts as empty lists, `notifications/progress` when the caller passes a
+  `progressToken`).
+- Tool names are registry ids with `_` for `.` (`drives_list`, `media_write`,
+  …). `CommandSpec` gained `input_schema` (JSON Schema) — same registry feeds
+  CLI help and MCP `tools/list`.
+- Destructive tools keep the structural gates: `confirm: true` in arguments
+  plus root (same as `--yes` + sudo on the CLI).
+- Verified over stdio: initialize, ping, tools/list (7 tools + schemas),
+  drives_list (live sysfs data + writable reasons), image_inspect (Pop!_OS
+  ISO), image_checksum, refusal paths (no-root write/format, bad drive, bad
+  image, unknown tool → `isError`, unknown method → -32601).
+- Registered in `~/.config/devin/mcp_config.json` as the `flashcraft` server;
+  `cargo xtask ci` green.

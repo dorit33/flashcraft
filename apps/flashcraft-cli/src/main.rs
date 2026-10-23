@@ -2,7 +2,8 @@
 //!
 //! Subcommands dispatch the same command ids the UI uses:
 //! `drives.list`, `image.inspect`, `image.checksum`, `media.write`,
-//! `media.verify`, `media.format`, `media.badblocks`.
+//! `media.verify`, `media.format`, `media.badblocks`. The `mcp`
+//! subcommand serves the same registry over MCP (stdio JSON-RPC).
 
 #![deny(
     clippy::unwrap_used,
@@ -20,6 +21,8 @@ use flashcraft_core::{
     self as core, command, registry, Error, FileSystem, FormatPlan, PartitionScheme, WritePlan,
 };
 use flashcraft_native::linux;
+
+mod mcp;
 
 /// Human progress on stderr; with `--progress` one JSON line per update on
 /// stdout so the GUI (which may run us through pkexec) can render the bar.
@@ -117,6 +120,7 @@ SUBCOMMANDS:
   format <drive> [--yes]          Partition & format drive         (media.format)
   badblocks <drive>               Scan drive for bad blocks        (media.badblocks)
   commands                        List every registered command
+  mcp                             Serve the registry over MCP (stdio JSON-RPC)
 
 OPTIONS:
   --progress                      JSON progress lines on stdout (for the GUI)
@@ -325,6 +329,7 @@ fn run(args: &[String]) -> Result<(), Error> {
             }
             Ok(())
         }
+        "mcp" => mcp::serve(),
         "-h" | "--help" | "help" | "" => {
             usage();
             Ok(())
